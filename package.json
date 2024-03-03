@@ -1,0 +1,22 @@
+{
+    "name": "blockgametracker",
+    "private": true,
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev --parallel",
+        "format": "prettier --write .",
+        "check": "prettier --check ."
+    },
+    "devDependencies": {
+        "prettier": "^3.0.0",
+        "turbo": "latest"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "packageManager": "yarn@1.22.21",
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ]
+}
