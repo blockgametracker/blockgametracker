@@ -1,12 +1,16 @@
 import Link from "next/link"
 import Icon from "./icon"
 
-import { Button } from "./button";
+import { Button } from "./button"
+import { Section } from "./content"
 
 const navigation = () => (
-    <div className="flex justify-center w-full h-16 fixed top-0 bg-darkFill border-b-2 border-darkOverlay pt-2 pb-2 z-50">
-        <div className="inline-flex gap-4 w-full max-w-content">
-            <Link href="/" className="inline-flex items-center w-full max-w-content gap-2">
+    <Section className="border-b-2 border-darkOverlay bg-darkFill">
+        <div className="h-16 inline-flex justify-center">
+            <Link
+                href="/"
+                className="inline-flex items-center w-full max-w-content gap-2"
+            >
                 <Icon iconName="logo" className="w-6 h-6 fill-mainColor" />
                 <h1>Blockgametracker</h1>
             </Link>
@@ -14,7 +18,7 @@ const navigation = () => (
             <Button>Server comparison</Button>
             <Button>AS Statistics</Button>
         </div>
-    </div>
+    </Section>
 )
 
 export default navigation

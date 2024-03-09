@@ -5,6 +5,7 @@ import Icon from "./icon"
 import Graph from "./graphs/serverGraph"
 import data from "./graphs/data2.json"
 import Link from "next/link"
+import { ButtonIcon } from "./button"
 
 export interface Server {
     name: string
@@ -16,7 +17,7 @@ export interface Server {
     players_peak: number
 }
 
-export const CardBig = ({ server }: any) => (
+export const Server = ({ server }: any) => (
     <DarkContainer className="fade flex flex-col gap-2 w-full overflow-hidden">
         <div className="inline-flex gap-4 items-center">
             <Image
@@ -38,24 +39,8 @@ export const CardBig = ({ server }: any) => (
                 <p>{server.ip}</p>
             </div>
             <div className="ml-auto inline-flex gap-2">
-                <Link
-                    href="/"
-                    className="bg-darkFill border-darkOverlay border-2 p-3 rounded-md"
-                >
-                    <Icon
-                        iconName="compare"
-                        className="w-4 h-4 fill-secondText"
-                    ></Icon>
-                </Link>
-                <Link
-                    href={`/server/${server.id}`}
-                    className="bg-darkFill border-darkOverlay border-2 p-3 rounded-md"
-                >
-                    <Icon
-                        iconName="fullscreen"
-                        className="w-4 h-4 fill-secondText"
-                    ></Icon>
-                </Link>
+                <ButtonIcon iconName="compare" />
+                <ButtonIcon iconName="fullscreen" />
             </div>
         </div>
 
@@ -75,16 +60,4 @@ export const CardBig = ({ server }: any) => (
             </Tag>
         </div>
     </DarkContainer>
-)
-
-export const CardTest = ({ server }: { server: Server }) => (
-    <div className="inline-flex gap-4 items-center">
-        <div className="flex w-8 h-8 bg-mainColor bg-opacity-30 rounded-md items-center justify-center">
-            <p className="text-mainColor font-semibold">#1</p>
-        </div>
-        <div className="flex flex-col">
-            <h2>{server.name}</h2>
-            <p>Players: {server.players_current}</p>
-        </div>
-    </div>
 )

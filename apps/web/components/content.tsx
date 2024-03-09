@@ -1,7 +1,11 @@
 export function Section({ children, className }: any) {
     return (
-        <div className={`w-full flex flex-col items-center ${className}`}>
-            <div className="flex flex-col gap-4 w-full h-full max-w-content">{children}</div>
+        <div
+            className={`w-full flex flex-col items-center pl-32 pr-32 ${className}`}
+        >
+            <div className="flex flex-col gap-4 w-full h-full max-w-content">
+                {children}
+            </div>
         </div>
     )
 }

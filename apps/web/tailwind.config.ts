@@ -20,8 +20,8 @@ const config: Config = {
                 content: "2200px",
             },
             fontFamily: {
-                'manrope': ['"Manrope"'],
-                'bebas-neue': ['"Bebas Neue"'],
+                manrope: ['"Manrope"'],
+                "bebas-neue": ['"Bebas Neue"'],
             },
         },
     },

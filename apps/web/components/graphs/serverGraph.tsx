@@ -2,23 +2,8 @@
 
 import { ResponsiveLine } from "@nivo/line"
 import { Container } from "../content"
-import { linearGradientDef } from '@nivo/core'
-
-const customColors = ["#35f03f"]
-
-const theme = {
-    grid: {
-        line: {
-            stroke: "#202024",
-        },
-    },
-    crosshair: {
-        line: {
-            stroke: '#dadada',
-            strokeWidth: 1,
-        },
-    }
-}
+import { linearGradientDef } from "@nivo/core"
+import { graphColors, theme } from "./graph"
 
 const HeaderGraph = ({ data }: any) => (
     <ResponsiveLine
@@ -27,14 +12,14 @@ const HeaderGraph = ({ data }: any) => (
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         enableArea={true}
         areaOpacity={0.3}
-        colors={customColors}
+        colors={graphColors}
         axisTop={null}
         axisRight={null}
         axisBottom={null}
         axisLeft={null}
         enableSlices="x"
         enablePoints={false}
-        xScale={{ 
+        xScale={{
             type: "point",
         }}
         yScale={{
@@ -44,18 +29,19 @@ const HeaderGraph = ({ data }: any) => (
             reverse: false,
         }}
         defs={[
-            linearGradientDef('gradientA', [
-                { offset: 0, color: 'inherit' },
-                { offset: 100, color: 'inherit', opacity: 0 },
+            linearGradientDef("gradientA", [
+                { offset: 0, color: "inherit" },
+                { offset: 100, color: "inherit", opacity: 0 },
             ]),
         ]}
-        fill={[
-            { match: '*', id: 'gradientA' },
-        ]}
+        fill={[{ match: "*", id: "gradientA" }]}
         sliceTooltip={({ slice }) => (
             <Container className="flex flex-col">
-                {slice.points.map(point => (
-                    <div key={point.id} className="inline-flex gap-2 text-secondText">
+                {slice.points.map((point) => (
+                    <div
+                        key={point.id}
+                        className="inline-flex gap-2 text-secondText"
+                    >
                         <p
                             className={`text-sm leading-5`}
                             style={{
@@ -64,8 +50,10 @@ const HeaderGraph = ({ data }: any) => (
                         >
                             ■
                         </p>
-                        <strong className="text-mainText">Online players: </strong>
-                        <p >{point.data.yFormatted}</p>
+                        <strong className="text-mainText">
+                            Online players:{" "}
+                        </strong>
+                        <p>{point.data.yFormatted}</p>
                     </div>
                 ))}
             </Container>
