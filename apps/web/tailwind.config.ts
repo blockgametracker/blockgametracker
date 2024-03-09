@@ -8,10 +8,20 @@ const config: Config = {
     ],
     theme: {
         extend: {
-            backgroundImage: {
-                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "gradient-conic":
-                    "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+            colors: {
+                dark: "#0b0b0c",
+                darkFill: "#131316",
+                darkOverlay: "#202024",
+                mainColor: "#35f03f",
+                mainText: "#dadada",
+                secondText: "#7e7e7e",
+            },
+            maxWidth: {
+                content: "2200px",
+            },
+            fontFamily: {
+                'manrope': ['"Manrope"'],
+                'bebas-neue': ['"Bebas Neue"'],
             },
         },
     },
