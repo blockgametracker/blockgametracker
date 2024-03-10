@@ -2,7 +2,7 @@
     "compilerOptions": {
         "esModuleInterop": true,
         "isolatedModules": true,
-        "module": "CommonJS",
+        "module": "ESNext",
         "preserveWatchOutput": true,
         "skipLibCheck": true,
         "strict": true,
