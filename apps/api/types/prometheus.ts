@@ -1,3 +1,4 @@
+/** The base response returned by Prometheus. */
 export interface BaseResponse<T> {
     status: string
     data: {
@@ -10,18 +11,38 @@ export interface BaseResponse<T> {
     }
 }
 
-export interface BaseResult {
-    metric: object
+/** The base of a data-based result from Prometheus. */
+export interface BaseResult<Metric> {
+    metric: Metric
 }
 
-interface Query<K, V> extends BaseResult {
-    value?: [K, V]
+/** A singular query. */
+interface Query<Metric, Key, Value> extends BaseResult<Metric> {
+    value?: [Key, Value]
 }
 
-interface QueryRange<K, V> extends BaseResult {
-    values?: [K, V][]
+/** A query over a given timeframe. */
+interface QueryRange<Metric, Key, Value> extends BaseResult<Metric> {
+    values?: [Key, Value][]
 }
 
-export type QueryResponse<K, V> = BaseResponse<Query<K, V>>
+/** The response from a singular query. */
+export type QueryResponse<Metric, Key, Value> = BaseResponse<
+    Query<Metric, Key, Value>
+>
 
-export type QueryRangeResponse<K, V> = BaseResponse<QueryRange<K, V>>
+/** The response from a query over a given timeframe. */
+export type QueryRangeResponse<Metric, Key, Value> = BaseResponse<
+    QueryRange<Metric, Key, Value>
+>
+
+/** The name of a server we track. */
+export interface ServerName {
+    server_name: string
+}
+
+/** The meta information on a server we track. */
+export interface ServerInfo extends ServerName {
+    server_host: string
+    server_version: string
+}

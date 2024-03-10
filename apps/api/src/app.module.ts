@@ -1,7 +1,10 @@
 import { Module } from "@nestjs/common"
-import { AppController } from "./app.controller"
+import { OnlineController } from "./controllers/online.controller"
 import { ConfigModule } from "@nestjs/config"
-import { PrometheusService } from "./prometheus.service"
+import { PrometheusService } from "./services/prometheus.service"
+import { AppController } from "./controllers/app.controller"
+import { ServersController } from "./controllers/servers.controller"
+import { EnsembleController } from "./controllers/ensemble.controller"
 
 @Module({
     imports: [
@@ -9,7 +12,12 @@ import { PrometheusService } from "./prometheus.service"
             envFilePath: [".env.local"],
         }),
     ],
-    controllers: [AppController],
+    controllers: [
+        AppController,
+        EnsembleController,
+        OnlineController,
+        ServersController,
+    ],
     providers: [PrometheusService],
 })
 export class AppModule {}
