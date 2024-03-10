@@ -1,5 +1,10 @@
 import { Controller, Get, Param } from "@nestjs/common"
 import { PrometheusService } from "../services/prometheus.service"
+import type {
+    ApiQueryRangeResponse,
+    ApiQueryResponse,
+    MinecraftEdition,
+} from "@repo/gateway"
 
 /** Handles requests targeted at specific servers. */
 @Controller("online")
@@ -10,15 +15,15 @@ export class OnlineController {
     @Get(":server/:edition")
     async getOnlineServer(
         @Param("server") server: string,
-        @Param("edition") edition: string,
-    ) {
+        @Param("edition") edition: MinecraftEdition,
+    ): Promise<ApiQueryResponse> {
         const query = `min(sum by(pod) (minecraft_status_players_online_count{server_name="${server}", server_edition="${edition}"}))`
         const res = await this.prometheusService.query(query)
         const result = res.data.result[0]
 
         return {
             data: {
-                x: result.value[0].toFixed(0),
+                x: Number.parseInt(result.value[0].toFixed(0)),
                 y: Number.parseInt(result.value[1]),
             },
         }
@@ -28,16 +33,19 @@ export class OnlineController {
     @Get(":server/:edition/:start/:step")
     async getOnlineServerRange(
         @Param("server") server: string,
-        @Param("edition") edition: string,
+        @Param("edition") edition: MinecraftEdition,
         @Param("start") start: string,
         @Param("step") step: string,
-    ) {
+    ): Promise<ApiQueryRangeResponse> {
         const query = `min(sum by(pod) (minecraft_status_players_online_count{server_name="${server}", server_edition="${edition}"}))`
         const res = await this.prometheusService.queryRange(query, start, step)
 
         return {
             data: res.data.result[0].values.map(([x, y]) => {
-                return { x: x.toFixed(0), y: Number.parseInt(y) }
+                return {
+                    x: Number.parseInt(x.toFixed(0)),
+                    y: Number.parseInt(y),
+                }
             }),
         }
     }

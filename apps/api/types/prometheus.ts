@@ -35,14 +35,3 @@ export type QueryResponse<Metric, Key, Value> = BaseResponse<
 export type QueryRangeResponse<Metric, Key, Value> = BaseResponse<
     QueryRange<Metric, Key, Value>
 >
-
-/** The name of a server we track. */
-export interface ServerName {
-    server_name: string
-}
-
-/** The meta information on a server we track. */
-export interface ServerInfo extends ServerName {
-    server_host: string
-    server_version: string
-}

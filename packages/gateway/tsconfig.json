@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "module": "CommonJS",
+        "preserveWatchOutput": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "outDir": "./dist"
+    },
+    "include": ["."],
+    "exclude": ["dist", "build", "node_modules"]
+}
