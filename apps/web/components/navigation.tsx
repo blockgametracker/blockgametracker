@@ -6,15 +6,15 @@ import { Section } from "./content"
 
 const navigation = () => (
     <Section className="border-b-2 border-darkOverlay bg-darkFill">
-        <div className="h-16 inline-flex justify-center">
+        <div className="w-full h-16 inline-flex">
             <Link
                 href="/"
-                className="inline-flex items-center w-full max-w-content gap-2"
+                className="inline-flex items-center max-w-content gap-2"
             >
-                <Icon iconName="logo" className="w-6 h-6 fill-mainColor" />
-                <h1>Blockgametracker</h1>
+                <Icon iconName="icon" className="w-6 h-6 fill-mainColor" />
             </Link>
 
+            <Button>Home</Button>
             <Button>Server comparison</Button>
             <Button>AS Statistics</Button>
         </div>

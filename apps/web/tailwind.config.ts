@@ -10,6 +10,7 @@ const config: Config = {
         extend: {
             colors: {
                 dark: "#0b0b0c",
+                darkerFill: "#0f0f11",
                 darkFill: "#131316",
                 darkOverlay: "#202024",
                 mainColor: "#35f03f",

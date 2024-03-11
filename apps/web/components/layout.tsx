@@ -1,13 +1,14 @@
 import React from "react"
 
 import Navigation from "@/components/navigation"
+import Footer from "@/components/footer"
 
 const Layout = ({ children }: any) => {
     return (
-        <main className="flex flex-col gap-16">
+        <main className="w-full h-full flex flex-col gap-16">
             <Navigation />
             {children}
-            <div className="w-full h-16"></div>
+            <Footer />
         </main>
     )
 }

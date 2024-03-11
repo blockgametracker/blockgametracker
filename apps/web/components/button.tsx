@@ -1,22 +1,29 @@
+import Link from "next/link";
 import Icon from "./icon"
+import { MouseEventHandler } from "react";
 
-export const ButtonBG = ({ children }: any) => (
-    <button className="fade p-4 pt-2 pb-2 w-fit border-2 bg-darkFill border-darkOverlay hover:text-mainText hover:border-secondText whitespace-nowrap">
-        {children}
-    </button>
-)
+export const ButtonBG = ({ arialabel, onClick, children, href, active, target }: { arialabel: any, onClick?: MouseEventHandler, children: any, href?: any, active?: boolean, target?: any }) => {
+    const button = "fade p-4 pt-2 pb-2 w-fit border-2 bg-darkFill border-darkOverlay hover:text-mainText hover:border-secondText whitespace-nowrap";
+    const activeButton = "fade p-4 pt-2 pb-2 w-fit border-2 text-dark bg-mainColor border-mainColor hover:bg-secondColor hover:border-secondColor whitespace-nowrap";
+
+    return href ? (
+        <Link
+            href={href}
+            className={active ? activeButton : button}
+            target={target}
+            aria-label={arialabel}
+        >
+            {children}
+        </Link>
+    ) : (
+        <button onClick={onClick} className={active ? activeButton : button} >
+            {children}
+        </button>
+    )
+}
 
 export const Button = ({ children }: any) => (
     <button className="fade p-4 pt-2 pb-2 w-fit whitespace-nowrap hover:text-mainText">
         {children}
-    </button>
-)
-
-export const ButtonIcon = ({ iconName }: any) => (
-    <button className="fade group border-2 p-3 rounded-md bg-darkFill border-darkOverlay hover:border-secondText">
-        <Icon
-            iconName={iconName}
-            className="fade w-4 h-4 fill-secondText group-hover:fill-mainText"
-        />
     </button>
 )
