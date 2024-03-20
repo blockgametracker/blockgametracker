@@ -7,13 +7,9 @@ export const graphColors = [
     "#6ae9ee",
 ]
 
-export const greenGraph = [
-    "#35f03f",
-]
+export const greenGraph = ["#35f03f"]
 
-export const redGraph = [
-    "#ee3232",
-]
+export const redGraph = ["#ee3232"]
 
 export const theme = {
     grid: {

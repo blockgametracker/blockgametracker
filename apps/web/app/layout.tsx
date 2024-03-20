@@ -3,15 +3,16 @@ import "./globals.css"
 import localFont from "@next/font/local"
 
 const Satoshi = localFont({
-    src: '../public/fonts/Satoshi-Regular.otf',
-    display: 'swap',
+    src: "../public/fonts/Satoshi-Regular.otf",
+    display: "swap",
 })
 
-export const metadata: Metadata = { //TODO
+export const metadata: Metadata = {
+    //TODO
     title: `Home | Blockgametracker`,
     description: "Tracking your blocks",
     keywords: ["blockgame", "minecraft", "minecraft server"],
-    authors: []
+    authors: [],
 }
 
 export default function RootLayout({

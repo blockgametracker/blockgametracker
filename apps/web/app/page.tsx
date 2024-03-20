@@ -6,7 +6,6 @@ import Layout from "@/components/layout"
 import { Header } from "@/components/header"
 import HeaderServers from "@/components/server/headerServers"
 
-
 const Page = () => (
     <Layout page="home">
         <Section className="pt-8 pb-8 ">

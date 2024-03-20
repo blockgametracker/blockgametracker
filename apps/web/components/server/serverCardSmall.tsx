@@ -3,7 +3,11 @@ import Image from "next/image"
 import Graph from "../graphs/graph"
 import React from "react"
 import { ServerInfo, getOnlineInRange } from "@repo/gateway"
-import { calculatePercentageChange, convertTime, getPeak } from "@/utils/dataUtils"
+import {
+    calculatePercentageChange,
+    convertTime,
+    getPeak,
+} from "@/utils/dataUtils"
 import { greenGraph, redGraph } from "../../utils/graphUtils"
 import { ServerData } from "./serverCard"
 
@@ -14,11 +18,13 @@ export const server = async ({ server }: { server: ServerInfo }) => {
         "-1d",
         "2m",
     )
-    const serverArray: ServerData[] = [ { 
-        id: server.server_name, 
-        data: convertTime(onlineInRange.data)
-    } ]
-    
+    const serverArray: ServerData[] = [
+        {
+            id: server.server_name,
+            data: convertTime(onlineInRange.data),
+        },
+    ]
+
     const percentage = calculatePercentageChange(onlineInRange.data)
 
     return (
@@ -38,14 +44,29 @@ export const server = async ({ server }: { server: ServerInfo }) => {
                 <div className="flex flex-col">
                     <div className="inline-flex gap-2 items-center">
                         <h3>{server.server_name}</h3>
-                        <p className={percentage >= 0 ? "text-mainColor":"text-red-500"}>{percentage}%</p>
+                        <p
+                            className={
+                                percentage >= 0
+                                    ? "text-mainColor"
+                                    : "text-red-500"
+                            }
+                        >
+                            {percentage}%
+                        </p>
                     </div>
                     <p>{server.server_host}</p>
-                </div>/
+                </div>
+                /
             </div>
 
             <div className="ml-auto w-1/3 h-16">
-                <Graph data={serverArray} fill={false} ticksX={[]} ticksY={[]} colors={percentage >= 0 ? greenGraph:redGraph} />
+                <Graph
+                    data={serverArray}
+                    fill={false}
+                    ticksX={[]}
+                    ticksY={[]}
+                    colors={percentage >= 0 ? greenGraph : redGraph}
+                />
             </div>
         </DarkContainer>
     )

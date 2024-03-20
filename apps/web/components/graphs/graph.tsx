@@ -5,7 +5,19 @@ import { Container } from "../content"
 import { linearGradientDef } from "@nivo/core"
 import { theme } from "../../utils/graphUtils"
 
-const HeaderGraph = ({ data, colors, fill, ticksX, ticksY }: { data: any[], colors: string[], fill: boolean, ticksX?: number[], ticksY?: number[] }) => (
+const HeaderGraph = ({
+    data,
+    colors,
+    fill,
+    ticksX,
+    ticksY,
+}: {
+    data: any[]
+    colors: string[]
+    fill: boolean
+    ticksX?: number[]
+    ticksY?: number[]
+}) => (
     <ResponsiveLine
         theme={theme}
         data={data}
@@ -39,14 +51,15 @@ const HeaderGraph = ({ data, colors, fill, ticksX, ticksY }: { data: any[], colo
         fill={[{ match: "*", id: "gradientA" }]}
         sliceTooltip={({ slice }) => (
             <Container className="flex flex-col">
-                <strong className="text-mainText">{slice.points[0].data.xFormatted}</strong>
+                <strong className="text-mainText">
+                    {slice.points[0].data.xFormatted}
+                </strong>
 
                 {slice.points.map((point) => (
                     <div
                         key={point.id}
                         className="flex flex-col text-secondText z-50 whitespace-nowrap"
                     >
-
                         <div className="inline-flex gap-2 text-secondText items-center">
                             <div
                                 className={`w-2 h-2`}
@@ -54,8 +67,10 @@ const HeaderGraph = ({ data, colors, fill, ticksX, ticksY }: { data: any[], colo
                                     backgroundColor: point.serieColor,
                                 }}
                             />
-                            <p>{point.serieId}:{" "}</p>
-                            <p className="text-mainText">{point.data.yFormatted}</p>
+                            <p>{point.serieId}: </p>
+                            <p className="text-mainText">
+                                {point.data.yFormatted}
+                            </p>
                         </div>
                     </div>
                 ))}
