@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common"
-import { QueryRangeResponse, QueryResponse } from "types/prometheus"
+import { QueryRangeResponse, QueryResponse } from "../types/prometheus"
 
 /** Interacts with our Prometheus-based VictoriaMetrics instance. */
 @Injectable()
