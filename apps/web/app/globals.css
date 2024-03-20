@@ -4,16 +4,16 @@
 
 @layer components {
     h1 {
-        @apply text-mainText font-semibold text-lg;
+        @apply text-mainText font-bold text-lg;
     }
     h2 {
-        @apply text-mainText font-semibold text-lg;
+        @apply text-mainText font-bold text-lg;
     }
     h3 {
-        @apply text-mainText font-semibold;
+        @apply text-mainText;
     }
     h4 {
-        @apply text-mainText font-semibold;
+        @apply text-mainText;
     }
 }
 
@@ -36,14 +36,4 @@ body {
 /* General styles */
 .fade {
     transition: all 0.2s ease-in-out;
-}
-
-/* Hide scrollbars */
-.noscroll::-webkit-scrollbar {
-    display: none;
-}
-
-.noscroll {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }

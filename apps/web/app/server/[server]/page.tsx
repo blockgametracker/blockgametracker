@@ -10,7 +10,7 @@ export default async function Home() {
     const id = usePathname()
 
     return (
-        <Layout>
+        <Layout title="Home">
             <Section>
                 <h2 className="text-3xl">Top servers overview</h2>
                 <h2 className="text-3xl">{id}</h2>

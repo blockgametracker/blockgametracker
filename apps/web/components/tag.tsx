@@ -10,7 +10,7 @@ const Tag = ({
     color?: string
 }) => (
     <div className={`pl-4 pr-4 w-full flex flex-col ${className}`}>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 items-center">
             <p className={`text-sm leading-5`} style={{ color: `${color}` }}>
                 ■
             </p>

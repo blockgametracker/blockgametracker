@@ -1,55 +1,67 @@
-import { ServerInfo } from "@repo/gateway"
-import { DarkContainer } from "../content"
-import { Server, ServerData } from "../server"
+"use client"
 
-export const graphColors = [
-    "#35f03f",
-    "#9b7af3",
-    "#ffcd4c",
-    "#ee3232",
-    "#ee6ae0",
-    "#6ae9ee",
-]
+import { ResponsiveLine } from "@nivo/line"
+import { Container } from "../content"
+import { linearGradientDef } from "@nivo/core"
+import { theme } from "../../utils/graphUtils"
 
-export const theme = {
-    grid: {
-        line: {
-            stroke: "#202024",
-        },
-    },
-    axis: {
-        ticks: {
-            line: {
-                stroke: "#202024",
-            },
-            text: {
-                fill: "#7e7e7e",
-            },
-        },
-    },
-    crosshair: {
-        line: {
-            stroke: "#dadada",
-            strokeWidth: 1,
-        },
-    },
-}
+const HeaderGraph = ({ data, colors, fill, ticksX, ticksY }: { data: any[], colors: string[], fill: boolean, ticksX?: number[], ticksY?: number[] }) => (
+    <ResponsiveLine
+        theme={theme}
+        data={data}
+        margin={{ top: 6, right: 0, bottom: 0, left: 0 }}
+        enableArea={fill}
+        areaOpacity={0.3}
+        colors={colors}
+        enableSlices="x"
+        enablePoints={false}
+        gridXValues={ticksX}
+        gridYValues={ticksY}
+        axisTop={null}
+        axisRight={null}
+        axisLeft={null}
+        axisBottom={null}
+        xScale={{
+            type: "point",
+        }}
+        yScale={{
+            type: "linear",
+            min: "auto",
+            max: "auto",
+            reverse: false,
+        }}
+        defs={[
+            linearGradientDef("gradientA", [
+                { offset: 0, color: "inherit", opacity: 0.5 },
+                { offset: 100, color: "inherit", opacity: 0 },
+            ]),
+        ]}
+        fill={[{ match: "*", id: "gradientA" }]}
+        sliceTooltip={({ slice }) => (
+            <Container className="flex flex-col">
+                <strong className="text-mainText">{slice.points[0].data.xFormatted}</strong>
 
-export const LegendItem = ({
-    server,
-    index,
-}: {
-    server: ServerData
-    index: number
-}) => {
-    const color = graphColors[index % graphColors.length]
+                {slice.points.map((point) => (
+                    <div
+                        key={point.id}
+                        className="flex flex-col text-secondText z-50 whitespace-nowrap"
+                    >
 
-    return (
-        <DarkContainer className="inline-flex gap-2 items-center pt-2 pb-2">
-            <p
-                style={{ color: `${color}` }}
-            >■</p>
-            <p className="whitespace-nowrap">{server.id}</p>
-        </DarkContainer>
-    )
-}
+                        <div className="inline-flex gap-2 text-secondText items-center">
+                            <div
+                                className={`w-2 h-2`}
+                                style={{
+                                    backgroundColor: point.serieColor,
+                                }}
+                            />
+                            <p>{point.serieId}:{" "}</p>
+                            <p className="text-mainText">{point.data.yFormatted}</p>
+                        </div>
+                    </div>
+                ))}
+            </Container>
+        )}
+    />
+)
+
+export default HeaderGraph
