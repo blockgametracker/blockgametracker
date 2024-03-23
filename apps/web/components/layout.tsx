@@ -3,7 +3,7 @@ import React from "react"
 import Navigation from "@/components/navigation/navigation"
 import Footer from "@/components/footer"
 
-const Layout = ({ children, page }: any) => {
+const Layout = ({ children, page }: {children: any, page: string}) => {
     return (
         <main className="w-full h-full flex flex-col gap-32 pt-48">
             <Navigation page={page} />

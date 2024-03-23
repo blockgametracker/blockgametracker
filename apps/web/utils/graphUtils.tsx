@@ -12,6 +12,7 @@ export const greenGraph = ["#35f03f"]
 export const redGraph = ["#ee3232"]
 
 export const theme = {
+    background: "#0f0f11",
     grid: {
         line: {
             stroke: "#202024",

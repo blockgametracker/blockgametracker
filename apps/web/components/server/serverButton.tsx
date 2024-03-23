@@ -1,8 +1,9 @@
 import Link from "next/link"
 import Icon from "../icon"
 
-export const ServerButton = ({ href, iconName }: any) => (
+export const ServerButton = ({ arialabel, href, iconName }: {arialabel: string, href: string, iconName: any}) => (
     <Link
+        aria-label={arialabel}
         href={href}
         className="fade group border-2 p-3 rounded-md bg-darkFill border-darkOverlay hover:border-secondText"
     >

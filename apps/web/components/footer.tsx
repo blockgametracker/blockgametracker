@@ -8,8 +8,8 @@ const footer = () => (
             </p>
 
             <p>@clrxbl</p>
-            <p>@MagicA550</p>
-            <p>@Grafischmc</p>
+            <p>@magicA550</p>
+            <p>@grafischmc</p>
         </div>
     </Section>
 )

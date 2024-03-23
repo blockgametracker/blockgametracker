@@ -1,6 +1,7 @@
-export function Section({ children, className }: any) {
+export function Section({ children, id, className }: { children?: any, id?: string, className?: string}) {
     return (
         <div
+            id={id}
             className={`w-full flex flex-col items-center pl-4 pr-4 md:pl-32 md:pr-32 ${className}`}
         >
             <div className="flex flex-col gap-4 w-full h-full max-w-content">
@@ -10,7 +11,7 @@ export function Section({ children, className }: any) {
     )
 }
 
-export function Container({ children, id, className }: any) {
+export function Container({ children, id, className }: { children?: any, id?: string, className?: string}) {
     return (
         <div
             id={id}
@@ -21,9 +22,10 @@ export function Container({ children, id, className }: any) {
     )
 }
 
-export function DarkContainer({ children, className }: any) {
+export function DarkContainer({ children, id, className }: { children?: any, id?: string, className?: string}) {
     return (
         <div
+            id={id}
             className={`rounded-md p-4 border-2 bg-lightFill border-lightBorder bg-darkerFill border-darkOverlay ${className}`}
         >
             {children}

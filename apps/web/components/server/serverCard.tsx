@@ -2,7 +2,7 @@ import Tag from "../tag"
 import { Container, DarkContainer } from "../content"
 import Image from "next/image"
 import Graph from "../graphs/graph"
-import React, { Suspense } from "react"
+import React from "react"
 import { ServerInfo, getOnline, getOnlineInRange } from "@repo/gateway"
 import {
     calculateAverage,
@@ -89,12 +89,12 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
                 <div className="ml-auto inline-flex gap-2">
                     <ServerButton
                         arialabel="Compare server"
-                        href=""
+                        href="/compare"
                         iconName="compare"
                     />
                     <ServerButton
                         arialabel="Open server"
-                        href={`/server/${server.server_host}`}
+                        href={`/server/${server.server_name}`}
                         iconName="fullscreen"
                     />
                 </div>
@@ -109,7 +109,7 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
                 />
             </div>
 
-            <Container className="inline-flex gap-4 justify-between rounded-md divide-x-2 pl-0 pr-0 pt-2 pb-2 divide-darkOverlay ">
+            <Container className="inline-flex gap-4 justify-between rounded-md divide-x-2 pl-0 pr-0 pt-2 pb-2 divide-darkOverlay">
                 <Tag
                     text="Current"
                     color={percentage >= 0 ? "#68fa46" : "#ee3232"}

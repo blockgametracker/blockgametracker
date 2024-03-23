@@ -16,7 +16,7 @@ export const server = async ({ server }: { server: ServerInfo }) => {
         server.server_name,
         "java",
         "-1d",
-        "2m",
+        "4m",
     )
     const serverArray: ServerData[] = [
         {
@@ -62,7 +62,7 @@ export const server = async ({ server }: { server: ServerInfo }) => {
             <div className="ml-auto w-1/3 h-16">
                 <Graph
                     data={serverArray}
-                    fill={false}
+                    fill={true}
                     ticksX={[]}
                     ticksY={[]}
                     colors={percentage >= 0 ? greenGraph : redGraph}
