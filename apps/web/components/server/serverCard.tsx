@@ -94,7 +94,7 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
                     />
                     <ServerButton
                         arialabel="Open server"
-                        href={`/server/${server.server_name}`}
+                        href={`/server/${server.server_host}`}
                         iconName="fullscreen"
                     />
                 </div>
