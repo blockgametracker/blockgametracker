@@ -5,7 +5,7 @@ import Footer from "@/components/footer"
 
 const Layout = ({ children, page }: {children: any, page: string}) => {
     return (
-        <main className="w-full h-full flex flex-col gap-32 pt-48">
+        <main className="w-full h-full flex flex-col gap-16 pt-32">
             <Navigation page={page} />
             {children}
             <Footer />

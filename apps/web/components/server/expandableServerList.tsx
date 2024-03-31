@@ -2,7 +2,7 @@
 
 import { ServerInfo } from "@repo/gateway"
 import { useState } from "react"
-import { Server } from "./serverCard"
+import ServerCard from "./serverCard"
 
 interface Props {
     servers: ServerInfo[]
@@ -15,7 +15,7 @@ export const ExpandableServerList = (props: Props) => {
         <>
             <div className="w-full grid grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4 gap-4">
                 {props.servers.slice(0, count).map((server) => (
-                    <Server server={server} />
+                    <ServerCard server={server} />
                 ))}
             </div>
             <button

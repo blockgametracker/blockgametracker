@@ -26,7 +26,7 @@ const HeaderGraph = ({
         <ResponsiveLine
             theme={theme}
             data={data}
-            margin={{ top: 6, right: 0, bottom: 0, left: 0 }}
+            margin={{ top: 6, right: 0, bottom: 30, left: 50 }}
             enableArea={fill}
             areaOpacity={0.3}
             colors={colors}
@@ -36,8 +36,24 @@ const HeaderGraph = ({
             gridYValues={ticksY}
             axisTop={null}
             axisRight={null}
-            axisLeft={null}
-            axisBottom={null}
+            axisLeft={{
+                tickSize: 10,
+                tickPadding: 10,
+                tickRotation: 0,
+                legendOffset: 36,
+                legendPosition: "middle",
+                truncateTickAt: 0,
+                tickValues: ticksY,
+            }}
+            axisBottom={{
+                tickSize: 10,
+                tickPadding: 10,
+                tickRotation: 0,
+                legendOffset: 36,
+                legendPosition: "middle",
+                truncateTickAt: 0,
+                tickValues: ticksX,
+            }}
             xScale={{
                 type: "point",
             }}

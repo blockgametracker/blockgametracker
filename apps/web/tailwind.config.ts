@@ -20,7 +20,7 @@ const config: Config = {
             },
             maxWidth: {
                 header: "1100px",
-                content: "2200px",
+                content: "2600px",
             },
             fontFamily: {
                 manrope: ['"Manrope"'],

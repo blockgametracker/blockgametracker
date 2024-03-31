@@ -2,7 +2,7 @@ export function Section({ children, id, className }: { children?: any, id?: stri
     return (
         <div
             id={id}
-            className={`w-full flex flex-col items-center pl-4 pr-4 md:pl-32 md:pr-32 ${className}`}
+            className={`w-full flex flex-col items-center pl-4 pr-4 md:pl-16 md:pr-16 ${className}`}
         >
             <div className="flex flex-col gap-4 w-full h-full max-w-content">
                 {children}

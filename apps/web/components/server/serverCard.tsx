@@ -3,14 +3,14 @@ import { Container, DarkContainer } from "../content"
 import Image from "next/image"
 import Graph from "../graphs/graph"
 import React from "react"
-import { ServerInfo, getOnline, getOnlineInRange } from "@repo/gateway"
+import { ServerInfo, getOnlineInRange } from "@repo/gateway"
 import {
     calculateAverage,
     calculatePercentageChange,
     convertTime,
     getPeak,
 } from "@/utils/dataUtils"
-import { greenGraph, redGraph } from "../../utils/graphUtils"
+import { getTicks, greenGraph, redGraph } from "../../utils/graphUtils"
 import { ServerButton } from "./serverButton"
 
 export interface Server {
@@ -28,7 +28,7 @@ export interface ServerData {
     data: any
 }
 
-export const Server = async ({ server }: { server: ServerInfo }) => {
+const ServerCard = async ({ server }: { server: ServerInfo }) => {
     const onlineInRange = await getOnlineInRange(
         server.server_name,
         "java",
@@ -36,7 +36,7 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
         "4m",
     )
 
-    const online = await getOnline(server.server_name, "java")
+    const online = onlineInRange.data[onlineInRange.data.length -1].y
 
     const serverArray: ServerData[] = [
         {
@@ -45,13 +45,7 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
         },
     ]
 
-    const ticksX = []
-    const dataLength = serverArray[0].data.length
-    const step = Math.ceil(dataLength / 8)
-
-    for (let i = 0; i < dataLength; i += step) {
-        ticksX.push(serverArray[0].data[i].x)
-    }
+    const ticks = getTicks(serverArray, 8)
 
     const players_avarage = calculateAverage(onlineInRange.data)
     const players_peak = getPeak(onlineInRange.data)
@@ -94,7 +88,7 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
                     />
                     <ServerButton
                         arialabel="Open server"
-                        href={`/server/${server.server_host}`}
+                        href={`/server/${server.server_name.replace(" ", "_")}`}
                         iconName="fullscreen"
                     />
                 </div>
@@ -103,7 +97,8 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
             <div className="w-full h-48">
                 <Graph
                     data={serverArray}
-                    ticksX={ticksX.slice(1)}
+                    ticksX={ticks.ticksX}
+                    ticksY={ticks.ticksY}
                     fill={true}
                     colors={percentage >= 0 ? greenGraph : redGraph}
                 />
@@ -114,7 +109,7 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
                     text="Current"
                     color={percentage >= 0 ? "#68fa46" : "#ee3232"}
                 >
-                    {online.data.y.toLocaleString()}
+                    {online}
                 </Tag>
                 <Tag text="Mean" color="#9b7af3">
                     {Math.round(players_avarage)}
@@ -126,3 +121,5 @@ export const Server = async ({ server }: { server: ServerInfo }) => {
         </DarkContainer>
     )
 }
+
+export default ServerCard

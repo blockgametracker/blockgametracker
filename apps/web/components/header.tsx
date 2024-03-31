@@ -19,7 +19,7 @@ export const Header = async () => (
             </div>
 
             <h1 className={`whitespace-nowrap text-5xl ${Expose.className}`}>
-                TRACKING MINECRAFT SERVER PLAYERCOUNTS
+                TRACKING SERVER PLAYERCOUNTS
             </h1>
 
             <div className="flex flex-col gap-8">

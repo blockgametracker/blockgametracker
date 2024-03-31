@@ -32,6 +32,10 @@ const navigation = ({ page }: { page: string }) => {
                 >
                     AS Statistics
                 </NavButton>
+                <div className="inline-flex gap-8 ml-auto">
+                    <button>1 Day</button>
+                    <button>1 Week</button>
+                </div>
             </div>
         </Section>
     )

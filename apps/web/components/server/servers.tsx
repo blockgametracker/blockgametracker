@@ -1,6 +1,5 @@
 import { getServers } from "@repo/gateway"
 import React from "react"
-import { Server } from "./serverCard"
 import { ExpandableServerList } from "./expandableServerList"
 
 export const Servers = async () => {
