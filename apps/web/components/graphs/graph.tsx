@@ -6,7 +6,7 @@ import { linearGradientDef } from "@nivo/core"
 import { theme } from "../../utils/graphUtils"
 import Icon from "../icon"
 
-const HeaderGraph = ({
+const Graph = ({
     data,
     colors,
     fill,
@@ -101,4 +101,4 @@ const HeaderGraph = ({
     </div>
 )
 
-export default HeaderGraph
+export default Graph

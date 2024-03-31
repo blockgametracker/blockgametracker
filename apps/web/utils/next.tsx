@@ -12,5 +12,4 @@ export type PageParams<Params = {}> = Readonly<NextPageParams<Params>>
 export const serverToImage = (server: ServerInfo) =>
     `https://assets.blockgametracker.gg/icons/java/${server.server_name
         .toLowerCase()
-        .replace(" ", "_")
-        .replace("%20", "_")}.png`
+        .replaceAll(" ", "_")}.png`

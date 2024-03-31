@@ -25,16 +25,20 @@ export const getEnsembled = async (
     })
 }
 
+const padTimeUnit = (unit: number) => unit.toString().padStart(2, "0")
+
 export const convertTime = (server: ApiQuery[]) =>
     server.map((data) => {
         let time = new Date(data.x * 1000)
-        const hrs = time.getHours()
-        const mins = time.getMinutes()
-        let timeFormatted =
-            (hrs < 10 ? "0" + hrs : hrs) + ":" + (mins < 10 ? "0" + mins : mins)
+        const secs = padTimeUnit(time.getSeconds())
+        const hrs = padTimeUnit(time.getHours())
+        const mins = padTimeUnit(time.getMinutes())
+        const day = padTimeUnit(time.getDate())
+        const month = padTimeUnit(time.getMonth())
+        const year = time.getFullYear()
 
         return {
-            x: timeFormatted,
+            x: `${year}-${month}-${day} ${hrs}:${mins}:${secs}`,
             y: data.y,
         }
     })

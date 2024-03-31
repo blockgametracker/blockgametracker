@@ -1,5 +1,4 @@
 import { ServerData } from "@/components/server/serverCard"
-import * as d3 from "d3-scale"
 
 export const graphColors = [
     "#35f03f",
