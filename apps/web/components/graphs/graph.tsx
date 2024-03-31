@@ -43,7 +43,7 @@ const HeaderGraph = ({
                 legendOffset: 36,
                 legendPosition: "middle",
                 truncateTickAt: 0,
-                tickValues: ticksY,
+                tickValues: "auto",
             }}
             axisBottom={{
                 tickSize: 10,
