@@ -10,7 +10,9 @@ export class PrometheusService {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
-                Authorization: `Basic ${btoa(`${process.env.DSAPI_USER}:${process.env.DSAPI_PASS}`)}`,
+                Authorization: `Basic ${btoa(
+                    `${process.env.DSAPI_USER}:${process.env.DSAPI_PASS}`,
+                )}`,
             },
             body: new URLSearchParams(body),
         })

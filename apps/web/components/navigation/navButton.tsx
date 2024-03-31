@@ -13,7 +13,9 @@ export const NavButton = ({
 }) => (
     <Link
         href={href}
-        className={`fade p-4 pt-2 pb-2 w-fit whitespace-nowrap hover:text-mainText ${currentPage === page ? "text-mainText" : ""}`}
+        className={`fade p-4 pt-2 pb-2 w-fit whitespace-nowrap hover:text-mainText ${
+            currentPage === page ? "text-mainText" : ""
+        }`}
     >
         {children}
     </Link>

@@ -1,9 +1,8 @@
 import Tag from "../tag"
 import { Container, DarkContainer } from "../content"
-import Image from "next/image"
 import Graph from "../graphs/graph"
 import React from "react"
-import { ServerInfo, getOnlineInRange } from "@repo/gateway"
+import { ServerInfo as ServerInfoData, getOnlineInRange } from "@repo/gateway"
 import {
     calculateAverage,
     calculatePercentageChange,
@@ -13,6 +12,7 @@ import {
 import { getTicks, greenGraph, redGraph } from "../../utils/graphUtils"
 import { ServerButton } from "./serverButton"
 import { DataRangeParams } from "@/utils/dataRange"
+import { ServerInfo } from "./serverInfo"
 
 export interface Server {
     name: string
@@ -33,7 +33,7 @@ const ServerCard = async ({
     server,
     rangeParams,
 }: {
-    server: ServerInfo
+    server: ServerInfoData
     rangeParams: DataRangeParams
 }) => {
     const onlineInRange = await getOnlineInRange(
@@ -60,33 +60,7 @@ const ServerCard = async ({
 
     return (
         <DarkContainer id="servers" className="fade flex flex-col gap-4 w-full">
-            <div className="inline-flex gap-4 items-center whitespace-nowrap">
-                <Image
-                    src={`/images/placeholder.jpg`}
-                    alt={`mcc island`}
-                    className="fade gradient object-cover aspect-square image w-12 h-12 rounded-md group-hover:opacity-40 group-hover:blur-sm"
-                    sizes="(max-width: 384px) 64px, 64px"
-                    title="mcc"
-                    width={64}
-                    height={64}
-                    blurDataURL={`/images/placeholder.jpg`}
-                    placeholder="blur"
-                />
-                <div className="flex flex-col">
-                    <div className="inline-flex gap-2 items-center">
-                        <h3>{server.server_name}</h3>
-                        <p
-                            className={
-                                percentage >= 0
-                                    ? "text-mainColor"
-                                    : "text-red-500"
-                            }
-                        >
-                            {percentage}%
-                        </p>
-                    </div>
-                    <p>{server.server_host}</p>
-                </div>
+            <ServerInfo server={server} percentage={percentage}>
                 <div className="ml-auto inline-flex gap-2">
                     <ServerButton
                         arialabel="Compare server"
@@ -99,7 +73,7 @@ const ServerCard = async ({
                         iconName="fullscreen"
                     />
                 </div>
-            </div>
+            </ServerInfo>
 
             <div className="w-full h-48">
                 <Graph
