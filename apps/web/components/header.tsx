@@ -1,9 +1,7 @@
 import { ButtonBG } from "./button"
-
 import Icon from "./icon"
 import Link from "next/link"
-
-import localFont from "@next/font/local"
+import localFont from "next/font/local"
 
 const Expose = localFont({
     src: "../public/fonts/Expose-Bold.otf",

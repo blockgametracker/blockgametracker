@@ -6,9 +6,17 @@ import Graph from "@/components/graphs/graph"
 import { getEnsembled } from "@/utils/dataUtils"
 import { graphColors } from "@/utils/graphUtils"
 import { GraphLegend } from "@/components/graphs/graphLegend"
+import { getRangeParams, searchParamToRange } from "@/utils/dataRange"
+import { PageParams } from "@/utils/next"
 
-const Page = async () => {
-    const onlineInRange = await getEnsembled("java", "-1d", "1h")
+const Page = async ({ searchParams }: PageParams) => {
+    const dataRange = searchParamToRange(searchParams?.range)
+    const rangeParams = getRangeParams(dataRange)
+    const onlineInRange = await getEnsembled(
+        "java",
+        rangeParams.start,
+        rangeParams.step,
+    )
 
     return (
         <Layout page="server-comparison">

@@ -6,17 +6,17 @@ import { ServerInfo, getOnlineInRange } from "@repo/gateway"
 import {
     calculatePercentageChange,
     convertTime,
-    getPeak,
 } from "@/utils/dataUtils"
 import { greenGraph, redGraph } from "../../utils/graphUtils"
 import { ServerData } from "./serverCard"
+import { DataRangeParams } from "@/utils/dataRange"
 
-export const server = async ({ server }: { server: ServerInfo }) => {
+export const server = async ({ server, rangeParams }: { server: ServerInfo, rangeParams: DataRangeParams }) => {
     const onlineInRange = await getOnlineInRange(
         server.server_name,
         "java",
-        "-1d",
-        "4m",
+        rangeParams.start,
+        rangeParams.step,
     )
     const serverArray: ServerData[] = [
         {

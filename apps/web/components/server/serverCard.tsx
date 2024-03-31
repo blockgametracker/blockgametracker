@@ -12,6 +12,7 @@ import {
 } from "@/utils/dataUtils"
 import { getTicks, greenGraph, redGraph } from "../../utils/graphUtils"
 import { ServerButton } from "./serverButton"
+import { DataRangeParams } from "@/utils/dataRange"
 
 export interface Server {
     name: string
@@ -28,12 +29,12 @@ export interface ServerData {
     data: any
 }
 
-const ServerCard = async ({ server }: { server: ServerInfo }) => {
+const ServerCard = async ({ server, rangeParams }: { server: ServerInfo, rangeParams: DataRangeParams }) => {
     const onlineInRange = await getOnlineInRange(
         server.server_name,
         "java",
-        "-1d",
-        "4m",
+        rangeParams.start,
+        rangeParams.step,
     )
 
     const online = onlineInRange.data[onlineInRange.data.length -1].y

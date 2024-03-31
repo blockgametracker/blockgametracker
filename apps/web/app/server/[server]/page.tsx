@@ -3,21 +3,26 @@ import React from "react"
 import { DarkContainer, Section } from "@/components/content"
 import Layout from "@/components/layout"
 import ServerGraph from "@/components/server/serverGraph"
+import { getRangeParams, searchParamToRange } from "@/utils/dataRange"
+import { PageParams } from "@/utils/next"
 
-const Home = ({ params }: { params: { server: string } }) => {
+const Home = ({ params, searchParams }: PageParams<{ server: string }>) => {
     const hostname = params.server.replace("/server/", "").replace("_", " ")
-    
+    const dateRange = searchParamToRange(searchParams?.range)
+    const rangeParams = getRangeParams(dateRange)
+
     return (
         <Layout page="Home">
             <Section className="w-full h-full">
                 <h2 className="text-3xl">{hostname}</h2>
 
                 <DarkContainer className="w-full h-2/3">
-                    <ServerGraph hostname={hostname} />
+                    <ServerGraph
+                        hostname={hostname}
+                        rangeParams={rangeParams}
+                    />
                 </DarkContainer>
-                <DarkContainer className="w-full h-1/3">
-                    
-                </DarkContainer>
+                <DarkContainer className="w-full h-1/3"></DarkContainer>
             </Section>
         </Layout>
     )

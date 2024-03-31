@@ -1,4 +1,3 @@
-import { ServerData } from "@/components/server/serverCard"
 import {
     ApiQuery,
     MinecraftEdition,
