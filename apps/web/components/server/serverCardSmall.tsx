@@ -3,15 +3,18 @@ import Image from "next/image"
 import Graph from "../graphs/graph"
 import React from "react"
 import { ServerInfo, getOnlineInRange } from "@repo/gateway"
-import {
-    calculatePercentageChange,
-    convertTime,
-} from "@/utils/dataUtils"
+import { calculatePercentageChange, convertTime } from "@/utils/dataUtils"
 import { greenGraph, redGraph } from "../../utils/graphUtils"
 import { ServerData } from "./serverCard"
 import { DataRangeParams } from "@/utils/dataRange"
 
-export const server = async ({ server, rangeParams }: { server: ServerInfo, rangeParams: DataRangeParams }) => {
+export const server = async ({
+    server,
+    rangeParams,
+}: {
+    server: ServerInfo
+    rangeParams: DataRangeParams
+}) => {
     const onlineInRange = await getOnlineInRange(
         server.server_name,
         "java",

@@ -1,7 +1,15 @@
 import Link from "next/link"
 import Icon from "../icon"
 
-export const ServerButton = ({ arialabel, href, iconName }: {arialabel: string, href: string, iconName: any}) => (
+export const ServerButton = ({
+    arialabel,
+    href,
+    iconName,
+}: {
+    arialabel: string
+    href: string
+    iconName: any
+}) => (
     <Link
         aria-label={arialabel}
         href={href}

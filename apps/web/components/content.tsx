@@ -1,4 +1,12 @@
-export function Section({ children, id, className }: { children?: any, id?: string, className?: string}) {
+export function Section({
+    children,
+    id,
+    className,
+}: {
+    children?: any
+    id?: string
+    className?: string
+}) {
     return (
         <div
             id={id}
@@ -11,7 +19,15 @@ export function Section({ children, id, className }: { children?: any, id?: stri
     )
 }
 
-export function Container({ children, id, className }: { children?: any, id?: string, className?: string}) {
+export function Container({
+    children,
+    id,
+    className,
+}: {
+    children?: any
+    id?: string
+    className?: string
+}) {
     return (
         <div
             id={id}
@@ -22,7 +38,15 @@ export function Container({ children, id, className }: { children?: any, id?: st
     )
 }
 
-export function DarkContainer({ children, id, className }: { children?: any, id?: string, className?: string}) {
+export function DarkContainer({
+    children,
+    id,
+    className,
+}: {
+    children?: any
+    id?: string
+    className?: string
+}) {
     return (
         <div
             id={id}

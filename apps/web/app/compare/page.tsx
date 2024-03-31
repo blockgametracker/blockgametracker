@@ -23,7 +23,7 @@ const Page = async ({ searchParams }: PageParams) => {
             <Section className="w-full h-2/3">
                 <h2 className="text-3xl">Compare servers</h2>
                 <div className="grid grid-cols-6 w-full h-full gap-4">
-                    <DarkContainer className="col-span-5 w-full h-full overflow-hidden">
+                    <DarkContainer className="col-span-6 tablet:col-span-5 w-full h-full overflow-hidden">
                         <Graph
                             data={onlineInRange}
                             colors={graphColors}

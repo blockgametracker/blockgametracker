@@ -29,7 +29,13 @@ export interface ServerData {
     data: any
 }
 
-const ServerCard = async ({ server, rangeParams }: { server: ServerInfo, rangeParams: DataRangeParams }) => {
+const ServerCard = async ({
+    server,
+    rangeParams,
+}: {
+    server: ServerInfo
+    rangeParams: DataRangeParams
+}) => {
     const onlineInRange = await getOnlineInRange(
         server.server_name,
         "java",
@@ -37,7 +43,7 @@ const ServerCard = async ({ server, rangeParams }: { server: ServerInfo, rangePa
         rangeParams.step,
     )
 
-    const online = onlineInRange.data[onlineInRange.data.length -1].y
+    const online = onlineInRange.data[onlineInRange.data.length - 1].y
 
     const serverArray: ServerData[] = [
         {
@@ -105,7 +111,7 @@ const ServerCard = async ({ server, rangeParams }: { server: ServerInfo, rangePa
                 />
             </div>
 
-            <Container className="inline-flex gap-4 justify-between rounded-md divide-x-2 pl-0 pr-0 pt-2 pb-2 divide-darkOverlay">
+            <Container className="flex flex-col phone:flex-row gap-4 justify-between rounded-md divide-y-2 phone:divide-y-0 phone:divide-x-2 pl-0 pr-0 pt-2 pb-2 divide-darkOverlay">
                 <Tag
                     text="Current"
                     color={percentage >= 0 ? "#68fa46" : "#ee3232"}

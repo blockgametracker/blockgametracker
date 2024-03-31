@@ -27,6 +27,7 @@ const config: Config = {
                 "bebas-neue": ['"Bebas Neue"'],
             },
             screens: {
+                phone: "700px",
                 tablet: "1300px",
                 small: "1600px",
                 normal: "1920px",

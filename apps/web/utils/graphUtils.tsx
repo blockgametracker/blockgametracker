@@ -1,5 +1,5 @@
-import { ServerData } from "@/components/server/serverCard";
-import * as d3 from 'd3-scale';
+import { ServerData } from "@/components/server/serverCard"
+import * as d3 from "d3-scale"
 
 export const graphColors = [
     "#35f03f",
@@ -40,17 +40,17 @@ export const theme = {
 }
 
 interface TickResult {
-    ticksX: number[];
-    ticksY: number[];
+    ticksX: number[]
+    ticksY: number[]
 }
 
 // Function to calculate ticks for a chart
 export function getTicks(serverData: ServerData[], stepX: number): TickResult {
     // Calculate the length of the data array
-    const dataLength = serverData[0].data.length;
+    const dataLength = serverData[0].data.length
 
     // Calculate step size for x-axis ticks
-    stepX = Math.ceil(dataLength / stepX);
+    stepX = Math.ceil(dataLength / stepX)
 
     // Generate x-axis tick values
     const ticksX: number[] = []
@@ -59,5 +59,5 @@ export function getTicks(serverData: ServerData[], stepX: number): TickResult {
         ticksX.push(serverData[0].data[i].x)
     }
 
-    return { ticksX, ticksY };
+    return { ticksX, ticksY }
 }

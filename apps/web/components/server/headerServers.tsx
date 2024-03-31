@@ -11,10 +11,13 @@ export const Servers = async (props: Props) => {
     const serverList = await getServers("java")
 
     return (
-        <div className="w-full grid grid-cols-1 tablet:grid-cols-2 small:grid-cols-2 gap-4">
+        <div className="w-full grid grid-cols-1 tablet:grid-cols-2 small:grid-cols-4 gap-4">
             {serverList.data.slice(0, 4).map((server, index) => (
                 <React.Fragment key={index}>
-                    <ServerCardSmall server={server} rangeParams={props.rangeParams} />
+                    <ServerCardSmall
+                        server={server}
+                        rangeParams={props.rangeParams}
+                    />
                 </React.Fragment>
             ))}
         </div>

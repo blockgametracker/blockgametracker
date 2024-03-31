@@ -16,13 +16,12 @@ const Home = ({ params, searchParams }: PageParams<{ server: string }>) => {
             <Section className="w-full h-full">
                 <h2 className="text-3xl">{hostname}</h2>
 
-                <DarkContainer className="w-full h-2/3">
+                <DarkContainer className="w-full h-full">
                     <ServerGraph
                         hostname={hostname}
                         rangeParams={rangeParams}
                     />
                 </DarkContainer>
-                <DarkContainer className="w-full h-1/3"></DarkContainer>
             </Section>
         </Layout>
     )

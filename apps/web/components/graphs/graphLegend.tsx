@@ -4,7 +4,7 @@ import { DarkContainer } from "../content"
 import { graphColors } from "../../utils/graphUtils"
 
 export const GraphLegend = ({ data }: { data: any[] }) => (
-    <DarkContainer className="h-full w-full flex flex-col overflow-scroll">
+    <DarkContainer className="col-span-6 tablet:col-span-1 h-full w-full flex flex-col overflow-scroll">
         {data.map((server: any, index: any) => (
             <React.Fragment key={index}>
                 <LegendItem server={server} index={index} />

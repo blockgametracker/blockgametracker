@@ -5,8 +5,19 @@ import Graph from "@/components/graphs/graph"
 import { getTicks, greenGraph } from "@/utils/graphUtils"
 import { DataRangeParams } from "@/utils/dataRange"
 
-const ServerGraph = async ({ hostname, rangeParams }: { hostname: string, rangeParams: DataRangeParams }) => {
-    const onlineInRange = await getOnlineInRange(hostname, "java", rangeParams.start, rangeParams.step)
+const ServerGraph = async ({
+    hostname,
+    rangeParams,
+}: {
+    hostname: string
+    rangeParams: DataRangeParams
+}) => {
+    const onlineInRange = await getOnlineInRange(
+        hostname,
+        "java",
+        rangeParams.start,
+        rangeParams.step,
+    )
 
     const serverArray: ServerData[] = [
         {
