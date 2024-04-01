@@ -52,7 +52,7 @@ const ServerCard = async ({
         },
     ]
 
-    const ticks = getTicks(serverArray, 8)
+    const ticks = getTicks(serverArray, 3, rangeParams.range)
 
     const players_avarage = calculateAverage(onlineInRange.data)
     const players_peak = getPeak(onlineInRange.data)

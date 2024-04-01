@@ -25,7 +25,7 @@ const ServerGraph = async ({
             data: convertTime(onlineInRange.data),
         },
     ]
-    const ticks = getTicks(serverArray, 8)
+    const ticks = getTicks(serverArray, 8, rangeParams.range)
 
     return (
         <Graph

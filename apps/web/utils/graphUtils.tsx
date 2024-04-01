@@ -1,4 +1,5 @@
 import { ServerData } from "@/components/server/serverCard"
+import { DataRange } from "./dataRange"
 
 export const graphColors = [
     "#35f03f",
@@ -44,7 +45,11 @@ interface TickResult {
 }
 
 // Function to calculate ticks for a chart
-export function getTicks(serverData: ServerData[], stepX: number): TickResult {
+export function getTicks(
+    serverData: ServerData[],
+    stepX: number,
+    range: DataRange,
+): TickResult {
     // Calculate the length of the data array
     const dataLength = serverData[0].data.length
 
@@ -57,6 +62,8 @@ export function getTicks(serverData: ServerData[], stepX: number): TickResult {
     for (let i = 0; i < dataLength; i += stepX) {
         ticksX.push(serverData[0].data[i].x)
     }
+
+    ticksX.push(serverData[0].data[serverData[0].data.length - 1].x)
 
     return { ticksX, ticksY }
 }

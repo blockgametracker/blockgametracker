@@ -35,7 +35,7 @@ export const getRangeParams = (range: DataRange): DataRangeParams => {
         case DataRange.YEAR:
             return {
                 range: range,
-                start: "-364d",
+                start: "-1y",
                 step: "1d",
             }
         case DataRange.MONTH:
@@ -47,13 +47,13 @@ export const getRangeParams = (range: DataRange): DataRangeParams => {
         case DataRange.WEEK:
             return {
                 range: range,
-                start: "-6d",
+                start: "-7d",
                 step: "1h",
             }
         default:
             return {
                 range: range,
-                start: "-23h",
+                start: "-24h",
                 step: "4m",
             }
     }
