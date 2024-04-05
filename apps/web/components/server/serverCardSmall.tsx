@@ -31,7 +31,10 @@ export const server = async ({
     const percentage = calculatePercentageChange(onlineInRange.data)
 
     return (
-        <DarkContainer id="servers" className="fade flex flex-row gap-4 w-full max-w-96">
+        <DarkContainer
+            id="servers"
+            className="fade flex flex-row gap-4 w-full max-w-96"
+        >
             <ServerInfo server={server} percentage={percentage} />
 
             <div className="ml-auto w-1/3 h-16">

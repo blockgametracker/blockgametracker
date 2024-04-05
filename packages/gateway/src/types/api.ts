@@ -41,7 +41,6 @@ export interface ServerName {
 /** The meta information on a server we track. */
 export interface ServerInfo extends ServerName {
     server_host: string
-    server_version: string
 }
 
 /** A response which contains a server's name only. */

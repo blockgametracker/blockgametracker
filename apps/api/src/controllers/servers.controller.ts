@@ -16,7 +16,7 @@ export class ServersController {
     async getServers(
         @Param("edition") edition: MinecraftEdition,
     ): Promise<ApiServerNameResponse> {
-        const query = `max(minecraft_status_players_online_count{server_edition="${edition}"}) by (server_name, server_host, server_version)`
+        const query = `max(minecraft_status_players_online_count{server_edition="${edition}"}) by (server_name, server_host)`
         const res = await this.prometheusService.query<ServerName>(query)
 
         return {
