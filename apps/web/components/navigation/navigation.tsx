@@ -36,7 +36,7 @@ const navigation = ({ page }: { page: string }) => {
                     <NavButton
                         page="home"
                         currentPage={page}
-                        href={!selectedRange ? "/" : `?range=${dateRange}`}
+                        href={!selectedRange ? "/" : `/?range=${dateRange}`}
                     >
                         Home
                     </NavButton>

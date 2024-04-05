@@ -32,7 +32,7 @@ const ServerGraph = async ({
             data={serverArray}
             fill={true}
             ticksX={ticks.ticksX}
-            ticksY={ticks.ticksY}
+            ticksY={true}
             colors={greenGraph}
         />
     )

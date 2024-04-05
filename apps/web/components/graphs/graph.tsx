@@ -17,7 +17,7 @@ const Graph = ({
     colors: string[]
     fill: boolean
     ticksX?: number[]
-    ticksY?: number[]
+    ticksY?: boolean
 }) => (
     <div className="relative w-full h-full">
         <div className="absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full bg-darkFill animate-pulse">
@@ -26,14 +26,14 @@ const Graph = ({
         <ResponsiveLine
             theme={theme}
             data={data}
-            margin={{ top: 6, right: 0, bottom: 30, left: 50 }}
+            margin={{ top: 6, right: 0, bottom: 30, left: ticksY ? 50 : 0 }}
             enableArea={fill}
             areaOpacity={0.3}
             colors={colors}
             enableSlices="x"
             enablePoints={false}
             gridXValues={ticksX}
-            gridYValues={ticksY}
+            gridYValues={[]}
             axisTop={null}
             axisRight={null}
             axisLeft={{

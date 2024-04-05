@@ -15,7 +15,7 @@ const Page = ({ searchParams }: PageParams) => {
     return (
         <Layout page="home">
             <Section className="pt-8 pb-8 ">
-                <div className="flex flex-col gap-16">
+                <div className="flex flex-col gap-16 items-center">
                     <Header />
                     <HeaderServers rangeParams={rangeParams} />
                 </div>

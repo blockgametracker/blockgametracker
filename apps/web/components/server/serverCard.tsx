@@ -79,7 +79,7 @@ const ServerCard = async ({
                 <Graph
                     data={serverArray}
                     ticksX={ticks.ticksX}
-                    ticksY={ticks.ticksY}
+                    ticksY={true}
                     fill={true}
                     colors={percentage >= 0 ? greenGraph : redGraph}
                 />
