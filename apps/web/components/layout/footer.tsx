@@ -9,13 +9,26 @@ const footer = () => (
             </p>
 
             <div className="flex flex-col tablet:flex-row gap-2">
-                <p>
-                    Creators of blockgametracker:
-                </p>
+                <p>Blockgametracker by:</p>
                 <div className="flex flex-row gap-2 justify-center tablet:justify-start">
-                    <Link href="https://github.com/clrxbl" className="text-mainText p-2 tablet:p-0">Michael,</Link>
-                    <Link href="https://github.com/MagicA550" className="text-mainText p-2  tablet:p-0">Anthony,</Link>
-                    <Link href="https://grafisch.media/" className="text-mainText p-2  tablet:p-0">Jelle</Link>
+                    <Link
+                        href="https://github.com/clrxbl"
+                        className="text-mainText p-2 tablet:p-0"
+                    >
+                        Michael,
+                    </Link>
+                    <Link
+                        href="https://github.com/MagicA550"
+                        className="text-mainText p-2  tablet:p-0"
+                    >
+                        Anthony,
+                    </Link>
+                    <Link
+                        href="https://grafisch.media/"
+                        className="text-mainText p-2  tablet:p-0"
+                    >
+                        Jelle
+                    </Link>
                 </div>
             </div>
         </div>

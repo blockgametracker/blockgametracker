@@ -2,6 +2,7 @@ import { ButtonBG } from "../../button"
 import Icon from "../../icon"
 import Link from "next/link"
 import localFont from "next/font/local"
+import MainHeader from "./mainHeader"
 
 const Expose = localFont({
     src: "../../../public/fonts/Expose-Bold.otf",
@@ -38,19 +39,7 @@ export const Header = async () => (
                 </p>
 
                 <div className="w-fit inline-flex gap-4">
-                    <ButtonBG
-                        arialabel="Compare servers"
-                        href="/compare"
-                        active={true}
-                    >
-                        Compare servers
-                    </ButtonBG>
-                    <ButtonBG
-                        arialabel="Suggest server"
-                        href="https://github.com/clrxbl/blockgametracker/blob/main/kustomize/base/config/servers.yaml"
-                    >
-                        Suggest server
-                    </ButtonBG>
+                    <MainHeader />
                 </div>
             </div>
         </div>

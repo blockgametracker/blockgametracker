@@ -1,5 +1,3 @@
-import { ServerInfo } from "@repo/gateway"
-
 /** The page parameters provided by NextJS. */
 interface NextPageParams<Params = {}> {
     params: Params
@@ -9,7 +7,7 @@ interface NextPageParams<Params = {}> {
 /** The page parameters provided by NextJS. */
 export type PageParams<Params = {}> = Readonly<NextPageParams<Params>>
 
-export const serverToImage = (serverName: string) =>
-    `https://assets.blockgametracker.gg/icons/java/${serverName
+export const serverToImage = (platform: string, serverName: string) =>
+    `https://assets.blockgametracker.gg/icons/${platform}/${serverName
         .toLowerCase()
         .replaceAll(" ", "_")}.png`

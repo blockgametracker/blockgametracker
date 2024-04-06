@@ -10,8 +10,8 @@ import { getRangeParams, searchParamToRange } from "@/utils/dataRange"
 import { PageParams } from "@/utils/next"
 
 const Page = async ({ searchParams }: PageParams) => {
-    const dataRange = searchParamToRange(searchParams?.range)
-    const rangeParams = getRangeParams(dataRange)
+    const dateRange = searchParamToRange(searchParams?.range)
+    const rangeParams = getRangeParams(dateRange)
 
     const onlineInRange = await getTotalEnsembled(
         "java",
@@ -26,7 +26,7 @@ const Page = async ({ searchParams }: PageParams) => {
                 <div className="grid grid-cols-6 w-full h-full gap-4">
                     <DarkContainer className="col-span-6 tablet:col-span-5 w-full h-full overflow-hidden">
                         <Graph
-                            data={onlineInRange}
+                            data={onlineInRange.slice(4)}
                             colors={graphColors}
                             fill={false}
                         />

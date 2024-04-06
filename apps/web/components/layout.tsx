@@ -2,7 +2,8 @@ import React from "react"
 
 import Navigation from "@/components/layout/navigation/navigation"
 import Footer from "@/components/layout/footer"
-import PageTitle from "./layout/pageTitle";
+import PageTitle from "./layout/pageTitle"
+import { URLParams } from "@/utils/urlBuilder"
 
 const Layout = ({ children, page }: { children: any; page: string }) => {
     return (

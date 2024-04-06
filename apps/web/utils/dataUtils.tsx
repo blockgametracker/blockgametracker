@@ -25,6 +25,13 @@ export const getTotalEnsembled = async (
         start,
         step,
     )
+
+    onlineInRange.data.sort((a, b) => {
+        const lastAY = a.data[a.data.length - 1]?.y || 0
+        const lastBY = b.data[b.data.length - 1]?.y || 0
+        return lastBY - lastAY
+    })
+
     return onlineInRange.data.map((server) => {
         return {
             server_name: server.server_name,
@@ -46,7 +53,7 @@ export const getOnline = async (
         start,
         step,
     )
-    
+
     return {
         server_name: server.server_name,
         id: server.server_name,

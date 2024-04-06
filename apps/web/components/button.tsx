@@ -17,9 +17,9 @@ export const ButtonBG = ({
     target?: any
 }) => {
     const button =
-        "fade p-4 pt-2 pb-2 w-fit border-2 bg-darkFill border-darkOverlay hover:text-mainText hover:bg-darkOverlay whitespace-nowrap"
+        "fade px-4 py-2 rounded-md w-fit border-2 bg-darkFill border-darkOverlay hover:text-mainText hover:bg-darkOverlay whitespace-nowrap"
     const activeButton =
-        "fade p-4 pt-2 pb-2 w-fit border-2 text-dark bg-mainColor border-mainColor hover:bg-secondColor hover:border-secondColor whitespace-nowrap"
+        "fade px-4 py-2 rounded-md w-fit border-2 text-dark bg-mainColor border-mainColor hover:bg-secondColor hover:border-secondColor whitespace-nowrap"
 
     return href ? (
         <Link
