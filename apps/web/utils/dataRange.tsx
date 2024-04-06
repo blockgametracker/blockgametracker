@@ -2,6 +2,7 @@ import { QueryStart, QueryStep } from "@repo/gateway"
 
 /** Selectable ranges for data to be presented. */
 export enum DataRange {
+    HOUR = "hour",
     DAY = "day",
     WEEK = "week",
     MONTH = "month",
@@ -24,6 +25,8 @@ export const searchParamToRange = (param?: string) => {
             return DataRange.MONTH
         case "week":
             return DataRange.WEEK
+        case "hour":
+            return DataRange.HOUR
         default:
             return DataRange.DAY
     }
@@ -32,6 +35,12 @@ export const searchParamToRange = (param?: string) => {
 /** Returns the range parameters for a given `DataRange`. */
 export const getRangeParams = (range: DataRange): DataRangeParams => {
     switch (range) {
+        case DataRange.HOUR:
+            return {
+                range: range,
+                start: "-1h",
+                step: "30s",
+            }
         case DataRange.YEAR:
             return {
                 range: range,

@@ -1,7 +1,7 @@
 import React from "react"
-import { ServerData } from "../server/serverCard"
-import { DarkContainer } from "../content"
+import { DarkContainer } from "../layout/content"
 import { graphColors } from "../../utils/graphUtils"
+import { ServerData } from "@/utils/dataUtils"
 
 export const GraphLegend = ({ data }: { data: any[] }) => (
     <DarkContainer className="col-span-6 tablet:col-span-1 h-full w-full flex flex-col overflow-scroll">

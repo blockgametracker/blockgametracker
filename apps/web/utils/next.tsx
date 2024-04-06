@@ -9,7 +9,7 @@ interface NextPageParams<Params = {}> {
 /** The page parameters provided by NextJS. */
 export type PageParams<Params = {}> = Readonly<NextPageParams<Params>>
 
-export const serverToImage = (server: ServerInfo) =>
-    `https://assets.blockgametracker.gg/icons/java/${server.server_name
+export const serverToImage = (serverName: string) =>
+    `https://assets.blockgametracker.gg/icons/java/${serverName
         .toLowerCase()
         .replaceAll(" ", "_")}.png`

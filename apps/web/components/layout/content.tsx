@@ -50,7 +50,7 @@ export function DarkContainer({
     return (
         <div
             id={id}
-            className={`rounded-md p-4 border-2 bg-lightFill border-lightBorder bg-darkerFill border-darkOverlay ${className}`}
+            className={`rounded-md p-4 border-2 bg-lightFill border-lightBorder bg-dark border-darkOverlay ${className}`}
         >
             {children}
         </div>

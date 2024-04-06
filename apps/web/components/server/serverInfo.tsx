@@ -1,18 +1,18 @@
 import { serverToImage } from "@/utils/next"
-import { ServerInfo as ServerInfoData } from "@repo/gateway"
 import { PropsWithChildren } from "react"
 import Image from "next/image"
+import { ServerData } from "@/utils/dataUtils"
 
 interface Props extends PropsWithChildren {
-    server: ServerInfoData
-    percentage: number
+    server: ServerData
+    percentage?: number
 }
 
 export const ServerInfo = (props: Props) => {
     return (
-        <div className="inline-flex gap-4 items-center whitespace-nowrap">
+        <div className="w-full inline-flex gap-4 items-center whitespace-nowrap">
             <Image
-                src={serverToImage(props.server)}
+                src={serverToImage(props.server.server_name)}
                 alt={`${props.server.server_name} icon`}
                 className="fade gradient object-cover aspect-square image w-12 h-12 rounded-md group-hover:opacity-40 group-hover:blur-sm"
                 sizes="(max-width: 384px) 64px, 64px"
@@ -21,19 +21,8 @@ export const ServerInfo = (props: Props) => {
                 height={64}
             />
             <div className="flex flex-col">
-                <div className="inline-flex gap-2 items-center">
-                    <h3>{props.server.server_name}</h3>
-                    <p
-                        className={
-                            props.percentage >= 0
-                                ? "text-mainColor"
-                                : "text-red-500"
-                        }
-                    >
-                        {props.percentage}%
-                    </p>
-                </div>
-                <p>{props.server.server_host}</p>
+                <h3 className="text-lg">{props.server.server_name}</h3>
+                <p>ip</p>
             </div>
             {props.children}
         </div>

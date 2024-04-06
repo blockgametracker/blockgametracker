@@ -4,17 +4,17 @@ export const NavButton = ({
     href,
     children,
     currentPage,
-    page,
+    target,
 }: {
     href: string
     children: any
     currentPage: string
-    page: string
+    target: string
 }) => (
     <Link
         href={href}
         className={`fade p-4 pt-2 pb-2 w-fit whitespace-nowrap hover:text-mainText ${
-            currentPage === page ? "text-mainText" : ""
+            currentPage.toLowerCase() === target.toLowerCase() ? "text-mainText" : ""
         }`}
     >
         {children}

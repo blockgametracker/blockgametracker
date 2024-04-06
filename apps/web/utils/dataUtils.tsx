@@ -3,10 +3,19 @@ import {
     MinecraftEdition,
     QueryStart,
     QueryStep,
+    ServerInfo,
     getEnsembledBreakdownInRange,
+    getOnlineInRange,
+    getServers,
 } from "@repo/gateway"
 
-export const getEnsembled = async (
+export interface ServerData {
+    server_name: string
+    id: string
+    data: any
+}
+
+export const getTotalEnsembled = async (
     edition: MinecraftEdition,
     start: QueryStart,
     step: QueryStep,
@@ -16,13 +25,33 @@ export const getEnsembled = async (
         start,
         step,
     )
-
     return onlineInRange.data.map((server) => {
         return {
+            server_name: server.server_name,
             id: server.server_name,
             data: convertTime(server.data),
         }
     })
+}
+
+export const getOnline = async (
+    server: ServerInfo,
+    edition: MinecraftEdition,
+    start: QueryStart,
+    step: QueryStep,
+) => {
+    const onlineInRange = await getOnlineInRange(
+        server.server_name,
+        edition,
+        start,
+        step,
+    )
+    
+    return {
+        server_name: server.server_name,
+        id: server.server_name,
+        data: convertTime(onlineInRange.data),
+    }
 }
 
 const padTimeUnit = (unit: number) => unit.toString().padStart(2, "0")
@@ -45,7 +74,7 @@ export const convertTime = (server: ApiQuery[]) =>
 
 export function calculateAverage(data: ApiQuery[]): number {
     const total = data.reduce((acc, curr) => acc + curr.y, 0)
-    return total / data.length
+    return Math.round(total / data.length)
 }
 
 export function getPeak(data: ApiQuery[]): number {
@@ -58,16 +87,12 @@ export function getPeak(data: ApiQuery[]): number {
     return peak
 }
 
-export function calculatePercentageChange(data: ApiQuery[]): number {
-    if (data.length < 2) {
-        throw new Error("Data array must contain at least two elements")
-    }
-
-    const firstValue = data[0].y
-    const lastValue = data[data.length - 1].y
-
-    const percentageChange = Math.round(
-        ((lastValue - firstValue) / firstValue) * 100,
+export async function getServer(
+    serverName: string,
+): Promise<ServerInfo | null> {
+    const servers = await getServers("java")
+    const foundServer = servers.data.find(
+        (server) => server.server_name === serverName,
     )
-    return percentageChange
+    return foundServer || null
 }

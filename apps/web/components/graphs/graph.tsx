@@ -1,7 +1,7 @@
 "use client"
 
 import { ResponsiveLine } from "@nivo/line"
-import { Container } from "../content"
+import { Container } from "../layout/content"
 import { linearGradientDef } from "@nivo/core"
 import { theme } from "../../utils/graphUtils"
 import Icon from "../icon"
@@ -13,12 +13,13 @@ const Graph = ({
     ticksX,
     ticksY,
 }: {
-    data: any[]
+    data: any
     colors: string[]
     fill: boolean
     ticksX?: number[]
-    ticksY?: boolean
-}) => (
+    ticksY?: number[]
+}) => {
+    return (
     <div className="relative w-full h-full">
         <div className="absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full bg-darkFill animate-pulse">
             <Icon iconName="icon" className="w-6 h-6 fill-secondText" />
@@ -26,14 +27,19 @@ const Graph = ({
         <ResponsiveLine
             theme={theme}
             data={data}
-            margin={{ top: 6, right: 0, bottom: 30, left: ticksY ? 50 : 0 }}
+            margin={{
+                top: 6,
+                right: 0,
+                bottom: ticksX ? 30 : 0,
+                left: ticksY ? 50 : 0,
+            }}
             enableArea={fill}
             areaOpacity={0.3}
             colors={colors}
             enableSlices="x"
             enablePoints={false}
-            gridXValues={ticksX}
-            gridYValues={[]}
+            gridXValues={ticksX ? ticksX : []}
+            gridYValues={ticksY ? ticksY : []}
             axisTop={null}
             axisRight={null}
             axisLeft={{
@@ -43,7 +49,7 @@ const Graph = ({
                 legendOffset: 36,
                 legendPosition: "middle",
                 truncateTickAt: 0,
-                tickValues: "auto",
+                tickValues: ticksY,
             }}
             axisBottom={{
                 tickSize: 10,
@@ -72,7 +78,7 @@ const Graph = ({
             fill={[{ match: "*", id: "gradientA" }]}
             sliceTooltip={({ slice }) => (
                 <Container className="flex flex-col">
-                    <strong className="text-mainText">
+                    <strong className="text-mainText whitespace-nowrap">
                         {slice.points[0].data.xFormatted}
                     </strong>
 
@@ -99,6 +105,7 @@ const Graph = ({
             )}
         />
     </div>
-)
+    )
+}
 
 export default Graph
