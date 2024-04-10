@@ -1,21 +1,22 @@
 import Link from "next/link"
-import { MouseEventHandler } from "react"
+import { MouseEventHandler, PropsWithChildren } from "react"
 
-export const ButtonBG = ({
-    arialabel,
+interface Props extends PropsWithChildren {
+    ariaLabel: string
+    onClick?: MouseEventHandler
+    href?: string
+    active?: boolean
+    target?: string
+}
+
+export const Button = ({
+    ariaLabel,
     onClick,
     children,
     href,
     active,
     target,
-}: {
-    arialabel: any
-    onClick?: MouseEventHandler
-    children: any
-    href?: any
-    active?: boolean
-    target?: any
-}) => {
+}: Props) => {
     const button =
         "fade px-4 py-2 rounded-md w-fit border-2 bg-darkFill border-darkOverlay hover:text-mainText hover:bg-darkOverlay whitespace-nowrap"
     const activeButton =
@@ -26,7 +27,7 @@ export const ButtonBG = ({
             href={href}
             className={active ? activeButton : button}
             target={target}
-            aria-label={arialabel}
+            aria-label={ariaLabel}
         >
             {children}
         </Link>

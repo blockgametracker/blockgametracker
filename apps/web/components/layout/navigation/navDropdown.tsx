@@ -2,13 +2,12 @@
 
 import {
     DataRange,
-    DataRangeParams,
     getRangeParams,
     rangeToText,
     searchParamToRange,
 } from "@/utils/dataRange"
 import Link from "next/link"
-import Icon from "../../icon"
+import { Icon } from "@/components/icon"
 import { useState } from "react"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
 
@@ -17,7 +16,7 @@ interface Props {
     urlParams: URLParams
 }
 
-const Dropdown = (props: Props) => {
+export const Dropdown = (props: Props) => {
     const [active, setActive] = useState(false)
 
     return (
@@ -60,5 +59,3 @@ const Dropdown = (props: Props) => {
         </div>
     )
 }
-
-export default Dropdown

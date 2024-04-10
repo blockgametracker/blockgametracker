@@ -1,19 +1,21 @@
 import Link from "next/link"
-import Icon from "../icon"
+import { Icon, IconName } from "@/components/icon"
+
+interface Props {
+    className?: string
+    ariaLabel?: string
+    href: string
+    iconName: IconName
+}
 
 export const ServerButton = ({
     className,
-    arialabel,
+    ariaLabel,
     href,
     iconName,
-}: {
-    className?: string
-    arialabel: string
-    href: string
-    iconName: any
-}) => (
+}: Props) => (
     <Link
-        aria-label={arialabel}
+        aria-label={ariaLabel}
         href={href}
         className={`fade group border-2 p-3 rounded-md bg-darkFill border-darkOverlay hover:border-secondText ${className}`}
     >

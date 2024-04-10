@@ -1,5 +1,6 @@
 import {
     ApiQuery,
+    ApiResult,
     MinecraftEdition,
     QueryStart,
     QueryStep,
@@ -8,18 +9,14 @@ import {
     getOnlineInRange,
     getServers,
 } from "@repo/gateway"
+import type { ServerData } from "./parsedData"
 
-export interface ServerData {
-    server_name: string
-    id: string
-    data: ApiQuery[]
-}
-
+/** Returns the total number of players, ensembled by versoin, based on start and step times. */
 export const getTotalEnsembled = async (
     edition: MinecraftEdition,
     start: QueryStart,
     step: QueryStep,
-) => {
+): Promise<ServerData[]> => {
     const onlineInRange = await getEnsembledBreakdownInRange(
         edition,
         start,
@@ -41,12 +38,13 @@ export const getTotalEnsembled = async (
     })
 }
 
+/** Gets the players online in a given range. */
 export const getOnline = async (
     server: ServerInfo,
     edition: MinecraftEdition,
     start: QueryStart,
     step: QueryStep,
-) => {
+): Promise<ServerData> => {
     const onlineInRange = await getOnlineInRange(
         server.server_name,
         edition,
@@ -61,8 +59,10 @@ export const getOnline = async (
     }
 }
 
-const padTimeUnit = (unit: number) => unit.toString().padStart(2, "0")
+/** Pads the time unit to ensure it has a leading zero, if needed. */
+export const padTimeUnit = (unit: number) => unit.toString().padStart(2, "0")
 
+/** Converts epoch time to the ordinal time metric used on graphs. */
 export const convertTime = (server: ApiQuery[]) =>
     server.map((data) => {
         let time = new Date(data.x * 1000)
@@ -79,21 +79,17 @@ export const convertTime = (server: ApiQuery[]) =>
         }
     })
 
-export function calculateAverage(data: ApiQuery[]): number {
+/** Calculates the average of an array of `ApiResult`. */
+export function calculateAverage(data: ApiResult[]) {
     const total = data.reduce((acc, curr) => acc + curr.y, 0)
     return Math.round(total / data.length)
 }
 
-export function getPeak(data: ApiQuery[]): number {
-    let peak = Number.MIN_SAFE_INTEGER
-    data.forEach((point) => {
-        if (point.y > peak) {
-            peak = point.y
-        }
-    })
-    return peak
-}
+/** Returns the peak of an array of `ApiResult`. */
+export const getPeak = (data: ApiResult[]) =>
+    Math.max(...data.map((point) => point.y))
 
+/** Gets the information of a server with given name. */
 export async function getServer(
     serverName: string,
 ): Promise<ServerInfo | null> {

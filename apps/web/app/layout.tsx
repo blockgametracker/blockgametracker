@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import "./globals.css"
 import localFont from "next/font/local"
+import "./globals.css"
 
 const Satoshi = localFont({
     src: "../public/fonts/Satoshi-Regular.otf",
@@ -9,6 +9,7 @@ const Satoshi = localFont({
 
 export const metadata: Metadata = {
     //TODO
+    title: "Home | BlockGameTracker",
     description: "Tracking your blocks",
     keywords: ["blockgame", "minecraft", "minecraft server"],
     authors: [],

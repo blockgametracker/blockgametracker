@@ -1,15 +1,19 @@
-import React from "react"
-
 import { DarkContainer, Section } from "@/components/layout/content"
-import Layout from "@/components/layout"
-import Graph from "@/components/graphs/graph"
+import { Layout } from "@/components/layout"
+import { Graph } from "@/components/graphs/graph"
 import { getTotalEnsembled } from "@/utils/dataUtils"
-import { graphColors } from "@/utils/graphUtils"
+import { GRAPH_COLORS } from "@/utils/graphUtils"
 import { GraphLegend } from "@/components/graphs/graphLegend"
 import { getRangeParams, searchParamToRange } from "@/utils/dataRange"
-import { PageParams } from "@/utils/next"
+import type { PageParams } from "@/utils/next"
+import type { Metadata } from "next"
 
-const Page = async ({ searchParams }: PageParams) => {
+export const metadata: Metadata = {
+    // TODO
+    title: "Compare | BlockGameTracker",
+}
+
+const Compare = async ({ searchParams }: PageParams) => {
     const dateRange = searchParamToRange(searchParams?.range)
     const rangeParams = getRangeParams(dateRange)
 
@@ -27,7 +31,7 @@ const Page = async ({ searchParams }: PageParams) => {
                     <DarkContainer className="col-span-6 tablet:col-span-5 w-full h-full overflow-hidden">
                         <Graph
                             data={onlineInRange.slice(4)}
-                            colors={graphColors}
+                            colors={GRAPH_COLORS}
                             fill={false}
                         />
                     </DarkContainer>
@@ -38,4 +42,4 @@ const Page = async ({ searchParams }: PageParams) => {
     )
 }
 
-export default Page
+export default Compare

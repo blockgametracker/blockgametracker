@@ -1,6 +1,8 @@
-import { ServerData } from "./dataUtils"
+import { Theme } from "@nivo/core"
+import type { ServerData } from "./parsedData"
 
-export const graphColors = [
+/** Available colours on the graph. */
+export const GRAPH_COLORS = [
     "#2dcf35",
     "#9b7af3",
     "#ffcd4c",
@@ -9,11 +11,14 @@ export const graphColors = [
     "#6ae9ee",
 ]
 
+/** Available colours for a green graph. */
 export const greenGraph = ["#2dcf35"]
 
+/** Available colours for a red graph. */
 export const redGraph = ["#d12b2b"]
 
-export const theme = {
+/** The nivo graph theme. */
+export const theme: Theme = {
     background: "#0f0f11",
     grid: {
         line: {
@@ -38,30 +43,27 @@ export const theme = {
     },
 }
 
+/** The ticked output of a time-series set of data. */
 interface TickResult {
-    ticksX: number[]
+    ticksX: string[]
     ticksY: number[]
 }
 
-// Function to calculate ticks for a chart
+/** Calculates ticks for a chart. */
 export function getTicks(
     serverData: ServerData,
     stepX: number,
     stepY: number,
 ): TickResult {
-    const minY = Math.min(...serverData.data.map((item: any) => item.y))
-    const maxY = Math.max(...serverData.data.map((item: any) => item.y))
+    const minY = Math.min(...serverData.data.map((item) => item.y))
+    const maxY = Math.max(...serverData.data.map((item) => item.y))
 
-    const ticksX: number[] = []
+    const ticksX: string[] = []
     const ticksY = calculateBetween(minY, maxY, stepY)
-
-    // Calculate the length of the data array
     const dataLength = serverData.data.length
+    const maxLength = Math.ceil(dataLength / stepX)
 
-    // Calculate step size for x-axis ticks
-    stepX = Math.ceil(dataLength / stepX)
-
-    for (let i = 0; i < dataLength; i += stepX) {
+    for (let i = 0; i < dataLength; i += maxLength) {
         ticksX.push(serverData.data[i].x)
     }
 
@@ -70,12 +72,13 @@ export function getTicks(
     return { ticksX, ticksY }
 }
 
+/** Generates the ticks which should be considered between `minY` and `maxY`. */
 function calculateBetween(minY: number, maxY: number, step: number): number[] {
-    const interval = (maxY - minY) / step // Divide the range into equal intervals
+    const interval = (maxY - minY) / step
     const values: number[] = [minY, maxY]
 
     for (let i = 1; i <= step - 1; i++) {
-        values.push(Math.round(minY + i * interval)) // Calculate the value at each interval
+        values.push(Math.round(minY + i * interval))
     }
 
     return values

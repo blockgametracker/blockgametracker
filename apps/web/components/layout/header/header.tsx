@@ -1,8 +1,7 @@
-import { ButtonBG } from "../../button"
-import Icon from "../../icon"
+import { Icon } from "@/components/icon"
 import Link from "next/link"
 import localFont from "next/font/local"
-import MainHeader from "./mainHeader"
+import { MainHeader } from "./mainHeader"
 
 const Expose = localFont({
     src: "../../../public/fonts/Expose-Bold.otf",

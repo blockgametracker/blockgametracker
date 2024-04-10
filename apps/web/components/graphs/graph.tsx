@@ -1,24 +1,21 @@
 "use client"
 
 import { ResponsiveLine } from "@nivo/line"
-import { Container } from "../layout/content"
+import { Container } from "@/components/layout/content"
 import { linearGradientDef } from "@nivo/core"
-import { theme } from "../../utils/graphUtils"
-import Icon from "../icon"
+import { theme } from "@/utils/graphUtils"
+import { Icon } from "@/components/icon"
+import type { ServerData } from "@/utils/parsedData"
 
-const Graph = ({
-    data,
-    colors,
-    fill,
-    ticksX,
-    ticksY,
-}: {
-    data: any
+interface Props {
+    data: ServerData[]
     colors: string[]
     fill: boolean
-    ticksX?: number[]
+    ticksX?: string[]
     ticksY?: number[]
-}) => {
+}
+
+export const Graph = ({ data, colors, fill, ticksX, ticksY }: Props) => {
     return (
         <div className="relative w-full h-full">
             <div className="absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full bg-darkFill animate-pulse">
@@ -107,5 +104,3 @@ const Graph = ({
         </div>
     )
 }
-
-export default Graph

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Section } from "./content"
 
-const footer = () => (
+export const Footer = () => (
     <Section className="flex items-center pt-4 pb-4 mt-auto border-t-2 bg-darkFill border-darkOverlay">
         <div className="flex flex-col tablet:flex-row gap-4 items-center tablet:items-start">
             <p className="tablet:mr-auto">
@@ -34,5 +34,3 @@ const footer = () => (
         </div>
     </Section>
 )
-
-export default footer

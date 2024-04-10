@@ -4,12 +4,14 @@ import {
     searchParamToRange,
 } from "./dataRange"
 
+/** The URL parameters provided to the page. */
 export interface URLParams {
     rangeParams: DataRangeParams
     platform: string
     compact: boolean
 }
 
+/** Returns the URL Params for the given internally stored data. */
 export function getURLParams(
     rangeParams?: string,
     platform?: string,
@@ -19,20 +21,23 @@ export function getURLParams(
 
     return {
         rangeParams: getRangeParams(dateRange),
-        platform: platform || "java",
-        compact: compact === "true" || false,
+        platform: platform ?? "java",
+        compact: compact === "true",
     }
 }
 
+/** Builds the URL given the parameters provided. */
 export function buildURL(
     rangeParams: DataRangeParams,
-    compact?: any,
-    platform?: any,
+    compact: boolean | null,
+    platform: string | null,
 ) {
-    return `?range=${rangeParams.range}${getValue("compact", compact)}${getValue("platform", platform)}`
-}
+    const params = new URLSearchParams({
+        rangeParams: rangeParams.range,
+    })
 
-export const getValue = (setting?: string, value?: any) => {
-    if (value !== null) if (value !== undefined) return `&${setting}=${value}`
-    return ""
+    if (compact) params.append("compact", `${compact}`)
+    if (platform) params.append("platform", platform)
+
+    return `?${params.toString()}`
 }

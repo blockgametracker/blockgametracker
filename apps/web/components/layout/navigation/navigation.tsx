@@ -1,12 +1,12 @@
 "use client"
 
 import Link from "next/link"
-import Icon from "../../icon"
+import { Icon } from "@/components/icon"
 import { NavButton } from "./navButton"
-import { Section } from "../content"
+import { Section } from "@/components/layout/content"
 import { useSearchParams } from "next/navigation"
-import { getRangeParams, searchParamToRange } from "@/utils/dataRange"
-import Dropdown from "./navDropdown"
+import { searchParamToRange } from "@/utils/dataRange"
+import { Dropdown } from "./navDropdown"
 import { useState } from "react"
 import { getURLParams } from "@/utils/urlBuilder"
 
@@ -14,7 +14,7 @@ interface Props {
     page: string
 }
 
-const navigation = (props: Props) => {
+export const Navigation = (props: Props) => {
     const searchParams = useSearchParams()
     const selectedRange = searchParams.get("range") as string
     const dateRange = searchParamToRange(selectedRange)
@@ -102,5 +102,3 @@ const navigation = (props: Props) => {
         </Section>
     )
 }
-
-export default navigation

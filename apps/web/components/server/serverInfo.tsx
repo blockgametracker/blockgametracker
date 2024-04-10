@@ -1,7 +1,7 @@
 import { serverToImage } from "@/utils/next"
 import { PropsWithChildren } from "react"
 import Image from "next/image"
-import { ServerData } from "@/utils/dataUtils"
+import type { ServerData } from "@/utils/parsedData"
 
 interface Props extends PropsWithChildren {
     platform: string

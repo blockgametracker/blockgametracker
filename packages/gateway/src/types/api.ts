@@ -4,9 +4,13 @@ export interface BaseApiResponse<T> {
 }
 
 /** A singular query result. */
-export interface ApiQuery {
-    x: number
+export interface ApiResult {
     y: number
+}
+
+/** A singular query output. */
+export interface ApiQuery extends ApiResult {
+    x: number
 }
 
 /** A query response for a single time. */

@@ -1,16 +1,16 @@
-import React from "react"
-import ServerCard from "./serverCard"
+import { ServerCard } from "./serverCard"
 import { getTotalEnsembled } from "@/utils/dataUtils"
-import { ButtonBG } from "../button"
-import Icon from "../icon"
-import { URLParams, buildURL } from "@/utils/urlBuilder"
+import { Button } from "@/components/button"
+import { Icon } from "@/components/icon"
+import { URLParams as Props, buildURL } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
+import { Fragment } from "react"
 
-export const Servers: React.FC<URLParams> = async (urlParams) => {
+export const Servers = async (props: Props) => {
     const serverList = await getTotalEnsembled(
-        urlParams.platform as MinecraftEdition,
-        urlParams.rangeParams.start,
-        urlParams.rangeParams.step,
+        props.platform as MinecraftEdition,
+        props.rangeParams.start,
+        props.rangeParams.step,
     )
 
     return (
@@ -20,60 +20,45 @@ export const Servers: React.FC<URLParams> = async (urlParams) => {
                 <h2 className="text-3xl mr-auto">Global server overview</h2>
 
                 <div>
-                    <ButtonBG
-                        arialabel="Java edition"
-                        href={buildURL(
-                            urlParams.rangeParams,
-                            urlParams.compact,
-                            null,
-                        )}
+                    <Button
+                        ariaLabel="Java edition"
+                        href={buildURL(props.rangeParams, props.compact, null)}
                     >
                         Java
-                    </ButtonBG>
-                    <ButtonBG
-                        arialabel="Bedrock edition"
+                    </Button>
+                    <Button
+                        ariaLabel="Bedrock edition"
                         href={buildURL(
-                            urlParams.rangeParams,
-                            urlParams.compact,
+                            props.rangeParams,
+                            props.compact,
                             "bedrock",
                         )}
                     >
                         Bedrock
-                    </ButtonBG>
+                    </Button>
                 </div>
                 <div>
-                    <ButtonBG
-                        arialabel="Default mode"
-                        href={buildURL(
-                            urlParams.rangeParams,
-                            null,
-                            urlParams.platform,
-                        )}
+                    <Button
+                        ariaLabel="Default mode"
+                        href={buildURL(props.rangeParams, null, props.platform)}
                     >
                         Default
-                    </ButtonBG>
-                    <ButtonBG
-                        arialabel="Compact mode"
-                        href={buildURL(
-                            urlParams.rangeParams,
-                            true,
-                            urlParams.platform,
-                        )}
+                    </Button>
+                    <Button
+                        ariaLabel="Compact mode"
+                        href={buildURL(props.rangeParams, true, props.platform)}
                     >
                         Compact
-                    </ButtonBG>
+                    </Button>
                 </div>
             </div>
             <div
-                className={`w-full grid gap-4 ${urlParams.compact ? "grid-cols-1 tablet:grid-cols-3" : "grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
+                className={`w-full grid gap-4 ${props.compact ? "grid-cols-1 tablet:grid-cols-3" : "grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
             >
                 {serverList.map((serverData, index) => (
-                    <React.Fragment key={index}>
-                        <ServerCard
-                            urlParams={urlParams}
-                            serverData={serverData}
-                        />
-                    </React.Fragment>
+                    <Fragment key={index}>
+                        <ServerCard urlParams={props} serverData={serverData} />
+                    </Fragment>
                 ))}
             </div>
         </div>
