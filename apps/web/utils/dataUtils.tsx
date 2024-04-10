@@ -12,7 +12,7 @@ import {
 export interface ServerData {
     server_name: string
     id: string
-    data: any
+    data: ApiQuery[]
 }
 
 export const getTotalEnsembled = async (
