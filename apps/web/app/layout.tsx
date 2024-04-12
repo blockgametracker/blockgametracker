@@ -9,7 +9,7 @@ const Satoshi = localFont({
 
 export const metadata: Metadata = {
     //TODO
-    title: "Home | BlockGameTracker",
+    title: "Home | Blockgametracker",
     description: "Tracking your blocks",
     keywords: ["blockgame", "minecraft", "minecraft server"],
     authors: [],

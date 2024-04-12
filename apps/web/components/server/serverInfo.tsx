@@ -4,7 +4,7 @@ import Image from "next/image"
 import type { ServerData } from "@/utils/parsedData"
 
 interface Props extends PropsWithChildren {
-    platform: string
+    edition: string
     serverData: ServerData
     percentage?: number
 }
@@ -15,7 +15,7 @@ export const ServerInfo = (props: Props) => {
             <div className="inline-flex gap-4 items-center">
                 <Image
                     src={serverToImage(
-                        props.platform,
+                        props.edition,
                         props.serverData.server_name,
                     )}
                     alt={`${props.serverData.server_name} icon`}

@@ -47,7 +47,7 @@ export const Dropdown = (props: Props) => {
                             href={buildURL(
                                 getRangeParams(range),
                                 props.urlParams.compact,
-                                props.urlParams.platform,
+                                props.urlParams.edition,
                             )}
                             key={index}
                         >

@@ -1,18 +1,17 @@
-import { getOnline, getServer } from "@/utils/dataUtils"
 import { getTicks, greenGraph } from "@/utils/graphUtils"
-import { URLParams } from "@/utils/urlBuilder"
+import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { Graph } from "@/components/graphs/graph"
-import { Layout } from "@/components/layout"
 import { Section, DarkContainer } from "@/components/layout/content"
 import { StatisticSmall } from "@/components/statistic/small"
 import { StatisticLarge } from "@/components/statistic/large"
 import { ServerButton } from "./serverButton"
 import { ServerInfo } from "./serverInfo"
+import { getOnline, getServer } from "@/utils/dataFetcher"
 
 interface Props {
     serverName: string
-    platform: string
+    edition: string
     urlParams: URLParams
 }
 
@@ -22,79 +21,77 @@ export const ServerPage = async (props: Props) => {
 
     const serverData = await getOnline(
         server,
-        props.platform as MinecraftEdition,
+        props.edition as MinecraftEdition,
         props.urlParams.rangeParams.start,
         props.urlParams.rangeParams.step,
     )
     const online = serverData.data[serverData.data.length - 1]
-    const ticks = getTicks(serverData, 8, 10)
+    const ticks = getTicks(serverData, 8)
     const dataMapped = [serverData]
 
     return (
-        <Layout page={props.serverName}>
-            <Section className="w-full tablet:h-full">
-                <div className="flex flex-col tablet:flex-row gap-4 w-full tablet:h-full">
-                    <DarkContainer className="w-full h-96 tablet:w-4/5 tablet:h-full ">
-                        <Graph
-                            data={dataMapped}
-                            fill={true}
-                            ticksX={ticks.ticksX}
-                            ticksY={ticks.ticksY}
-                            colors={greenGraph}
-                        />
+        <Section className="w-full tablet:h-full">
+            <div className="flex flex-col tablet:flex-row gap-4 w-full tablet:h-full">
+                <DarkContainer className="w-full h-96 tablet:w-4/5 tablet:h-full ">
+                    <Graph
+                        data={dataMapped}
+                        fill={true}
+                        ticksX={ticks.ticksX}
+                        ticksY={ticks.ticksY}
+                        colors={greenGraph}
+                    />
+                </DarkContainer>
+
+                <div className="flex flex-col w-full tablet:w-1/5 tablet:h-full gap-4">
+                    <DarkContainer>
+                        <ServerInfo
+                            serverData={serverData}
+                            edition={props.urlParams.edition}
+                        >
+                            <ServerButton
+                                className="ml-auto"
+                                ariaLabel="Compare server"
+                                href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.compact, props.urlParams.edition, [props.serverName])}`}
+                                iconName="compare"
+                            />
+                        </ServerInfo>
                     </DarkContainer>
 
-                    <div className="flex flex-col w-full tablet:w-1/5 tablet:h-full gap-4">
-                        <DarkContainer>
-                            <ServerInfo
-                                serverData={serverData}
-                                platform={props.urlParams.platform}
-                            >
-                                <ServerButton
-                                    className="ml-auto"
-                                    ariaLabel="Compare server"
-                                    href="/compare"
-                                    iconName="compare"
-                                />
-                            </ServerInfo>
-                        </DarkContainer>
+                    <DarkContainer>
+                        <h1>General information</h1>
+                        <StatisticSmall title="Players" value={online.y} />
+                        <StatisticSmall title="Ping" value="-" />
+                        <StatisticSmall
+                            title="Host"
+                            value={server.server_host}
+                        />
+                        <StatisticSmall title="Port" value="-" />
+                    </DarkContainer>
 
-                        <DarkContainer>
-                            <h1>General information</h1>
-                            <StatisticSmall title="Players" value={online.y} />
-                            <StatisticSmall title="Ping" value="-" />
-                            <StatisticSmall
-                                title="Host"
-                                value={server.server_host}
-                            />
-                            <StatisticSmall title="Port" value="-" />
-                        </DarkContainer>
-
-                        <div className="w-full grid grid-cols-2 gap-4">
-                            <StatisticLarge
-                                iconName="clock"
-                                title="Avarage 1 day"
-                                value="-"
-                            />
-                            <StatisticLarge
-                                iconName="clock"
-                                title="Avarage 1 week"
-                                value="-"
-                            />
-                            <StatisticLarge
-                                iconName="clock"
-                                title="Avarage 1 month"
-                                value="-"
-                            />
-                            <StatisticLarge
-                                iconName="clock"
-                                title="Avarage 1 year"
-                                value="-"
-                            />
-                        </div>
+                    <div className="w-full grid grid-cols-2 gap-4">
+                        <StatisticLarge
+                            iconName="clock"
+                            title="Avarage 1 day"
+                            value="-"
+                        />
+                        <StatisticLarge
+                            iconName="clock"
+                            title="Avarage 1 week"
+                            value="-"
+                        />
+                        <StatisticLarge
+                            iconName="clock"
+                            title="Avarage 1 month"
+                            value="-"
+                        />
+                        <StatisticLarge
+                            iconName="clock"
+                            title="Avarage 1 year"
+                            value="-"
+                        />
                     </div>
                 </div>
-            </Section>
-        </Layout>
+            </div>
+        </Section>
     )
 }

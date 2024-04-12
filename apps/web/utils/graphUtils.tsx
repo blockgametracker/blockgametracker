@@ -1,5 +1,6 @@
 import { Theme } from "@nivo/core"
 import type { ServerData } from "./parsedData"
+import { calculateAverage } from "./dataUtils"
 
 /** Available colours on the graph. */
 export const GRAPH_COLORS = [
@@ -49,17 +50,37 @@ interface TickResult {
     ticksY: number[]
 }
 
+/** Calculates Y ticks for a chart. */
+export function getTicksY(max: number): number[] {
+    const ticksY: number[] = [];
+
+    const step = 
+        max < 10 ? 1 : 
+        max < 100 ? 10 : 
+        max < 500 ? 50 : 
+        max < 1000 ? 100 : 
+        max < 2500 ? 250 : 
+        max < 10000 ? 1000 : 
+        max < 25000 ? 2500 : 
+        max < 100000 ? 5000 : 
+        10000;
+
+    for (let i = 0; i <= max; i += step) {
+        ticksY.push(i);
+    }
+    return ticksY;
+}
+
 /** Calculates ticks for a chart. */
 export function getTicks(
     serverData: ServerData,
     stepX: number,
-    stepY: number,
 ): TickResult {
-    const minY = Math.min(...serverData.data.map((item) => item.y))
     const maxY = Math.max(...serverData.data.map((item) => item.y))
 
     const ticksX: string[] = []
-    const ticksY = calculateBetween(minY, maxY, stepY)
+    const ticksY = getTicksY(maxY)
+
     const dataLength = serverData.data.length
     const maxLength = Math.ceil(dataLength / stepX)
 
@@ -70,16 +91,4 @@ export function getTicks(
     ticksX.push(serverData.data[serverData.data.length - 1].x)
 
     return { ticksX, ticksY }
-}
-
-/** Generates the ticks which should be considered between `minY` and `maxY`. */
-function calculateBetween(minY: number, maxY: number, step: number): number[] {
-    const interval = (maxY - minY) / step
-    const values: number[] = [minY, maxY]
-
-    for (let i = 1; i <= step - 1; i++) {
-        values.push(Math.round(minY + i * interval))
-    }
-
-    return values
 }

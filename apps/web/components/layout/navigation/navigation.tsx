@@ -21,7 +21,7 @@ export const Navigation = (props: Props) => {
 
     const urlParams = getURLParams(
         searchParams.get("range") as string,
-        searchParams.get("platform") as string,
+        searchParams.get("edition") as string,
         searchParams.get("compact") as string,
     )
 

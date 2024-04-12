@@ -21,7 +21,7 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
             id="servers"
             className={`fade flex gap-4 w-full ${urlParams.compact ? "flex-row" : "flex-col"}`}
         >
-            <ServerInfo platform={urlParams.platform} serverData={serverData}>
+            <ServerInfo edition={urlParams.edition} serverData={serverData}>
                 {urlParams.compact && (
                     <ServerStatistics
                         compact={urlParams.compact}
@@ -39,7 +39,7 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                     />
                     <ServerButton
                         ariaLabel="Open server"
-                        href={`/server/${urlParams.platform}/${serverData.server_name.replace(" ", "_")}${buildURL(urlParams.rangeParams, urlParams.compact, urlParams.platform)}`}
+                        href={`/server/${urlParams.edition}/${serverData.server_name.replace(" ", "_")}${buildURL(urlParams.rangeParams, urlParams.compact, urlParams.edition)}`}
                         iconName="fullscreen"
                     />
                 </div>

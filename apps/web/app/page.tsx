@@ -8,7 +8,7 @@ import { getURLParams } from "@/utils/urlBuilder"
 const Page = ({ searchParams }: PageParams) => {
     const urlParams = getURLParams(
         searchParams?.range,
-        searchParams?.platform,
+        searchParams?.edition,
         searchParams?.compact,
     )
 

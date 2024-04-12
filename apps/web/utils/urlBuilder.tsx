@@ -7,22 +7,25 @@ import {
 /** The URL parameters provided to the page. */
 export interface URLParams {
     rangeParams: DataRangeParams
-    platform: string
+    edition: string
     compact: boolean
+    servers: string[]
 }
 
 /** Returns the URL Params for the given internally stored data. */
 export function getURLParams(
     rangeParams?: string,
-    platform?: string,
+    edition?: string,
     compact?: string,
+    servers?: string[],
 ) {
     const dateRange = searchParamToRange(rangeParams)
 
     return {
         rangeParams: getRangeParams(dateRange),
-        platform: platform ?? "java",
+        edition: edition ?? "java",
         compact: compact === "true",
+        servers: servers ?? []
     }
 }
 
@@ -30,14 +33,16 @@ export function getURLParams(
 export function buildURL(
     rangeParams: DataRangeParams,
     compact: boolean | null,
-    platform: string | null,
+    edition: string | null,
+    servers: string[] | null
 ) {
     const params = new URLSearchParams({
         rangeParams: rangeParams.range,
     })
 
     if (compact) params.append("compact", `${compact}`)
-    if (platform) params.append("platform", platform)
+    if (edition) params.append("edition", edition)
+    if (servers) params.append("servers", servers.join(","))
 
     return `?${params.toString()}`
 }

@@ -27,7 +27,7 @@ export const Graph = ({ data, colors, fill, ticksX, ticksY }: Props) => {
                 margin={{
                     top: 6,
                     right: 0,
-                    bottom: ticksX ? 30 : 0,
+                    bottom: ticksX ? 20 : 0,
                     left: ticksY ? 50 : 0,
                 }}
                 enableArea={fill}
@@ -39,27 +39,9 @@ export const Graph = ({ data, colors, fill, ticksX, ticksY }: Props) => {
                 gridYValues={ticksY ? ticksY : []}
                 axisTop={null}
                 axisRight={null}
-                axisLeft={{
-                    tickSize: 10,
-                    tickPadding: 10,
-                    tickRotation: 0,
-                    legendOffset: 36,
-                    legendPosition: "middle",
-                    truncateTickAt: 0,
-                    tickValues: ticksY,
-                }}
-                axisBottom={{
-                    tickSize: 10,
-                    tickPadding: 10,
-                    tickRotation: 0,
-                    legendOffset: 36,
-                    legendPosition: "middle",
-                    truncateTickAt: 0,
-                    tickValues: ticksX,
-                }}
-                xScale={{
-                    type: "point",
-                }}
+                axisLeft={{tickValues: ticksY}}
+                axisBottom={{tickValues: ticksX}}
+                xScale={{type: "point"}}
                 yScale={{
                     type: "linear",
                     min: "auto",

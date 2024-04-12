@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react"
+import { MouseEventHandler, PropsWithChildren } from "react"
 
 interface Props extends PropsWithChildren {
     id?: string
@@ -29,10 +29,21 @@ export function Container({ children, id, className }: Props) {
     )
 }
 
-export function DarkContainer({ children, id, className }: Props) {
+export function DarkContainer({
+    children,
+    id,
+    className,
+    onClick,
+}: {
+    children?: any
+    id?: string
+    className?: string
+    onClick?: MouseEventHandler | undefined;
+}) {
     return (
         <div
             id={id}
+            onClick={onClick}
             className={`rounded-md p-4 border-2 bg-lightFill border-lightBorder bg-darkFill border-darkOverlay ${className}`}
         >
             {children}

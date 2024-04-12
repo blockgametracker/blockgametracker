@@ -1,14 +1,13 @@
 import { ServerCard } from "./serverCard"
-import { getTotalEnsembled } from "@/utils/dataUtils"
+import { getTotalEnsembled } from "@/utils/dataFetcher"
 import { Button } from "@/components/button"
-import { Icon } from "@/components/icon"
 import { URLParams as Props, buildURL } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { Fragment } from "react"
 
 export const Servers = async (props: Props) => {
     const serverList = await getTotalEnsembled(
-        props.platform as MinecraftEdition,
+        props.edition as MinecraftEdition,
         props.rangeParams.start,
         props.rangeParams.step,
     )
@@ -16,13 +15,12 @@ export const Servers = async (props: Props) => {
     return (
         <div className="flex flex-col gap-4">
             <div className="flex flex-row gap-4 items-center">
-                <Icon iconName="list" className="fill-mainText w-6 h-6" />
                 <h2 className="text-3xl mr-auto">Global server overview</h2>
 
                 <div>
                     <Button
                         ariaLabel="Java edition"
-                        href={buildURL(props.rangeParams, props.compact, null)}
+                        href={buildURL(props.rangeParams, props.compact, null, null)}
                     >
                         Java
                     </Button>
@@ -31,7 +29,8 @@ export const Servers = async (props: Props) => {
                         href={buildURL(
                             props.rangeParams,
                             props.compact,
-                            "bedrock",
+                            "bedrock", 
+                            null
                         )}
                     >
                         Bedrock
@@ -40,13 +39,13 @@ export const Servers = async (props: Props) => {
                 <div>
                     <Button
                         ariaLabel="Default mode"
-                        href={buildURL(props.rangeParams, null, props.platform)}
+                        href={buildURL(props.rangeParams, null, props.edition, null)}
                     >
                         Default
                     </Button>
                     <Button
                         ariaLabel="Compact mode"
-                        href={buildURL(props.rangeParams, true, props.platform)}
+                        href={buildURL(props.rangeParams, true, props.edition, null)}
                     >
                         Compact
                     </Button>
