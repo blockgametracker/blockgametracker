@@ -38,7 +38,7 @@ export function buildURL(
     servers: string[] | null
 ) {
     const params = new URLSearchParams({
-        rangeParams: rangeParams.range,
+        range: rangeParams.range,
     })
 
     if (compact) params.append("compact", `${compact}`)
