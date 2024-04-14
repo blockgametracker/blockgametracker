@@ -3,7 +3,7 @@
 import { ResponsiveLine } from "@nivo/line"
 import { Container } from "@/components/layout/content"
 import { linearGradientDef } from "@nivo/core"
-import { theme } from "@/utils/graphUtils"
+import { COLOR_MAX, theme } from "@/utils/graphUtils"
 import { Icon } from "@/components/icon"
 import type { ServerData } from "@/utils/parsedData"
 
@@ -13,9 +13,10 @@ interface Props {
     fill: boolean
     ticksX?: string[]
     ticksY?: number[]
+    peak?: string
 }
 
-export const Graph = ({ data, colors, fill, ticksX, ticksY }: Props) => {
+export const Graph = ({ data, colors, fill, ticksX, ticksY, peak }: Props) => {
     return (
         <div className="relative w-full h-full">
             <div className="absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full bg-darkFill animate-pulse">
@@ -39,9 +40,9 @@ export const Graph = ({ data, colors, fill, ticksX, ticksY }: Props) => {
                 gridYValues={ticksY ? ticksY : []}
                 axisTop={null}
                 axisRight={null}
-                axisLeft={{tickValues: ticksY}}
-                axisBottom={{tickValues: ticksX}}
-                xScale={{type: "point"}}
+                axisLeft={{ tickValues: ticksY }}
+                axisBottom={{ tickValues: ticksX }}
+                xScale={{ type: "point" }}
                 yScale={{
                     type: "linear",
                     min: "auto",
@@ -54,6 +55,18 @@ export const Graph = ({ data, colors, fill, ticksX, ticksY }: Props) => {
                         { offset: 100, color: "inherit", opacity: 0 },
                     ]),
                 ]}
+                markers={peak ? [
+                    {
+                        axis: 'x',
+                        lineStyle: {
+                            stroke: COLOR_MAX,
+                            strokeWidth: 1,
+                            strokeDasharray: "4 4",
+                            strokeDashoffset: "2"
+                        },
+                        value: peak ? peak:""
+                    }
+                ]: []}
                 fill={[{ match: "*", id: "gradientA" }]}
                 sliceTooltip={({ slice }) => (
                     <Container className="flex flex-col">

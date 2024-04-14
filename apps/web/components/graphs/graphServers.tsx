@@ -2,7 +2,7 @@
 
 import React from "react"
 import { DarkContainer } from "../layout/content"
-import { URLParams, buildURL } from "@/utils/urlBuilder"
+import { URLParams, buildURL, isServerToggled, toggleServer } from "@/utils/urlBuilder"
 import Link from "next/link"
 import { Icon } from "../icon"
 import { ServerData } from "@/utils/parsedData"
@@ -10,14 +10,8 @@ import { ServerData } from "@/utils/parsedData"
 export const GraphServers = ({ urlParams, servers }: { urlParams: URLParams, servers: ServerData[] }) => (
     <div className="col-span-6 tablet:col-span-1 h-full w-full grid grid-cols-6 gap-4">
         {servers.map((server: any, index: any) => {
-            let servers = urlParams.servers.slice()
-            const serverIndex = servers.indexOf(server.id.replace(" ", "_"))
-            const active = serverIndex !== -1;
-
-            active ?
-                servers = servers.filter(item => item !== server.id.replace(" ", "_"))
-                :
-                servers.push(server.id.replace(" ", "_"))
+            const servers = toggleServer(urlParams, server)
+            const active = isServerToggled(urlParams, server)
 
             return (
                 <Link key={index} className="w-full" href={buildURL(urlParams.rangeParams, urlParams.compact, urlParams.edition, servers)}>

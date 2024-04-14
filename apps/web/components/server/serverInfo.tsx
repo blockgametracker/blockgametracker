@@ -6,7 +6,6 @@ import type { ServerData } from "@/utils/parsedData"
 interface Props extends PropsWithChildren {
     edition: string
     serverData: ServerData
-    percentage?: number
 }
 
 export const ServerInfo = (props: Props) => {
@@ -19,7 +18,7 @@ export const ServerInfo = (props: Props) => {
                         props.serverData.server_name,
                     )}
                     alt={`${props.serverData.server_name} icon`}
-                    className="fade gradient object-cover aspect-square image w-12 h-12 rounded-md group-hover:opacity-40 group-hover:blur-sm"
+                    className="fade gradient object-cover aspect-square image w-12 h-12 group-hover:opacity-40 group-hover:blur-sm"
                     sizes="(max-width: 384px) 64px, 64px"
                     title={props.serverData.server_name}
                     width={64}

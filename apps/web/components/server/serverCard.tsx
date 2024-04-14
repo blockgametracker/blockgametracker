@@ -6,6 +6,7 @@ import { ServerInfo } from "./serverInfo"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { ServerData } from "@/utils/parsedData"
 import { ServerStatistics } from "./serverStatistics"
+import { getPeakDate } from "@/utils/dataUtils"
 
 interface Props {
     urlParams: URLParams
@@ -13,9 +14,10 @@ interface Props {
 }
 
 export const ServerCard = async ({ urlParams, serverData }: Props) => {
-    const ticks = getTicks(serverData, 3, 4)
+    const ticks = getTicks(serverData, 3)
     const dataMapped = [serverData]
-
+    const peak = getPeakDate(serverData.data)
+    
     return (
         <DarkContainer
             id="servers"
@@ -34,12 +36,12 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                 >
                     <ServerButton
                         ariaLabel="Compare server"
-                        href="/compare"
+                        href={`/compare/${buildURL(urlParams.rangeParams, urlParams.compact, urlParams.edition, [serverData.server_name])}`}
                         iconName="compare"
                     />
                     <ServerButton
                         ariaLabel="Open server"
-                        href={`/server/${urlParams.edition}/${serverData.server_name.replace(" ", "_")}${buildURL(urlParams.rangeParams, urlParams.compact, urlParams.edition)}`}
+                        href={`/server/${urlParams.edition}/${serverData.server_name.replace(" ", "_")}${buildURL(urlParams.rangeParams, urlParams.compact, urlParams.edition, urlParams.servers)}`}
                         iconName="fullscreen"
                     />
                 </div>
@@ -53,6 +55,7 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                         ticksX={ticks.ticksX}
                         ticksY={ticks.ticksY}
                         colors={greenGraph}
+                        peak={peak.x}
                     />
                 </div>
             )}

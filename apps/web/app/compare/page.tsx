@@ -2,9 +2,8 @@ import { DarkContainer, Section } from "@/components/layout/content"
 import { Layout } from "@/components/layout"
 import { Graph } from "@/components/graphs/graph"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
-import { GRAPH_COLORS, getTicks } from "@/utils/graphUtils"
+import { GRAPH_COLORS, TickResult, getTicks } from "@/utils/graphUtils"
 import { GraphLegend } from "@/components/graphs/graphLegend"
-import { getRangeParams, searchParamToRange } from "@/utils/dataRange"
 import type { PageParams } from "@/utils/next"
 import type { Metadata } from "next"
 import { getURLParams } from "@/utils/urlBuilder"
@@ -30,10 +29,11 @@ const Compare = async ({ searchParams }: PageParams) => {
         urlParams.rangeParams.step,
     )
 
-    const filteredServers = servers.filter(server => {
-        if(server === null)
+    const selectedServers = servers.filter(server => {
+        if (server === null)
             return null
-        const serverName = server.server_name
+        const serverName = server.server_name.replace(" ", "_")
+
         if (urlServers.includes(serverName))
             return {
                 server_name: server.server_name,
@@ -42,7 +42,12 @@ const Compare = async ({ searchParams }: PageParams) => {
             }
     });
 
-    const ticks = getTicks(servers[0], 3)
+    let ticks: TickResult = {
+        ticksX: [""],
+        ticksY: [0]
+    };
+    if(selectedServers[0] !== undefined)
+        ticks = getTicks(selectedServers[0], 3)
 
     return (
         <Layout page="Compare">
@@ -50,15 +55,22 @@ const Compare = async ({ searchParams }: PageParams) => {
                 <h2 className="text-3xl">Compare servers</h2>
                 <div className="grid grid-cols-6 w-full h-full gap-4">
                     <DarkContainer className="col-span-6 tablet:col-span-5 w-full h-full overflow-hidden">
-                        <Graph
-                            data={filteredServers}
-                            colors={GRAPH_COLORS}
-                            ticksX={ticks.ticksX}
-                            ticksY={ticks.ticksY}
-                            fill={false}
-                        />
+                        {
+                            (selectedServers.length !== 0) ?
+                            <Graph
+                                data={selectedServers}
+                                colors={GRAPH_COLORS}
+                                ticksX={ticks.ticksX}
+                                ticksY={ticks.ticksY}
+                                fill={false}
+                            />
+                            :
+                            <div className="w-full h-full flex items-center justify-center">
+                                <p>Select servers to start comparing</p>
+                            </div>
+                        }
                     </DarkContainer>
-                    <GraphLegend urlParams={urlParams} servers={servers} />
+                    <GraphLegend urlParams={urlParams} servers={servers} selectedServers={selectedServers} />
                 </div>
             </Section>
         </Layout>

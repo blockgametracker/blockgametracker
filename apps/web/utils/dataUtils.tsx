@@ -2,6 +2,7 @@ import {
     ApiQuery,
     ApiResult,
 } from "@repo/gateway"
+import { ParsedApiQuery } from "./parsedData"
 
 /** Pads the time unit to ensure it has a leading zero, if needed. */
 export const padTimeUnit = (unit: number) => unit.toString().padStart(2, "0")
@@ -32,3 +33,10 @@ export function calculateAverage(data: ApiResult[]) {
 /** Returns the peak of an array of `ApiResult`. */
 export const getPeak = (data: ApiResult[]) =>
     Math.max(...data.map((point) => point.y))
+
+/** Returns the peak of an array of `ApiResult`. */
+export const getPeakDate = (data: ParsedApiQuery[]): ParsedApiQuery => {
+    const y = getPeak(data)
+    const x = data.find((point) => point.y === y)?.x || ""
+    return { x, y};
+}

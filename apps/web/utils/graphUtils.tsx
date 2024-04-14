@@ -1,6 +1,5 @@
 import { Theme } from "@nivo/core"
 import type { ServerData } from "./parsedData"
-import { calculateAverage } from "./dataUtils"
 
 /** Available colours on the graph. */
 export const GRAPH_COLORS = [
@@ -11,6 +10,16 @@ export const GRAPH_COLORS = [
     "#ee6ae0",
     "#6ae9ee",
 ]
+
+export const COLOR_MAX = "#ffcd4c"
+export const COLOR_MEAN = "#9b7af3"
+export const COLOR_CURRENT = "#2dcf35"
+
+/** The ticked output of a time-series set of data. */
+export interface TickResult {
+    ticksX: string[]
+    ticksY: number[]
+}
 
 /** Available colours for a green graph. */
 export const greenGraph = ["#2dcf35"]
@@ -42,12 +51,6 @@ export const theme: Theme = {
             strokeWidth: 1,
         },
     },
-}
-
-/** The ticked output of a time-series set of data. */
-interface TickResult {
-    ticksX: string[]
-    ticksY: number[]
 }
 
 /** Calculates Y ticks for a chart. */

@@ -1,5 +1,5 @@
 import { calculateAverage, getPeak } from "@/utils/dataUtils"
-import { greenGraph } from "@/utils/graphUtils"
+import { COLOR_CURRENT, COLOR_MAX, COLOR_MEAN, greenGraph } from "@/utils/graphUtils"
 import { ServerData } from "@/utils/parsedData"
 import { Tag } from "@/components/tag"
 
@@ -17,13 +17,13 @@ export const ServerStatistics = ({ compact, serverData }: Props) => {
         <div
             className={`flex flex-col phone:flex-row gap-4 justify-between rounded-md divide-y-2 phone:divide-y-0 phone:divide-x-2 px-0 divide-darkOverlay border-darkOverlay ${compact ? "ml-auto" : "pt-4 pb-2 border-t-2"}`}
         >
-            <Tag text="Current" color={greenGraph[0]}>
+            <Tag text="Current" color={COLOR_CURRENT}>
                 {online.toLocaleString()}
             </Tag>
-            <Tag text="Mean" color="#9b7af3">
+            <Tag text="Mean" color={COLOR_MEAN}>
                 {players_avarage.toLocaleString()}
             </Tag>
-            <Tag text="Max" color="#ffcd4c">
+            <Tag text="Max" color={COLOR_MAX}>
                 {players_peak.toLocaleString()}
             </Tag>
         </div>
