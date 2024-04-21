@@ -1,6 +1,9 @@
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import "./globals.css"
+import { Manrope } from 'next/font/google'
+
+const manrope = Manrope({ subsets: ['latin'] })
 
 const Satoshi = localFont({
     src: "../public/fonts/Satoshi-Regular.otf",
@@ -10,7 +13,7 @@ const Satoshi = localFont({
 export const metadata: Metadata = {
     //TODO
     title: "Home | Blockgametracker",
-    description: "Tracking your blocks",
+    description: "Historical Minecraft server playercounts of over 70 minecraft servers, saved for as long as possible.",
     keywords: ["blockgame", "minecraft", "minecraft server"],
     authors: [],
 }
@@ -23,7 +26,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`bg-dark text-secondText ${Satoshi.className}`}
+            className={`bg-dark text-secondText ${manrope.className}`}
         >
             <body className="w-screen h-screen overflow-x-hidden">
                 {children}

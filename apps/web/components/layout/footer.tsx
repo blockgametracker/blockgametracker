@@ -12,12 +12,6 @@ export const Footer = () => (
                 <p>Blockgametracker by:</p>
                 <div className="flex flex-row gap-2 justify-center tablet:justify-start">
                     <Link
-                        href="https://github.com/clrxbl"
-                        className="text-mainText p-2 tablet:p-0"
-                    >
-                        Michael,
-                    </Link>
-                    <Link
                         href="https://github.com/MagicA550"
                         className="text-mainText p-2  tablet:p-0"
                     >
@@ -27,7 +21,13 @@ export const Footer = () => (
                         href="https://grafisch.media/"
                         className="text-mainText p-2  tablet:p-0"
                     >
-                        Jelle
+                        Jelle,
+                    </Link>
+                    <Link
+                        href="https://github.com/clrxbl"
+                        className="text-mainText p-2 tablet:p-0"
+                    >
+                        Michael
                     </Link>
                 </div>
             </div>

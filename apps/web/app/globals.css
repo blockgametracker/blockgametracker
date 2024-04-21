@@ -26,14 +26,14 @@ html {
     user-select: none;
 }
 
+/* General styles */
+.fade {
+    transition: all 0.2s ease-in-out;
+}
+
 body {
     padding: 0;
     margin: 0;
     background-image: radial-gradient(#131316 2.5px, transparent 2.5px);
     background-size: 20px 20px;
-}
-
-/* General styles */
-.fade {
-    transition: all 0.2s ease-in-out;
 }

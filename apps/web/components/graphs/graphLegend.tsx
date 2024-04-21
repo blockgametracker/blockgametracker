@@ -30,7 +30,7 @@ export const GraphLegend = ({ urlParams, servers, selectedServers }: { urlParams
                             <ServerInfo edition={urlParams.edition} serverData={server}>
                                 <ServerButton
                                     ariaLabel="Remove server"
-                                    href={buildURL(urlParams.rangeParams, urlParams.compact, urlParams.edition ,newServers)}
+                                    href={buildURL(urlParams.rangeParams, urlParams.compact, urlParams.edition, newServers, null)}
                                     iconName="close"
                                     className="ml-auto"
                                 />

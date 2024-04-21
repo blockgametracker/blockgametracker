@@ -28,9 +28,9 @@ export const Navigation = (props: Props) => {
     const [active, setActive] = useState(false)
 
     return (
-        <Section className="fixed top-0 border-b-2 border-darkOverlay bg-darkFill phone:bg-opacity-60 phone:backdrop-blur-md z-10">
-            <div className="w-full h-full flex flex-col phone:flex-row items-center py-4">
-                <div className="w-full phone:w-fit h-full flex flex-row items-center">
+        <Section className="fixed top-0 border-b-2 border-darkOverlay bg-darkFill phone:backdrop-blur-md z-10">
+            <div className="w-full h-16 flex flex-col phone:flex-row items-center divide-x-2 divide-darkOverlay">
+                <div className="w-full phone:w-fit flex flex-row items-center">
                     <Link
                         href="/"
                         className="inline-flex items-center max-w-content gap-2 tablet:mr-4"

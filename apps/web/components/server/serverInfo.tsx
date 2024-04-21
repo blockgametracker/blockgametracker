@@ -4,13 +4,14 @@ import Image from "next/image"
 import type { ServerData } from "@/utils/parsedData"
 
 interface Props extends PropsWithChildren {
+    className?: string
     edition: string
     serverData: ServerData
 }
 
 export const ServerInfo = (props: Props) => {
     return (
-        <div className="w-full inline-flex gap-4 items-center">
+        <div className={`w-full inline-flex gap-4 items-center ${props.className}`}>
             <div className="inline-flex gap-4 items-center">
                 <Image
                     src={serverToImage(
@@ -25,10 +26,10 @@ export const ServerInfo = (props: Props) => {
                     height={64}
                 />
                 <div className="flex flex-col">
-                    <h3 className="text-lg whitespace-nowrap">
+                    <h3 className="text-lg whitespace-nowrap text-mainText font-medium leading-4">
                         {props.serverData.server_name}
                     </h3>
-                    <p className="whitespace-nowrap">ip</p>
+                    <p className="whitespace-nowrap text-secondText">play.michaelfixthis.net</p>
                 </div>
             </div>
             {props.children}

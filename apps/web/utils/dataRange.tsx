@@ -51,7 +51,7 @@ export const getRangeParams = (range: DataRange): DataRangeParams => {
             return {
                 range: range,
                 start: "-30d",
-                step: "12h",
+                step: "6h",
             }
         case DataRange.WEEK:
             return {

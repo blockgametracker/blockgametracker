@@ -13,14 +13,14 @@ export const Servers = async (props: Props) => {
     )
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-8">
             <div className="flex flex-row gap-4 items-center">
                 <h2 className="text-3xl mr-auto">Global server overview</h2>
 
                 <div>
                     <Button
                         ariaLabel="Java edition"
-                        href={buildURL(props.rangeParams, props.compact, null, null)}
+                        href={buildURL(props.rangeParams, props.compact, null, null, props.showServers)}
                     >
                         Java
                     </Button>
@@ -30,7 +30,8 @@ export const Servers = async (props: Props) => {
                             props.rangeParams,
                             props.compact,
                             "bedrock", 
-                            null
+                            null,
+                            props.showServers
                         )}
                     >
                         Bedrock
@@ -39,13 +40,13 @@ export const Servers = async (props: Props) => {
                 <div>
                     <Button
                         ariaLabel="Default mode"
-                        href={buildURL(props.rangeParams, null, props.edition, null)}
+                        href={buildURL(props.rangeParams, null, props.edition, null, props.showServers)}
                     >
                         Default
                     </Button>
                     <Button
                         ariaLabel="Compact mode"
-                        href={buildURL(props.rangeParams, true, props.edition, null)}
+                        href={buildURL(props.rangeParams, true, props.edition, null, props.showServers)}
                     >
                         Compact
                     </Button>
@@ -54,11 +55,19 @@ export const Servers = async (props: Props) => {
             <div
                 className={`w-full grid gap-4 ${props.compact ? "grid-cols-1 tablet:grid-cols-3" : "grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
             >
-                {serverList.map((serverData, index) => (
+                {serverList.slice(0, props.showServers).map((serverData, index) => (
                     <Fragment key={index}>
                         <ServerCard urlParams={props} serverData={serverData} />
                     </Fragment>
                 ))}
+            </div>
+            <div className="w-full flex justify-center gap-4">
+                { (props.showServers > 12) &&
+                    <Button ariaLabel="Show less" href={buildURL(props.rangeParams, props.compact, props.edition, null, null)}>Show less</Button>
+                }
+                { (props.showServers < serverList.length) &&
+                <Button ariaLabel="Show more" href={buildURL(props.rangeParams, props.compact, props.edition, null, props.showServers + 8)}>Show more</Button>
+                }
             </div>
         </div>
     )

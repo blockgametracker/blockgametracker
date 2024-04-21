@@ -8,9 +8,9 @@ interface Props {
 }
 
 export const StatisticLarge = ({ iconName, title, value }: Props) => (
-    <DarkContainer className="flex flex-col w-full h-full items-center justify-center">
+    <div className="flex flex-col w-full h-full items-center justify-center rounded-md p-4 bg-darkFill bg-opacity-70 backdrop-blur-md border-2 border-darkOverlay">
         <Icon iconName={iconName} className="w-4 h-4 fill-mainColor" />
-        <p className="text-lg whitespace-nowrap">{title}</p>
-        <h3 className="whitespace-nowrap">{value}</h3>
-    </DarkContainer>
+        <h2 className="text-lg whitespace-nowrap text-mainText font-medium">{title}</h2>
+        <p className="whitespace-nowrap text-secondText">{value}</p>
+    </div>
 )

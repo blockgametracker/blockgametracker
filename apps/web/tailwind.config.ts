@@ -9,13 +9,15 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
+                bg: "#d3d3d3",
+                bgfill: "#e0e0e0",
                 dark: "#0b0b0c",
                 darkFill: "#0f0f11",
-                darkOverlay: "#202024",
-                mainColor: "#35f03f",
-                secondColor: "#2d7130",
+                darkOverlay: "#1f1f21",
+                mainColor: "#00d653",
+                secondColor: "#16a752",
                 mainText: "#dadada",
-                secondText: "#7e7e7e",
+                secondText: "#737373",
             },
             maxWidth: {
                 header: "1100px",

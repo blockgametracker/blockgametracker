@@ -48,6 +48,8 @@ export const Dropdown = (props: Props) => {
                                 getRangeParams(range),
                                 props.urlParams.compact,
                                 props.urlParams.edition,
+                                props.urlParams.servers,
+                                props.urlParams.showServers
                             )}
                             key={index}
                         >

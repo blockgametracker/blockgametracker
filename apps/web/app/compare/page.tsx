@@ -20,7 +20,8 @@ const Compare = async ({ searchParams }: PageParams) => {
         searchParams?.range,
         searchParams?.edition,
         searchParams?.compact,
-        urlServers,
+        searchParams?.servers,
+        searchParams?.showServers
     )
 
     const servers = await getTotalEnsembled(

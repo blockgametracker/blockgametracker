@@ -11,9 +11,9 @@ export const GRAPH_COLORS = [
     "#6ae9ee",
 ]
 
-export const COLOR_MAX = "#ffcd4c"
-export const COLOR_MEAN = "#9b7af3"
-export const COLOR_CURRENT = "#2dcf35"
+export const COLOR_MAX = "#ea501d"
+export const COLOR_MEAN = "#2565ee"
+export const COLOR_CURRENT = "#09c050"
 
 /** The ticked output of a time-series set of data. */
 export interface TickResult {
@@ -22,7 +22,7 @@ export interface TickResult {
 }
 
 /** Available colours for a green graph. */
-export const greenGraph = ["#2dcf35"]
+export const greenGraph = ["#09c050"]
 
 /** Available colours for a red graph. */
 export const redGraph = ["#d12b2b"]
@@ -32,13 +32,13 @@ export const theme: Theme = {
     background: "#0f0f11",
     grid: {
         line: {
-            stroke: "#202024",
+            stroke: "#262629",
         },
     },
     axis: {
         ticks: {
             line: {
-                stroke: "#202024",
+                stroke: "#262629",
             },
             text: {
                 fill: "#7e7e7e",

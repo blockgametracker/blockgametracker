@@ -10,19 +10,23 @@ const Page = ({ searchParams }: PageParams) => {
         searchParams?.range,
         searchParams?.edition,
         searchParams?.compact,
+        searchParams?.servers,
+        searchParams?.showServers
     )
 
     return (
         <Layout page="Home">
-            <Section className="pt-8 pb-8 ">
-                <div className="flex flex-col gap-16 items-center">
-                    <Header />
-                </div>
-            </Section>
+            <div className="w-full">
+                <Section className="">
+                    <div className="flex flex-col gap-16 items-center pt-16">
+                        <Header />
+                    </div>
+                </Section>
+            </div>
 
             <Section>
                 <div className="flex flex-col gap-8">
-                    <Servers {...urlParams} />;
+                    <Servers {...urlParams} />
                 </div>
             </Section>
         </Layout>

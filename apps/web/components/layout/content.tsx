@@ -9,7 +9,7 @@ export function Section({ children, id, className }: Props) {
     return (
         <div
             id={id}
-            className={`w-full flex flex-col items-center pl-4 pr-4 md:pl-16 md:pr-16 ${className}`}
+            className={`w-full flex flex-col items-center px-4 md:px-16 ${className}`}
         >
             <div className="flex flex-col gap-4 w-full h-full max-w-content">
                 {children}
@@ -22,7 +22,7 @@ export function Container({ children, id, className }: Props) {
     return (
         <div
             id={id}
-            className={`rounded-md p-4 border-2 bg-lightFill border-lightBorder bg-darkFill border-darkOverlay ${className}`}
+            className={`rounded-md bg-darkFill border-2 border-darkOverlay ${className}`}
         >
             {children}
         </div>
@@ -44,7 +44,7 @@ export function DarkContainer({
         <div
             id={id}
             onClick={onClick}
-            className={`rounded-md p-4 border-2 bg-lightFill border-lightBorder bg-darkFill border-darkOverlay ${className}`}
+            className={`rounded-md p-4 border-2 bg-dark border-darkOverlay ${className}`}
         >
             {children}
         </div>
