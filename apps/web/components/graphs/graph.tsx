@@ -6,6 +6,7 @@ import { linearGradientDef } from "@nivo/core"
 import { COLOR_MAX, theme } from "@/utils/graphUtils"
 import { Icon } from "@/components/icon"
 import type { ServerData } from "@/utils/parsedData"
+import { DataRange } from "@/utils/dataRange"
 
 interface Props {
     data: ServerData[]
@@ -15,9 +16,19 @@ interface Props {
     ticksX?: string[]
     ticksY?: number[]
     peak?: string
+    dataRange?: DataRange
 }
 
-export const Graph = ({ data, colors, fill, areaBaselineValue, ticksX, ticksY, peak }: Props) => {
+export const Graph = ({
+    data,
+    colors,
+    fill,
+    areaBaselineValue,
+    ticksX,
+    ticksY,
+    peak,
+    dataRange,
+}: Props) => {
     return (
         <div className="relative w-full h-full">
             <div className="absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full bg-darkFill animate-pulse">
@@ -34,7 +45,7 @@ export const Graph = ({ data, colors, fill, areaBaselineValue, ticksX, ticksY, p
                 }}
                 enableArea={fill}
                 areaOpacity={0.4}
-                areaBaselineValue={areaBaselineValue ? areaBaselineValue:0}
+                areaBaselineValue={areaBaselineValue ? areaBaselineValue : 0}
                 colors={colors}
                 enableSlices="x"
                 enablePoints={false}
@@ -43,7 +54,31 @@ export const Graph = ({ data, colors, fill, areaBaselineValue, ticksX, ticksY, p
                 axisTop={null}
                 axisRight={null}
                 axisLeft={{ tickValues: ticksY }}
-                axisBottom={{ tickValues: ticksX }}
+                axisBottom={{
+                    tickValues: ticksX,
+                    format: (tick: string) => {
+                        const year = tick.substring(0, 4)
+                        const month = tick.substring(5, 7)
+                        const day = tick.substring(8, 10)
+                        const hour = tick.substring(11, 13)
+                        const minute = tick.substring(14, 16)
+
+                        switch (dataRange) {
+                            case DataRange.HOUR:
+                                return `${hour}:${minute}`
+                            case DataRange.DAY:
+                                return `${hour}:${minute}`
+                            case DataRange.WEEK:
+                                return `${month}/${day}`
+                            case DataRange.MONTH:
+                                return `${month}/${day}`
+                            case DataRange.YEAR:
+                                return `${month}/${year}`
+                            default:
+                                return tick
+                        }
+                    },
+                }}
                 xScale={{ type: "point" }}
                 yScale={{
                     type: "linear",
@@ -57,18 +92,22 @@ export const Graph = ({ data, colors, fill, areaBaselineValue, ticksX, ticksY, p
                         { offset: 100, color: "inherit", opacity: 0.2 },
                     ]),
                 ]}
-                markers={peak ? [
-                    {
-                        axis: 'x',
-                        lineStyle: {
-                            stroke: COLOR_MAX,
-                            strokeWidth: 2,
-                            strokeDasharray: "8 8",
-                            strokeDashoffset: "0"
-                        },
-                        value: peak ? peak:""
-                    }
-                ]: []}
+                markers={
+                    peak
+                        ? [
+                              {
+                                  axis: "x",
+                                  lineStyle: {
+                                      stroke: COLOR_MAX,
+                                      strokeWidth: 2,
+                                      strokeDasharray: "8 8",
+                                      strokeDashoffset: "0",
+                                  },
+                                  value: peak ? peak : "",
+                              },
+                          ]
+                        : []
+                }
                 fill={[{ match: "*", id: "gradientA" }]}
                 sliceTooltip={({ slice }) => (
                     <DarkContainer className="flex flex-col z-50">

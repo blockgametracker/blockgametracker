@@ -23,14 +23,15 @@ export function getURLParams(
     showServers?: string,
 ) {
     const dateRange = searchParamToRange(rangeParams)
-    const urlServers: string[] = servers?.split(',').map(server => server.trim()) || []
+    const urlServers: string[] =
+        servers?.split(",").map((server) => server.trim()) || []
 
     return {
         rangeParams: getRangeParams(dateRange),
         edition: edition ?? "java",
         compact: compact === "true",
         servers: urlServers ?? [],
-        showServers: showServers ? Number(showServers):12
+        showServers: showServers ? Number(showServers) : 12,
     }
 }
 
@@ -40,7 +41,7 @@ export function buildURL(
     compact: boolean | null,
     edition: string | null,
     servers: string[] | null,
-    showServers: number | null
+    showServers: number | null,
 ) {
     const params = new URLSearchParams({
         range: rangeParams.range,
@@ -59,10 +60,11 @@ export function toggleServer(urlParams: URLParams, server: ServerData) {
     let servers = urlParams.servers.slice()
     const active = isServerToggled(urlParams, server)
 
-    active ?
-        servers = servers.filter(item => item !== server.id.replace(" ", "_"))
-        :
-        servers.push(server.id.replace(" ", "_"))
+    active
+        ? (servers = servers.filter(
+              (item) => item !== server.id.replace(" ", "_"),
+          ))
+        : servers.push(server.id.replace(" ", "_"))
 
     return servers
 }
@@ -70,5 +72,5 @@ export function toggleServer(urlParams: URLParams, server: ServerData) {
 /** Check if the URL contains the specified server */
 export function isServerToggled(urlParams: URLParams, server: ServerData) {
     const serverIndex = urlParams.servers.indexOf(server.id.replace(" ", "_"))
-    return serverIndex !== -1;
+    return serverIndex !== -1
 }

@@ -11,7 +11,7 @@ const Page = ({ searchParams }: PageParams) => {
         searchParams?.edition,
         searchParams?.compact,
         searchParams?.servers,
-        searchParams?.showServers
+        searchParams?.showServers,
     )
 
     return (

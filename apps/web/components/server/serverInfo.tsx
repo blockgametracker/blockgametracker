@@ -11,7 +11,9 @@ interface Props extends PropsWithChildren {
 
 export const ServerInfo = (props: Props) => {
     return (
-        <div className={`w-full inline-flex gap-4 items-center ${props.className}`}>
+        <div
+            className={`w-full inline-flex gap-4 items-center ${props.className}`}
+        >
             <div className="inline-flex gap-4 items-center">
                 <Image
                     src={serverToImage(
@@ -29,7 +31,9 @@ export const ServerInfo = (props: Props) => {
                     <h3 className="text-lg whitespace-nowrap text-mainText font-medium leading-4">
                         {props.serverData.server_name}
                     </h3>
-                    <p className="whitespace-nowrap text-secondText">play.michaelfixthis.net</p>
+                    <p className="whitespace-nowrap text-secondText">
+                        play.michaelfixthis.net
+                    </p>
                 </div>
             </div>
             {props.children}

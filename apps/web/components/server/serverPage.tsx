@@ -51,7 +51,7 @@ export const ServerPage = async (props: Props) => {
                             <ServerButton
                                 className="ml-auto"
                                 ariaLabel="Compare server"
-                                href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.compact, props.urlParams.edition, [props.serverName])}`}
+                                href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.compact, props.urlParams.edition, [props.serverName], null)}`}
                                 iconName="compare"
                             />
                         </ServerInfo>

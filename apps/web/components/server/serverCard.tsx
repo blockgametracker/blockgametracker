@@ -14,17 +14,21 @@ interface Props {
 }
 
 export const ServerCard = async ({ urlParams, serverData }: Props) => {
-    const ticks = getTicks(serverData, 3)
+    const ticks = getTicks(serverData, 6)
     const dataMapped = [serverData]
     const peak = getPeakDate(serverData.data)
     const minY = Math.min(...serverData.data.map((item) => item.y))
-    
+
     return (
         <Container
             id="servers"
             className={`fade flex w-full divide-y-2 divide-darkOverlay p-0 ${urlParams.compact ? "flex-row" : "flex-col"}`}
         >
-            <ServerInfo edition={urlParams.edition} serverData={serverData} className="p-4">
+            <ServerInfo
+                edition={urlParams.edition}
+                serverData={serverData}
+                className="p-4"
+            >
                 {urlParams.compact && (
                     <ServerStatistics
                         compact={urlParams.compact}
@@ -58,6 +62,7 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                         ticksY={ticks.ticksY}
                         colors={greenGraph}
                         peak={peak.x}
+                        dataRange={urlParams.rangeParams.range}
                     />
                 </div>
             )}

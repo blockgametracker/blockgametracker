@@ -8,14 +8,28 @@ import { GraphServers } from "./graphServers"
 import { ServerInfo } from "../server/serverInfo"
 import { ServerButton } from "../server/serverButton"
 
-export const GraphLegend = ({ urlParams, servers, selectedServers }: { urlParams: URLParams, servers: ServerData[], selectedServers: ServerData[] }) => {
+export const GraphLegend = ({
+    urlParams,
+    servers,
+    selectedServers,
+}: {
+    urlParams: URLParams
+    servers: ServerData[]
+    selectedServers: ServerData[]
+}) => {
     const [active, setActive] = useState(false)
 
     return (
         <>
             {/* Serverlist popup */}
-            <div onClick={() => setActive(false)} className={`absolute top-0 left-0 w-full h-full z-50 bg-dark bg-opacity-10 backdrop-blur-sm items-center justify-center ${active ? "flex" : "hidden"}`}>
-                <DarkContainer onClick={(e) => e.stopPropagation()} className="w-1/2 h-1/2 overflow-scroll noscroll">
+            <div
+                onClick={() => setActive(false)}
+                className={`absolute top-0 left-0 w-full h-full z-50 bg-dark bg-opacity-10 backdrop-blur-sm items-center justify-center ${active ? "flex" : "hidden"}`}
+            >
+                <DarkContainer
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-1/2 h-1/2 overflow-scroll noscroll"
+                >
                     <GraphServers urlParams={urlParams} servers={servers} />
                 </DarkContainer>
             </div>
@@ -27,10 +41,19 @@ export const GraphLegend = ({ urlParams, servers, selectedServers }: { urlParams
 
                     return (
                         <DarkContainer key={index}>
-                            <ServerInfo edition={urlParams.edition} serverData={server}>
+                            <ServerInfo
+                                edition={urlParams.edition}
+                                serverData={server}
+                            >
                                 <ServerButton
                                     ariaLabel="Remove server"
-                                    href={buildURL(urlParams.rangeParams, urlParams.compact, urlParams.edition, newServers, null)}
+                                    href={buildURL(
+                                        urlParams.rangeParams,
+                                        urlParams.compact,
+                                        urlParams.edition,
+                                        newServers,
+                                        null,
+                                    )}
                                     iconName="close"
                                     className="ml-auto"
                                 />
@@ -38,7 +61,12 @@ export const GraphLegend = ({ urlParams, servers, selectedServers }: { urlParams
                         </DarkContainer>
                     )
                 })}
-                <button className="py-4 h-fit border-2 rounded-md bg-darkFill border-darkOverlay" onClick={() => setActive(true)}>Add server</button>
+                <button
+                    className="py-4 h-fit border-2 rounded-md bg-darkFill border-darkOverlay"
+                    onClick={() => setActive(true)}
+                >
+                    Add server
+                </button>
             </div>
         </>
     )

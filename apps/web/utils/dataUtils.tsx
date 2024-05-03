@@ -1,7 +1,4 @@
-import {
-    ApiQuery,
-    ApiResult,
-} from "@repo/gateway"
+import { ApiQuery, ApiResult } from "@repo/gateway"
 import { ParsedApiQuery } from "./parsedData"
 
 /** Pads the time unit to ensure it has a leading zero, if needed. */
@@ -15,7 +12,7 @@ export const convertTime = (server: ApiQuery[]) =>
         const hrs = padTimeUnit(time.getHours())
         const mins = padTimeUnit(time.getMinutes())
         const day = padTimeUnit(time.getDate())
-        const month = padTimeUnit(time.getMonth())
+        const month = padTimeUnit(time.getMonth() + 1)
         const year = time.getFullYear()
 
         return {
@@ -38,5 +35,5 @@ export const getPeak = (data: ApiResult[]) =>
 export const getPeakDate = (data: ParsedApiQuery[]): ParsedApiQuery => {
     const y = getPeak(data)
     const x = data.find((point) => point.y === y)?.x || ""
-    return { x, y};
+    return { x, y }
 }

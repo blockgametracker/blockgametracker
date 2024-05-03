@@ -18,7 +18,9 @@ export const Header = async () => {
             <div className="flex flex-col gap-4 items-center">
                 <div className="inline-flex gap-2 items-center justify-center">
                     <Icon iconName="icon" className="fill-mainColor w-4 h-4" />
-                    <p className="text-mainText font-medium">blockgametracker</p>
+                    <p className="text-mainText font-medium">
+                        blockgametracker
+                    </p>
                 </div>
 
                 <h1
@@ -31,8 +33,8 @@ export const Header = async () => {
                 <div className="flex flex-col gap-8 items-center">
                     <p className="max-w-xl tablet:max-w-fit text-xl text-center text-mainText">
                         Historical Minecraft server playercounts of over 70
-                        minecraft servers, saved for as long as possible. Inspired
-                        by{" "}
+                        minecraft servers, saved for as long as possible.
+                        Inspired by{" "}
                         <Link
                             href="https://www.minetrack.me/"
                             className="text-mainText"

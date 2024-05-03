@@ -38,7 +38,7 @@ export function DarkContainer({
     children?: any
     id?: string
     className?: string
-    onClick?: MouseEventHandler | undefined;
+    onClick?: MouseEventHandler | undefined
 }) {
     return (
         <div

@@ -55,30 +55,35 @@ export const theme: Theme = {
 
 /** Calculates Y ticks for a chart. */
 export function getTicksY(max: number): number[] {
-    const ticksY: number[] = [];
+    const ticksY: number[] = []
 
-    const step = 
-        max < 10 ? 1 : 
-        max < 100 ? 10 : 
-        max < 500 ? 50 : 
-        max < 1000 ? 100 : 
-        max < 2500 ? 250 : 
-        max < 10000 ? 1000 : 
-        max < 25000 ? 2500 : 
-        max < 100000 ? 5000 : 
-        10000;
+    const step =
+        max < 10
+            ? 1
+            : max < 100
+              ? 10
+              : max < 500
+                ? 50
+                : max < 1000
+                  ? 100
+                  : max < 2500
+                    ? 250
+                    : max < 10000
+                      ? 1000
+                      : max < 25000
+                        ? 2500
+                        : max < 100000
+                          ? 5000
+                          : 10000
 
     for (let i = 0; i <= max; i += step) {
-        ticksY.push(i);
+        ticksY.push(i)
     }
-    return ticksY;
+    return ticksY
 }
 
 /** Calculates ticks for a chart. */
-export function getTicks(
-    serverData: ServerData,
-    stepX: number,
-): TickResult {
+export function getTicks(serverData: ServerData, stepX: number): TickResult {
     const maxY = Math.max(...serverData.data.map((item) => item.y))
 
     const ticksX: string[] = []
@@ -87,11 +92,9 @@ export function getTicks(
     const dataLength = serverData.data.length
     const maxLength = Math.ceil(dataLength / stepX)
 
-    for (let i = 0; i < dataLength; i += maxLength) {
+    for (let i = Math.floor(maxLength / 2); i < dataLength; i += maxLength) {
         ticksX.push(serverData.data[i].x)
     }
-
-    ticksX.push(serverData.data[serverData.data.length - 1].x)
 
     return { ticksX, ticksY }
 }
