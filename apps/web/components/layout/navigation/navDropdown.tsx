@@ -18,7 +18,7 @@ interface Props {
 
 export const Dropdown = (props: Props) => {
     const [active, setActive] = useState(false)
-
+    
     return (
         <div
             className="inline-flex gap-2 items-center relative"
@@ -49,7 +49,7 @@ export const Dropdown = (props: Props) => {
                                 props.urlParams.compact,
                                 props.urlParams.edition,
                                 props.urlParams.servers,
-                                props.urlParams.showServers
+                                null
                             )}
                             key={index}
                         >

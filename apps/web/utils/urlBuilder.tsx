@@ -54,7 +54,6 @@ export function buildURL(
     return `?${params.toString()}`
 }
 
-
 /** Toggles a server from the serverlist in the URL */
 export function toggleServer(urlParams: URLParams, server: ServerData) {
     let servers = urlParams.servers.slice()

@@ -20,16 +20,18 @@ export const Navigation = (props: Props) => {
     const dateRange = searchParamToRange(selectedRange)
 
     const urlParams = getURLParams(
-        searchParams.get("range") as string,
+        selectedRange,
         searchParams.get("edition") as string,
         searchParams.get("compact") as string,
+        searchParams.get("servers") as string,
+        searchParams.get("showServers") as string,
     )
 
     const [active, setActive] = useState(false)
 
     return (
         <Section className="fixed top-0 border-b-2 border-darkOverlay bg-darkFill phone:backdrop-blur-md z-10">
-            <div className="w-full h-16 flex flex-col phone:flex-row items-center divide-x-2 divide-darkOverlay">
+            <div className="w-full h-16 flex flex-col phone:flex-row items-center">
                 <div className="w-full phone:w-fit flex flex-row items-center">
                     <Link
                         href="/"

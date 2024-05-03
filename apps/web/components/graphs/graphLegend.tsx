@@ -15,13 +15,13 @@ export const GraphLegend = ({ urlParams, servers, selectedServers }: { urlParams
         <>
             {/* Serverlist popup */}
             <div onClick={() => setActive(false)} className={`absolute top-0 left-0 w-full h-full z-50 bg-dark bg-opacity-10 backdrop-blur-sm items-center justify-center ${active ? "flex" : "hidden"}`}>
-                <DarkContainer onClick={(e) => e.stopPropagation()} className="w-1/2 h-1/2 overflow-scroll">
+                <DarkContainer onClick={(e) => e.stopPropagation()} className="w-1/2 h-1/2 overflow-scroll noscroll">
                     <GraphServers urlParams={urlParams} servers={servers} />
                 </DarkContainer>
             </div>
 
             {/* List of selected servers */}
-            <div className="col-span-6 tablet:col-span-1 h-full w-full flex flex-col gap-4 overflow-scroll">
+            <div className="col-span-6 tablet:col-span-1 h-full w-full flex flex-col gap-4 overflow-scroll noscroll">
                 {selectedServers.map((server, index) => {
                     const newServers = toggleServer(urlParams, server)
 

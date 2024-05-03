@@ -18,7 +18,7 @@ export const Header = async () => {
             <div className="flex flex-col gap-4 items-center">
                 <div className="inline-flex gap-2 items-center justify-center">
                     <Icon iconName="icon" className="fill-mainColor w-4 h-4" />
-                    <p className="text-mainText font-semibold">blockgametracker</p>
+                    <p className="text-mainText font-medium">blockgametracker</p>
                 </div>
 
                 <h1
