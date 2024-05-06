@@ -38,7 +38,7 @@ export const Graph = ({
                 theme={theme}
                 data={data}
                 margin={{
-                    top: 0,
+                    top: 3,
                     right: 0,
                     bottom: ticksX ? 20 : 0,
                     left: ticksY ? 40 : 0,

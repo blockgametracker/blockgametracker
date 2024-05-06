@@ -54,40 +54,35 @@ export const theme: Theme = {
 }
 
 /** Calculates Y ticks for a chart. */
-export function getTicksY(max: number): number[] {
-    const ticksY: number[] = []
+function getTicksY(minY: number, maxY: number) {
+    var range = maxY - minY
+    var magnitude = Math.pow(10, Math.floor(Math.log10(range)))
+    var significantDigit = range / magnitude
 
-    const step =
-        max < 10
-            ? 1
-            : max < 100
-              ? 10
-              : max < 500
-                ? 50
-                : max < 1000
-                  ? 100
-                  : max < 2500
-                    ? 250
-                    : max < 10000
-                      ? 1000
-                      : max < 25000
-                        ? 2500
-                        : max < 100000
-                          ? 5000
-                          : 10000
+    const interval =
+        magnitude / (significantDigit <= 1.5 ? 5 : magnitude <= 3 ? 2 : 1)
 
-    for (let i = 0; i <= max; i += step) {
-        ticksY.push(i)
+    const labels = [0] // start with 0 for values which are that low
+
+    for (
+        let label = Math.ceil(minY / interval) * interval;
+        label <= maxY;
+        label += interval
+    ) {
+        labels.push(Number(label.toFixed(0)))
     }
-    return ticksY
+
+    return labels
 }
 
 /** Calculates ticks for a chart. */
 export function getTicks(serverData: ServerData, stepX: number): TickResult {
-    const maxY = Math.max(...serverData.data.map((item) => item.y))
+    const valuesY = serverData.data.map((item) => item.y)
+    const maxY = Math.max(...valuesY)
+    const minY = Math.min(...valuesY)
 
     const ticksX: string[] = []
-    const ticksY = getTicksY(maxY)
+    const ticksY = getTicksY(minY, maxY)
 
     const dataLength = serverData.data.length
     const maxLength = Math.ceil(dataLength / stepX)
