@@ -1,23 +1,19 @@
 import { Injectable, NotFoundException } from "@nestjs/common"
 import { QueryRangeResponse, QueryResponse } from "../types/prometheus"
+import { DataSourceService } from "./ds.service"
 
-/** Interacts with our Prometheus-based VictoriaMetrics instance. */
+/** Interacts with our Prometheus-based VictoriaMetrics instance via the DataSource API. */
 @Injectable()
 export class PrometheusService {
+    constructor(private readonly dataSourceService: DataSourceService) {}
+
     /** Sends a request to a given endpoint with a record-based request body, returning the JSON-formatted response. */
     private async request(endpoint: string, body: Record<string, string>) {
-        const res = await fetch(`${process.env.DSAPI_URL}/${endpoint}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                Authorization: `Basic ${btoa(
-                    `${process.env.DSAPI_USER}:${process.env.DSAPI_PASS}`,
-                )}`,
-            },
-            body: new URLSearchParams(body),
-        })
-
-        return await res.json()
+        return await this.dataSourceService.request(
+            `api/v1/${endpoint}`,
+            "POST",
+            body,
+        )
     }
 
     /** Sends a query for the current time. */

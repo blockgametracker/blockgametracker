@@ -64,3 +64,12 @@ export type QueryStart = `-${number}${TimeUnit}`
 
 /** The `step` attribute of a Prometheus query. */
 export type QueryStep = `${number}${TimeUnit}`
+
+/** The server object. */
+export interface Server {
+    name: string
+    slug: string
+    platform: MinecraftEdition
+    hostname: string
+    icon: string
+}

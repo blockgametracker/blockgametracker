@@ -5,6 +5,7 @@ import { PrometheusService } from "./services/prometheus.service"
 import { AppController } from "./controllers/app.controller"
 import { ServersController } from "./controllers/servers.controller"
 import { EnsembleController } from "./controllers/ensemble.controller"
+import { DataSourceService } from "./services/ds.service"
 
 @Module({
     imports: [
@@ -18,6 +19,6 @@ import { EnsembleController } from "./controllers/ensemble.controller"
         OnlineController,
         ServersController,
     ],
-    providers: [PrometheusService],
+    providers: [DataSourceService, PrometheusService],
 })
 export class AppModule {}

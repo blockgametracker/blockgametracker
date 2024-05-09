@@ -1,26 +1,32 @@
 import { Controller, Get, Param } from "@nestjs/common"
-import type {
-    ApiServerNameResponse,
-    MinecraftEdition,
-    ServerName,
-} from "@repo/gateway"
-import { PrometheusService } from "src/services/prometheus.service"
+import type { MinecraftEdition, Server } from "@repo/gateway"
+import { DataSourceService } from "src/services/ds.service"
 
 /** Provides information on the servers for which data is collected. */
 @Controller("servers")
 export class ServersController {
-    constructor(private readonly prometheusService: PrometheusService) {}
+    constructor(private readonly dataSourceService: DataSourceService) {}
+
+    /** Returns the servers we collect data on. */
+    @Get("")
+    async getServers(): Promise<Server[]> {
+        return await this.dataSourceService.getServers()
+    }
 
     /** Returns the servers we collect data on for a given edition. */
     @Get(":edition")
-    async getServers(
+    async getServersByEdition(
         @Param("edition") edition: MinecraftEdition,
-    ): Promise<ApiServerNameResponse> {
-        const query = `max(minecraft_status_players_online_count{server_edition="${edition}"}) by (server_name, server_host)`
-        const res = await this.prometheusService.query<ServerName>(query)
+    ): Promise<Server[]> {
+        return await this.dataSourceService.getServersByEdition(edition)
+    }
 
-        return {
-            data: res.data.result.map((result) => result.metric),
-        }
+    /** Returns the servers we collect data on for a given edition and slug. */
+    @Get(":edition/:slug")
+    async getServerBySlug(
+        @Param("edition") edition: MinecraftEdition,
+        @Param("slug") slug: string,
+    ): Promise<Server> {
+        return await this.dataSourceService.getServerBySlug(edition, slug)
     }
 }

@@ -3,12 +3,12 @@ import "server-only"
 import type {
     ApiQueryRangeResponse,
     ApiQueryResponse,
-    ApiServerInfoResponse,
     ApiServerQueryRangeResponse,
     ApiServerQueryResponse,
     MinecraftEdition,
     QueryStart,
     QueryStep,
+    Server,
 } from "./types/api"
 
 /** Returns the JSON response to a request at the given endpoint. */
@@ -51,6 +51,15 @@ export const getOnlineInRange = async (
         `online/${server}/${edition}/${start}/${step}`,
     )
 
+/** Returns the servers we collect data on. */
+export const getServers = async () => await request<Server[]>(`servers`)
+
 /** Returns the servers we collect data on for a given edition. */
-export const getServers = async (edition: MinecraftEdition) =>
-    await request<ApiServerInfoResponse>(`servers/${edition}`)
+export const getServersByEdition = async (edition: MinecraftEdition) =>
+    await request<Server[]>(`servers/${edition}`)
+
+/** Returns the servers we collect data on for a given edition and slug. */
+export const getServersBySlug = async (
+    edition: MinecraftEdition,
+    slug: string,
+) => await request<Server[]>(`servers/${edition}/${slug}`)
