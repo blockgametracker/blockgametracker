@@ -1,7 +1,7 @@
 import { Container, DarkContainer } from "@/components/layout/content"
 import { Graph } from "@/components/graphs/graph"
 import { getTicks, greenGraph } from "@/utils/graphUtils"
-import { ServerButton } from "./serverButton"
+import { ServerButton } from "../button/serverButton"
 import { ServerInfo } from "./serverInfo"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { ServerData } from "@/utils/parsedData"
@@ -22,22 +22,15 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
     return (
         <Container
             id="servers"
-            className={`fade flex w-full divide-y-2 divide-darkOverlay p-0 ${urlParams.compact ? "flex-row" : "flex-col"}`}
+            className={`fade flex w-full divide-y-2 divide-darkOverlay p-0 flex-col`}
         >
             <ServerInfo
                 edition={urlParams.edition}
                 serverData={serverData}
                 className="p-4"
             >
-                {urlParams.compact && (
-                    <ServerStatistics
-                        compact={urlParams.compact}
-                        serverData={serverData}
-                    />
-                )}
-
                 <div
-                    className={`inline-flex gap-2 ${!urlParams.compact && "ml-auto"}`}
+                    className={`inline-flex gap-2 ml-auto`}
                 >
                     <ServerButton
                         ariaLabel="Compare server"
@@ -66,12 +59,10 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                     />
                 </div>
             )}
-            {!urlParams.compact && (
-                <ServerStatistics
-                    compact={urlParams.compact}
-                    serverData={serverData}
-                />
-            )}
+            <ServerStatistics
+                compact={urlParams.compact}
+                serverData={serverData}
+            />
         </Container>
     )
 }

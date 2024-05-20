@@ -32,7 +32,7 @@ export const ServerInfo = (props: Props) => {
                         {props.serverData.server_name}
                     </h3>
                     <p className="whitespace-nowrap text-secondText">
-                        play.michaelfixthis.net
+                        {props.serverData.hostname}
                     </p>
                 </div>
             </div>

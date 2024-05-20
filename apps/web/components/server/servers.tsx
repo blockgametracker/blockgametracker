@@ -1,9 +1,10 @@
 import { ServerCard } from "./serverCard"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
-import { Button } from "@/components/button"
+import { Button, buttonStyles } from "@/components/button/button"
 import { URLParams as Props, buildURL } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { Fragment } from "react"
+import { ServerFilters } from "./serverFilters"
 
 export const Servers = async (props: Props) => {
     const serverList = await getTotalEnsembled(
@@ -14,64 +15,12 @@ export const Servers = async (props: Props) => {
 
     return (
         <div className="flex flex-col gap-8">
-            <div className="flex flex-row gap-4 items-center">
+            <div className="flex flex-col phone:flex-row gap-4 phone:items-center">
                 <h2 className="text-3xl mr-auto">Global server overview</h2>
-
-                <div>
-                    <Button
-                        ariaLabel="Java edition"
-                        href={buildURL(
-                            props.rangeParams,
-                            props.compact,
-                            null,
-                            null,
-                            props.showServers,
-                        )}
-                    >
-                        Java
-                    </Button>
-                    <Button
-                        ariaLabel="Bedrock edition"
-                        href={buildURL(
-                            props.rangeParams,
-                            props.compact,
-                            "bedrock",
-                            null,
-                            props.showServers,
-                        )}
-                    >
-                        Bedrock
-                    </Button>
-                </div>
-                <div>
-                    <Button
-                        ariaLabel="Default mode"
-                        href={buildURL(
-                            props.rangeParams,
-                            null,
-                            props.edition,
-                            null,
-                            props.showServers,
-                        )}
-                    >
-                        Default
-                    </Button>
-                    <Button
-                        ariaLabel="Compact mode"
-                        href={buildURL(
-                            props.rangeParams,
-                            true,
-                            props.edition,
-                            null,
-                            props.showServers,
-                        )}
-                    >
-                        Compact
-                    </Button>
-                </div>
+                <ServerFilters {...props} />
             </div>
             <div
-                className={`w-full grid gap-4 ${props.compact ? "grid-cols-1 tablet:grid-cols-3" : "grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
+                className={`w-full grid gap-4 grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4`}
             >
                 {serverList
                     .slice(0, props.showServers)
@@ -88,6 +37,7 @@ export const Servers = async (props: Props) => {
                 {props.showServers > 12 && (
                     <Button
                         ariaLabel="Show less"
+                        buttonStyle={buttonStyles.default}
                         href={buildURL(
                             props.rangeParams,
                             props.compact,
@@ -102,6 +52,7 @@ export const Servers = async (props: Props) => {
                 {props.showServers < serverList.length && (
                     <Button
                         ariaLabel="Show more"
+                        buttonStyle={buttonStyles.default}
                         href={buildURL(
                             props.rangeParams,
                             props.compact,

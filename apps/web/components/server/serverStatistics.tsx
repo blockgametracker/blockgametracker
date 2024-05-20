@@ -20,7 +20,7 @@ export const ServerStatistics = ({ compact, serverData }: Props) => {
 
     return (
         <div
-            className={`flex flex-col phone:flex-row gap-4 justify-between rounded-md divide-y-2 phone:divide-y-0 phone:divide-x-2 px-0 divide-darkOverlay ${compact && "ml-auto"}`}
+            className={`flex flex-row gap-4 justify-between rounded-md divide-y-0 divide-x-2 px-0 divide-darkOverlay`}
         >
             <Tag text="Current" color={COLOR_CURRENT}>
                 {online.toLocaleString()}

@@ -6,7 +6,7 @@ import { URLParams, buildURL, toggleServer } from "@/utils/urlBuilder"
 import { ServerData } from "@/utils/parsedData"
 import { GraphServers } from "./graphServers"
 import { ServerInfo } from "../server/serverInfo"
-import { ServerButton } from "../server/serverButton"
+import { ServerButton } from "../button/serverButton"
 
 export const GraphLegend = ({
     urlParams,
@@ -28,7 +28,7 @@ export const GraphLegend = ({
             >
                 <DarkContainer
                     onClick={(e) => e.stopPropagation()}
-                    className="w-1/2 h-1/2 overflow-scroll noscroll"
+                    className="w-2/3 h-2/3 overflow-scroll noscroll"
                 >
                     <GraphServers urlParams={urlParams} servers={servers} />
                 </DarkContainer>

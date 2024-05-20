@@ -54,7 +54,7 @@ const Compare = async ({ searchParams }: PageParams) => {
         <Layout page="Compare">
             <Section className="w-full h-full">
                 <h2 className="text-3xl">Compare servers</h2>
-                <div className="grid grid-cols-6 w-full h-full gap-4">
+                <div className="grid grid-cols-6 w-full h-full max-h-full gap-4 overflow-hidden">
                     <DarkContainer className="col-span-6 tablet:col-span-5 w-full h-full overflow-hidden">
                         {selectedServers.length !== 0 ? (
                             <Graph

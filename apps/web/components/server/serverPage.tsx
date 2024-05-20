@@ -5,7 +5,7 @@ import { Graph } from "@/components/graphs/graph"
 import { Section, DarkContainer } from "@/components/layout/content"
 import { StatisticSmall } from "@/components/statistic/small"
 import { StatisticLarge } from "@/components/statistic/large"
-import { ServerButton } from "./serverButton"
+import { ServerButton } from "../button/serverButton"
 import { ServerInfo } from "./serverInfo"
 import { getOnline, getServer } from "@/utils/dataFetcher"
 
@@ -60,36 +60,13 @@ export const ServerPage = async (props: Props) => {
                     <DarkContainer>
                         <h1>General information</h1>
                         <StatisticSmall title="Players" value={online.y} />
-                        <StatisticSmall title="Ping" value="-" />
                         <StatisticSmall
                             title="Host"
-                            value={server.server_host}
+                            value={server.hostname}
                         />
+                        <StatisticSmall title="Ping" value="-" />
                         <StatisticSmall title="Port" value="-" />
                     </DarkContainer>
-
-                    <div className="w-full grid grid-cols-2 gap-4">
-                        <StatisticLarge
-                            iconName="clock"
-                            title="Avarage 1 day"
-                            value="-"
-                        />
-                        <StatisticLarge
-                            iconName="clock"
-                            title="Avarage 1 week"
-                            value="-"
-                        />
-                        <StatisticLarge
-                            iconName="clock"
-                            title="Avarage 1 month"
-                            value="-"
-                        />
-                        <StatisticLarge
-                            iconName="clock"
-                            title="Avarage 1 year"
-                            value="-"
-                        />
-                    </div>
                 </div>
             </div>
         </Section>

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Icon } from "@/components/icon"
-import { NavButton } from "./navButton"
+import { NavButton } from "../../button/navButton"
 import { Section } from "@/components/layout/content"
 import { useSearchParams } from "next/navigation"
 import { searchParamToRange } from "@/utils/dataRange"
@@ -31,7 +31,7 @@ export const Navigation = (props: Props) => {
 
     return (
         <Section className="fixed top-0 border-b-2 border-darkOverlay bg-darkFill phone:backdrop-blur-md z-10">
-            <div className="w-full h-16 flex flex-col phone:flex-row items-center">
+            <div className="w-full py-4 flex flex-col phone:flex-row items-center">
                 <div className="w-full phone:w-fit flex flex-row items-center">
                     <Link
                         href="/"

@@ -5,7 +5,7 @@ import { StatisticLarge } from "@/components/statistic/large"
 import { getEnsembledTotal } from "@repo/gateway"
 
 const Expose = localFont({
-    src: "../../../public/fonts/Expose-Bold.otf",
+    src: "../../public/fonts/Expose-Bold.otf",
     display: "swap",
 })
 
@@ -24,7 +24,7 @@ export const Header = async () => {
                 </div>
 
                 <h1
-                    className={`whitespace-nowrap text-2xl phone:text-5xl tablet:text-6xl text-center text-mainColor ${Expose.className}`}
+                    className={`whitespace-nowrap text-3xl phone:text-5xl tablet:text-6xl text-center text-mainColor ${Expose.className}`}
                 >
                     TRACKING MINECRAFT
                     <br className="flex tablet:hidden" /> SERVER PLAYERCOUNTS
@@ -45,7 +45,7 @@ export const Header = async () => {
                     </p>
 
                     <div className="w-fit inline-flex gap-4">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 phone:grid-cols-2 gap-4">
                             <StatisticLarge
                                 iconName="user"
                                 title="Minecraft java playercount"

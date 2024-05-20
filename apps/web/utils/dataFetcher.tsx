@@ -2,6 +2,7 @@ import {
     MinecraftEdition,
     QueryStart,
     QueryStep,
+    Server,
     ServerInfo,
     getEnsembledBreakdownInRange,
     getOnlineInRange,
@@ -39,21 +40,22 @@ export const getTotalEnsembled = async (
 
 /** Gets the players online in a given range. */
 export const getOnline = async (
-    server: ServerInfo,
+    server: Server,
     edition: MinecraftEdition,
     start: QueryStart,
     step: QueryStep,
 ): Promise<ServerData> => {
     const onlineInRange = await getOnlineInRange(
-        server.server_name,
+        server.name,
         edition,
         start,
         step,
     )
 
     return {
-        server_name: server.server_name,
-        id: server.server_name,
+        server_name: server.name,
+        id: server.name,
+        hostname: server.hostname,
         data: convertTime(onlineInRange.data),
     }
 }
@@ -61,10 +63,10 @@ export const getOnline = async (
 /** Gets the information of a server with given name. */
 export async function getServer(
     serverName: string,
-): Promise<ServerInfo | null> {
-    const servers = await getServers("java")
-    const foundServer = servers.data.find(
-        (server) => server.server_name === serverName,
+): Promise<Server | null> {
+    const servers = await getServers()
+    const foundServer = servers.find(
+        (server) => server.name === serverName,
     )
     return foundServer || null
 }

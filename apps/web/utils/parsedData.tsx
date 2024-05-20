@@ -10,6 +10,8 @@ export interface ServerData {
     server_name: string
     /** The server's unique identifier. */
     id: string
+    /** The server's hostname */
+    hostname?: string
     /** The player information for the server. */
     data: ParsedApiQuery[]
 }

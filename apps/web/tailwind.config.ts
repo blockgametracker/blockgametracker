@@ -16,7 +16,7 @@ const config: Config = {
                 darkOverlay: "#1f1f21",
                 mainColor: "#00d653",
                 secondColor: "#16a752",
-                mainText: "#dadada",
+                mainText: "#d3d6da",
                 secondText: "#737373",
             },
             maxWidth: {

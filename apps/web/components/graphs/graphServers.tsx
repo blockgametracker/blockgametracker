@@ -19,7 +19,7 @@ export const GraphServers = ({
     urlParams: URLParams
     servers: ServerData[]
 }) => (
-    <div className="col-span-6 tablet:col-span-1 h-full w-full grid grid-cols-6 gap-4">
+    <div className="col-span-6 tablet:col-span-1 h-full w-full grid grid-cols-1 phone:grid-cols-2 tablet:grid-cols-4 normal:grid-cols-6 gap-4">
         {servers.map((server: any, index: any) => {
             const servers = toggleServer(urlParams, server)
             const active = isServerToggled(urlParams, server)

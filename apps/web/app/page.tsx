@@ -1,7 +1,7 @@
 import { Servers } from "@/components/server/servers"
 import { Section } from "@/components/layout/content"
 import { Layout } from "@/components/layout"
-import { Header } from "@/components/layout/header/header"
+import { Header } from "@/components/layout/header"
 import type { PageParams } from "@/utils/next"
 import { getURLParams } from "@/utils/urlBuilder"
 
