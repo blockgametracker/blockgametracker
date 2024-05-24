@@ -1,4 +1,4 @@
-import { MouseEventHandler, PropsWithChildren } from "react"
+import { MouseEventHandler, PropsWithChildren, ReactNode } from "react"
 
 interface Props extends PropsWithChildren {
     id?: string
@@ -35,7 +35,7 @@ export function DarkContainer({
     className,
     onClick,
 }: {
-    children?: any
+    children?: ReactNode
     id?: string
     className?: string
     onClick?: MouseEventHandler | undefined

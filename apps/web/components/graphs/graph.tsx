@@ -36,7 +36,12 @@ export const Graph = ({
             </div>
             <ResponsiveLine
                 theme={theme}
-                data={data}
+                data={data.map((data) => {
+                    return {
+                        id: data.server_slug,
+                        data: data.data,
+                    }
+                })}
                 margin={{
                     top: 3,
                     right: 0,
@@ -117,7 +122,7 @@ export const Graph = ({
 
                         {slice.points.map((point) => (
                             <div
-                                key={point.id}
+                                key={`tooltip-${point.id}`}
                                 className="flex flex-col text-secondText whitespace-nowrap"
                             >
                                 <div className="inline-flex gap-2 text-secondText items-center">

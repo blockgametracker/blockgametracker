@@ -4,7 +4,7 @@ import type {
     ApiServerQueryRangeResponse,
     ApiServerQueryResponse,
     MinecraftEdition,
-    ServerName,
+    ServerIdentifier,
 } from "@repo/gateway"
 import { PrometheusService } from "src/services/prometheus.service"
 
@@ -35,13 +35,13 @@ export class EnsembleController {
     async getBreakdown(
         @Param("edition") edition: MinecraftEdition,
     ): Promise<ApiServerQueryResponse> {
-        const query = `avg by(server_name, server_edition) (sum by(server_name, pod) (minecraft_status_players_online_count{server_edition="${edition}"})[5m])`
-        const res = await this.prometheusService.query<ServerName>(query)
+        const query = `avg by(server_slug, server_edition) (sum by(server_slug, pod) (minecraft_status_players_online_count{server_edition="${edition}"})[5m])`
+        const res = await this.prometheusService.query<ServerIdentifier>(query)
 
         return {
             data: res.data.result.map((result) => {
                 return {
-                    server_name: result.metric.server_name,
+                    server_slug: result.metric.server_slug,
                     data: {
                         x: result.value[0],
                         y: Number.parseInt(result.value[1]),
@@ -58,8 +58,8 @@ export class EnsembleController {
         @Param("start") start: string,
         @Param("step") step: string,
     ): Promise<ApiServerQueryRangeResponse> {
-        const query = `avg by(server_name, server_edition) (sum by(server_name, pod) (minecraft_status_players_online_count{server_edition="${edition}"}))`
-        const res = await this.prometheusService.queryRange<ServerName>(
+        const query = `avg by(server_slug, server_edition) (sum by(server_slug, pod) (minecraft_status_players_online_count{server_edition="${edition}"}))`
+        const res = await this.prometheusService.queryRange<ServerIdentifier>(
             query,
             start,
             step,
@@ -68,7 +68,7 @@ export class EnsembleController {
         return {
             data: res.data.result.map((result) => {
                 return {
-                    server_name: result.metric.server_name,
+                    server_slug: result.metric.server_slug,
                     data: result.values.map((value) => {
                         return {
                             x: Number.parseInt(value[0].toFixed(0)),

@@ -12,7 +12,7 @@ export const LegendItem = ({ server, index }: Props) => {
     return (
         <div className="inline-flex gap-2 items-center pt-2 pb-2">
             <p style={{ color: `${color}` }}>■</p>
-            <p className="whitespace-nowrap">{server.id}</p>
+            <p className="whitespace-nowrap">{server.server_slug}</p>
         </div>
     )
 }

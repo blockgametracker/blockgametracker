@@ -58,8 +58,8 @@ export const getServers = async () => await request<Server[]>(`servers`)
 export const getServersByEdition = async (edition: MinecraftEdition) =>
     await request<Server[]>(`servers/${edition}`)
 
-/** Returns the servers we collect data on for a given edition and slug. */
-export const getServersBySlug = async (
+/** Returns the server we collect data on for a given edition and slug. */
+export const getServerBySlug = async (
     edition: MinecraftEdition,
     slug: string,
-) => await request<Server[]>(`servers/${edition}/${slug}`)
+) => await request<Server>(`servers/${edition}/${slug}`)

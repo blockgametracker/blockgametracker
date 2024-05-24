@@ -20,13 +20,13 @@ export const GraphServers = ({
     servers: ServerData[]
 }) => (
     <div className="col-span-6 tablet:col-span-1 h-full w-full grid grid-cols-1 phone:grid-cols-2 tablet:grid-cols-4 normal:grid-cols-6 gap-4">
-        {servers.map((server: any, index: any) => {
+        {servers.map((server) => {
             const servers = toggleServer(urlParams, server)
             const active = isServerToggled(urlParams, server)
 
             return (
                 <Link
-                    key={index}
+                    key={`graph-servers-${server.server_slug}`}
                     className="w-full"
                     href={buildURL(
                         urlParams.rangeParams,
@@ -45,7 +45,9 @@ export const GraphServers = ({
                                 className="w-4 h-4 fill-dark"
                             />
                         </div>
-                        <p className="whitespace-nowrap">{server.id}</p>
+                        <p className="whitespace-nowrap">
+                            {server.server_name}
+                        </p>
                     </DarkContainer>
                 </Link>
             )

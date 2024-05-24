@@ -18,13 +18,13 @@ export type ApiQueryResponse = BaseApiResponse<ApiQuery>
 
 /** A query response for a single time and server. */
 interface ApiServerQuery {
-    server_name: string
+    server_slug: string
     data: ApiQuery
 }
 
 /** A query response over a timeframe for a specific server. */
 interface ApiServerQueryRange {
-    server_name: string
+    server_slug: string
     data: ApiQuery[]
 }
 
@@ -37,18 +37,18 @@ export type ApiServerQueryRangeResponse = BaseApiResponse<ApiServerQueryRange[]>
 /** The response to a query over a timeframe. */
 export type ApiQueryRangeResponse = BaseApiResponse<ApiQuery[]>
 
-/** The name of a server we track. */
-export interface ServerName {
-    server_name: string
+/** The identifying information of a server we track. */
+export interface ServerIdentifier {
+    server_slug: string
 }
 
 /** The meta information on a server we track. */
-export interface ServerInfo extends ServerName {
+export interface ServerInfo extends ServerIdentifier {
     server_host: string
 }
 
 /** A response which contains a server's name only. */
-export type ApiServerNameResponse = BaseApiResponse<ServerName[]>
+export type ApiServerNameResponse = BaseApiResponse<ServerIdentifier[]>
 
 /** A response which contains a server's full information. */
 export type ApiServerInfoResponse = BaseApiResponse<ServerInfo[]>

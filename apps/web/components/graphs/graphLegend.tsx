@@ -36,11 +36,11 @@ export const GraphLegend = ({
 
             {/* List of selected servers */}
             <div className="col-span-6 tablet:col-span-1 h-full w-full flex flex-col gap-4 overflow-scroll noscroll">
-                {selectedServers.map((server, index) => {
+                {selectedServers.map((server) => {
                     const newServers = toggleServer(urlParams, server)
 
                     return (
-                        <DarkContainer key={index}>
+                        <DarkContainer key={`legend-${server.server_slug}`}>
                             <ServerInfo
                                 edition={urlParams.edition}
                                 serverData={server}

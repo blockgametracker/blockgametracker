@@ -6,12 +6,12 @@ export interface ParsedApiQuery {
 
 /** A server's data, as represented on the page. */
 export interface ServerData {
+    /** The server's slug. */
+    server_slug: string
     /** The server's name. */
     server_name: string
-    /** The server's unique identifier. */
-    id: string
     /** The server's hostname */
-    hostname?: string
+    hostname: string
     /** The player information for the server. */
     data: ParsedApiQuery[]
 }

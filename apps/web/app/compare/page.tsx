@@ -33,12 +33,12 @@ const Compare = async ({ searchParams }: PageParams) => {
 
     const selectedServers = servers.filter((server) => {
         if (server === null) return null
-        const serverName = server.server_name.replace(" ", "_")
 
-        if (urlServers.includes(serverName))
+        if (urlServers.includes(server.server_slug))
             return {
                 server_name: server.server_name,
-                id: server.server_name,
+                server_slug: server.server_slug,
+                hostname: server.hostname,
                 data: server.data,
             }
     })

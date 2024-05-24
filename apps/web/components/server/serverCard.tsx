@@ -29,17 +29,15 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                 serverData={serverData}
                 className="p-4"
             >
-                <div
-                    className={`inline-flex gap-2 ml-auto`}
-                >
+                <div className={`inline-flex gap-2 ml-auto`}>
                     <ServerButton
                         ariaLabel="Compare server"
-                        href={`/compare/${buildURL(urlParams.rangeParams, null, urlParams.edition, [serverData.server_name], null)}`}
+                        href={`/compare/${buildURL(urlParams.rangeParams, null, urlParams.edition, [serverData.server_slug], null)}`}
                         iconName="compare"
                     />
                     <ServerButton
                         ariaLabel="Open server"
-                        href={`/server/${urlParams.edition}/${serverData.server_name.replace(" ", "_")}${buildURL(urlParams.rangeParams, null, urlParams.edition, urlParams.servers, null)}`}
+                        href={`/server/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams.rangeParams, null, urlParams.edition, urlParams.servers, null)}`}
                         iconName="fullscreen"
                     />
                 </div>

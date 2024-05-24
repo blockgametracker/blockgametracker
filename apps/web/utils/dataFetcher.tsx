@@ -3,9 +3,9 @@ import {
     QueryStart,
     QueryStep,
     Server,
-    ServerInfo,
     getEnsembledBreakdownInRange,
     getOnlineInRange,
+    getServerBySlug,
     getServers,
 } from "@repo/gateway"
 import type { ServerData } from "./parsedData"
@@ -29,13 +29,21 @@ export const getTotalEnsembled = async (
         return lastBY - lastAY
     })
 
-    return onlineInRange.data.map((server) => {
-        return {
-            server_name: server.server_name,
-            id: server.server_name,
-            data: convertTime(server.data),
-        }
-    })
+    return await Promise.all(
+        onlineInRange.data.map(async (server) => {
+            const serverData = await getServerBySlug(
+                edition,
+                server.server_slug,
+            )
+
+            return {
+                server_slug: server.server_slug,
+                server_name: serverData.name,
+                hostname: serverData.hostname,
+                data: convertTime(server.data),
+            }
+        }),
+    )
 }
 
 /** Gets the players online in a given range. */
@@ -46,27 +54,23 @@ export const getOnline = async (
     step: QueryStep,
 ): Promise<ServerData> => {
     const onlineInRange = await getOnlineInRange(
-        server.name,
+        server.slug,
         edition,
         start,
         step,
     )
 
     return {
+        server_slug: server.slug,
         server_name: server.name,
-        id: server.name,
         hostname: server.hostname,
         data: convertTime(onlineInRange.data),
     }
 }
 
 /** Gets the information of a server with given name. */
-export async function getServer(
-    serverName: string,
-): Promise<Server | null> {
+export async function getServer(serverName: string): Promise<Server | null> {
     const servers = await getServers()
-    const foundServer = servers.find(
-        (server) => server.name === serverName,
-    )
+    const foundServer = servers.find((server) => server.name === serverName)
     return foundServer || null
 }

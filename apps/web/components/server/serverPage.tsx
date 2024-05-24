@@ -60,12 +60,7 @@ export const ServerPage = async (props: Props) => {
                     <DarkContainer>
                         <h1>General information</h1>
                         <StatisticSmall title="Players" value={online.y} />
-                        <StatisticSmall
-                            title="Host"
-                            value={server.hostname}
-                        />
-                        <StatisticSmall title="Ping" value="-" />
-                        <StatisticSmall title="Port" value="-" />
+                        <StatisticSmall title="Host" value={server.hostname} />
                     </DarkContainer>
                 </div>
             </div>

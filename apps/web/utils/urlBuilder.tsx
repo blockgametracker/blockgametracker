@@ -61,16 +61,14 @@ export function toggleServer(urlParams: URLParams, server: ServerData) {
     const active = isServerToggled(urlParams, server)
 
     active
-        ? (servers = servers.filter(
-              (item) => item !== server.id.replace(" ", "_"),
-          ))
-        : servers.push(server.id.replace(" ", "_"))
+        ? (servers = servers.filter((item) => item !== server.server_slug))
+        : servers.push(server.server_slug)
 
     return servers
 }
 
 /** Check if the URL contains the specified server */
 export function isServerToggled(urlParams: URLParams, server: ServerData) {
-    const serverIndex = urlParams.servers.indexOf(server.id.replace(" ", "_"))
+    const serverIndex = urlParams.servers.indexOf(server.server_slug)
     return serverIndex !== -1
 }

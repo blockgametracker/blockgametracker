@@ -51,7 +51,7 @@ export const Dropdown = (props: Props) => {
                                 props.urlParams.servers,
                                 null,
                             )}
-                            key={index}
+                            key={`dropdown-${range}`}
                         >
                             1 {rangeToText(range)}
                         </Link>

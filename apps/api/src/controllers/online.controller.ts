@@ -17,7 +17,7 @@ export class OnlineController {
         @Param("server") server: string,
         @Param("edition") edition: MinecraftEdition,
     ): Promise<ApiQueryResponse> {
-        const query = `min(sum by(pod) (minecraft_status_players_online_count{server_name="${server}", server_edition="${edition}"}))`
+        const query = `min(sum by(pod) (minecraft_status_players_online_count{server_slug="${server}", server_edition="${edition}"}))`
         const res = await this.prometheusService.query(query)
         const result = res.data.result[0]
 
@@ -37,7 +37,7 @@ export class OnlineController {
         @Param("start") start: string,
         @Param("step") step: string,
     ): Promise<ApiQueryRangeResponse> {
-        const query = `min(sum by(pod) (minecraft_status_players_online_count{server_name="${server}", server_edition="${edition}"}))`
+        const query = `min(sum by(pod) (minecraft_status_players_online_count{server_slug="${server}", server_edition="${edition}"}))`
         const res = await this.prometheusService.queryRange(query, start, step)
 
         return {
