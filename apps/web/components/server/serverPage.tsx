@@ -4,7 +4,6 @@ import { MinecraftEdition } from "@repo/gateway"
 import { Graph } from "@/components/graphs/graph"
 import { Section, DarkContainer } from "@/components/layout/content"
 import { StatisticSmall } from "@/components/statistic/small"
-import { StatisticLarge } from "@/components/statistic/large"
 import { ServerButton } from "../button/serverButton"
 import { ServerInfo } from "./serverInfo"
 import { getOnline, getServer } from "@/utils/dataFetcher"
@@ -51,7 +50,7 @@ export const ServerPage = async (props: Props) => {
                             <ServerButton
                                 className="ml-auto"
                                 ariaLabel="Compare server"
-                                href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.compact, props.urlParams.edition, [props.serverName], null)}`}
+                                href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.edition, [props.serverName], null)}`}
                                 iconName="compare"
                             />
                         </ServerInfo>

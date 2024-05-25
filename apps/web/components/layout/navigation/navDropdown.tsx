@@ -24,7 +24,7 @@ export const Dropdown = (props: Props) => {
             className="inline-flex gap-2 items-center relative"
             onClick={() => setActive(!active)}
         >
-            <button className="fade group inline-flex gap-2 items-center whitespace-nowrap p-2 px-4 rounded-md border-2 border-darkOverlay hover:border-secondText hover:text-mainText">
+            <button className="w-full tablet:w-fit justify-center fade group inline-flex gap-2 items-center whitespace-nowrap p-2 px-4 rounded-md border-2 border-darkOverlay hover:border-secondText hover:text-mainText">
                 <Icon
                     iconName="clock"
                     className="fade w-4 h-4 fill-secondText group-hover:fill-mainText"
@@ -46,7 +46,6 @@ export const Dropdown = (props: Props) => {
                             id={`menu-item-${index}`}
                             href={buildURL(
                                 getRangeParams(range),
-                                props.urlParams.compact,
                                 props.urlParams.edition,
                                 props.urlParams.servers,
                                 null,

@@ -24,7 +24,7 @@ export const buttonStyles = {
     switch: {
         default:
             "w-full text-center fade px-4 py-2 hover:bg-darkOverlay hover:text-mainText",
-        active: "w-full text-center fade px-4 py-2 bg-mainText text-dark",
+        active: "w-full text-center fade px-4 py-2 bg-darkOverlay text-mainText",
     },
 }
 

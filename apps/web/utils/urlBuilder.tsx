@@ -1,3 +1,4 @@
+import { MinecraftEdition } from "@repo/gateway"
 import {
     DataRangeParams,
     getRangeParams,
@@ -8,8 +9,7 @@ import { ServerData } from "./parsedData"
 /** The URL parameters provided to the page. */
 export interface URLParams {
     rangeParams: DataRangeParams
-    edition: string
-    compact: boolean
+    edition: MinecraftEdition
     servers: string[]
     showServers: number
 }
@@ -18,7 +18,6 @@ export interface URLParams {
 export function getURLParams(
     rangeParams?: string,
     edition?: string,
-    compact?: string,
     servers?: string,
     showServers?: string,
 ) {
@@ -28,8 +27,7 @@ export function getURLParams(
 
     return {
         rangeParams: getRangeParams(dateRange),
-        edition: edition ?? "java",
-        compact: compact === "true",
+        edition: edition as MinecraftEdition ?? "java" as MinecraftEdition, //TODO can we just convert this?
         servers: urlServers ?? [],
         showServers: showServers ? Number(showServers) : 12,
     }
@@ -38,7 +36,6 @@ export function getURLParams(
 /** Builds the URL given the parameters provided. */
 export function buildURL(
     rangeParams: DataRangeParams,
-    compact: boolean | null,
     edition: string | null,
     servers: string[] | null,
     showServers: number | null,
@@ -47,7 +44,6 @@ export function buildURL(
         range: rangeParams.range,
     })
 
-    if (compact) params.append("compact", `${compact}`)
     if (edition) params.append("edition", edition)
     if (servers) params.append("servers", servers.join(","))
     if (showServers) params.append("showServers", showServers.toString())

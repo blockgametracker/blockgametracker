@@ -9,11 +9,10 @@ import { ServerData } from "@/utils/parsedData"
 import { Tag } from "@/components/tag"
 
 interface Props {
-    compact: boolean
     serverData: ServerData
 }
 
-export const ServerStatistics = ({ compact, serverData }: Props) => {
+export const ServerStatistics = ({ serverData }: Props) => {
     const players_avarage = calculateAverage(serverData.data)
     const players_peak = getPeak(serverData.data)
     const online = serverData.data[serverData.data.length - 1].y

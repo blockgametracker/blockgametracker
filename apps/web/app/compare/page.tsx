@@ -1,4 +1,4 @@
-import { DarkContainer, Section } from "@/components/layout/content"
+import { Container, DarkContainer, Section } from "@/components/layout/content"
 import { Layout } from "@/components/layout"
 import { Graph } from "@/components/graphs/graph"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
@@ -7,6 +7,7 @@ import { GraphLegend } from "@/components/graphs/graphLegend"
 import type { PageParams } from "@/utils/next"
 import type { Metadata } from "next"
 import { getURLParams } from "@/utils/urlBuilder"
+import { MinecraftEdition } from "@repo/gateway"
 
 export const metadata: Metadata = {
     // TODO
@@ -20,13 +21,12 @@ const Compare = async ({ searchParams }: PageParams) => {
     const urlParams = getURLParams(
         searchParams?.range,
         searchParams?.edition,
-        searchParams?.compact,
         searchParams?.servers,
         searchParams?.showServers,
     )
 
     const servers = await getTotalEnsembled(
-        "java",
+        urlParams.edition as MinecraftEdition,
         urlParams.rangeParams.start,
         urlParams.rangeParams.step,
     )
@@ -54,8 +54,8 @@ const Compare = async ({ searchParams }: PageParams) => {
         <Layout page="Compare">
             <Section className="w-full h-full">
                 <h2 className="text-3xl">Compare servers</h2>
-                <div className="grid grid-cols-6 w-full h-full max-h-full gap-4 overflow-hidden">
-                    <DarkContainer className="col-span-6 tablet:col-span-5 w-full h-full overflow-hidden">
+                <div className="flex flex-col w-full h-full gap-4">
+                    <Container className="p-4 col-span-6 w-full h-2/3 tablet:h-1/2">
                         {selectedServers.length !== 0 ? (
                             <Graph
                                 data={selectedServers}
@@ -69,7 +69,7 @@ const Compare = async ({ searchParams }: PageParams) => {
                                 <p>Select servers to start comparing</p>
                             </div>
                         )}
-                    </DarkContainer>
+                    </Container>
                     <GraphLegend
                         urlParams={urlParams}
                         servers={servers}

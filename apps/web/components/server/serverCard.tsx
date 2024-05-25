@@ -32,19 +32,19 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                 <div className={`inline-flex gap-2 ml-auto`}>
                     <ServerButton
                         ariaLabel="Compare server"
-                        href={`/compare/${buildURL(urlParams.rangeParams, null, urlParams.edition, [serverData.server_slug], null)}`}
+                        href={`/compare/${buildURL(urlParams.rangeParams, urlParams.edition, [serverData.server_slug], null)}`}
                         iconName="compare"
+                        className="hidden phone:flex"
                     />
                     <ServerButton
                         ariaLabel="Open server"
-                        href={`/server/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams.rangeParams, null, urlParams.edition, urlParams.servers, null)}`}
+                        href={`/server/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams.rangeParams, urlParams.edition, urlParams.servers, null)}`}
                         iconName="fullscreen"
                     />
                 </div>
             </ServerInfo>
 
-            {!urlParams.compact && (
-                <div className="w-full h-48 p-4">
+            <div className="w-full h-48 p-4">
                     <Graph
                         data={dataMapped}
                         fill={true}
@@ -56,9 +56,7 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                         dataRange={urlParams.rangeParams.range}
                     />
                 </div>
-            )}
             <ServerStatistics
-                compact={urlParams.compact}
                 serverData={serverData}
             />
         </Container>

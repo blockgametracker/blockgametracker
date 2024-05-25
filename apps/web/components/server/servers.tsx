@@ -4,7 +4,6 @@ import { Button, buttonStyles } from "@/components/button/button"
 import { URLParams as Props, buildURL } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { Fragment } from "react"
-import { ServerFilters } from "./serverFilters"
 
 export const Servers = async (props: Props) => {
     const serverList = await getTotalEnsembled(
@@ -17,7 +16,6 @@ export const Servers = async (props: Props) => {
         <div className="flex flex-col gap-8">
             <div className="flex flex-col phone:flex-row gap-4 phone:items-center">
                 <h2 className="text-3xl mr-auto">Global server overview</h2>
-                <ServerFilters {...props} />
             </div>
             <div
                 className={`w-full grid gap-4 grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4`}
@@ -35,7 +33,6 @@ export const Servers = async (props: Props) => {
                         buttonStyle={buttonStyles.default}
                         href={buildURL(
                             props.rangeParams,
-                            props.compact,
                             props.edition,
                             null,
                             null,
@@ -50,7 +47,6 @@ export const Servers = async (props: Props) => {
                         buttonStyle={buttonStyles.default}
                         href={buildURL(
                             props.rangeParams,
-                            props.compact,
                             props.edition,
                             null,
                             props.showServers + 8,

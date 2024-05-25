@@ -100,17 +100,17 @@ export const Graph = ({
                 markers={
                     peak
                         ? [
-                              {
-                                  axis: "x",
-                                  lineStyle: {
-                                      stroke: COLOR_MAX,
-                                      strokeWidth: 2,
-                                      strokeDasharray: "8 8",
-                                      strokeDashoffset: "0",
-                                  },
-                                  value: peak ? peak : "",
-                              },
-                          ]
+                            {
+                                axis: "x",
+                                lineStyle: {
+                                    stroke: COLOR_MAX,
+                                    strokeWidth: 2,
+                                    strokeDasharray: "8 8",
+                                    strokeDashoffset: "0",
+                                },
+                                value: peak ? peak : "",
+                            },
+                        ]
                         : []
                 }
                 fill={[{ match: "*", id: "gradientA" }]}
@@ -120,7 +120,7 @@ export const Graph = ({
                             {slice.points[0].data.xFormatted}
                         </strong>
 
-                        {slice.points.map((point) => (
+                        {slice.points.toReversed().map((point) => (
                             <div
                                 key={`tooltip-${point.id}`}
                                 className="flex flex-col text-secondText whitespace-nowrap"

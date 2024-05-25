@@ -8,7 +8,7 @@ export const Footer = () => (
                 Copyright © 2024 Blockgametracker. All rights reserved.
             </p>
 
-            <div className="flex flex-col tablet:flex-row gap-2">
+            <div className="flex flex-col items-center tablet:items-start tablet:flex-row tablet:gap-2">
                 <p>Blockgametracker by:</p>
                 <div className="flex flex-row gap-2 justify-center tablet:justify-start">
                     <Link

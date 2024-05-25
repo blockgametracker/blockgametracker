@@ -9,7 +9,6 @@ const Page = ({ searchParams }: PageParams) => {
     const urlParams = getURLParams(
         searchParams?.range,
         searchParams?.edition,
-        searchParams?.compact,
         searchParams?.servers,
         searchParams?.showServers,
     )

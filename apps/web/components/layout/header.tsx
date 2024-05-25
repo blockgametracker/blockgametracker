@@ -48,12 +48,12 @@ export const Header = async () => {
                         <div className="grid grid-cols-1 phone:grid-cols-2 gap-4">
                             <StatisticLarge
                                 iconName="user"
-                                title="Minecraft java playercount"
+                                title="Minecraft Java playercount"
                                 value={`${totalJava.data.y.toLocaleString()}`}
                             />
                             <StatisticLarge
                                 iconName="user"
-                                title="Minecraft bedrock playercount"
+                                title="Minecraft Bedrock playercount"
                                 value={`${totalBedrock.data.y.toLocaleString()}`}
                             />
                         </div>

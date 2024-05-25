@@ -13,8 +13,7 @@ const Satoshi = localFont({
 export const metadata: Metadata = {
     //TODO
     title: "Home | Blockgametracker",
-    description:
-        "Historical Minecraft server playercounts of over 70 minecraft servers, saved for as long as possible.",
+    description: "Historical Minecraft server playercounts of over 70 minecraft servers, saved for as long as possible.",
     keywords: ["blockgame", "minecraft", "minecraft server"],
     authors: [],
 }
@@ -29,7 +28,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`bg-dark text-secondText ${manrope.className}`}
+            className={`text-secondText ${manrope.className}`}
         >
             <body className="w-screen h-screen overflow-x-hidden">
                 {children}
