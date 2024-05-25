@@ -42,7 +42,11 @@ export const GraphLegend = ({
                     const newServers = toggleServer(urlParams, server)
 
                     return (
-                        <ServerCardSmall urlParams={urlParams} server={server} servers={urlParams.servers}>
+                        <ServerCardSmall
+                            urlParams={urlParams}
+                            server={server}
+                            servers={urlParams.servers}
+                        >
                             <ServerButton
                                 ariaLabel="Remove server"
                                 href={buildURL(

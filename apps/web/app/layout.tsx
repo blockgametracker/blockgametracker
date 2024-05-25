@@ -13,8 +13,16 @@ const Satoshi = localFont({
 export const metadata: Metadata = {
     //TODO
     title: "Home | Blockgametracker",
-    description: "Historical Minecraft server playercounts of over 70 minecraft servers, saved for as long as possible.",
-    keywords: ["blockgame", "minecraft", "minecraft server", "minecraft playercout", "player tracker", "minecraft list"],
+    description:
+        "Historical Minecraft server playercounts of over 70 minecraft servers, saved for as long as possible.",
+    keywords: [
+        "blockgame",
+        "minecraft",
+        "minecraft server",
+        "minecraft playercout",
+        "player tracker",
+        "minecraft list",
+    ],
     authors: [],
 }
 
@@ -26,10 +34,7 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html
-            lang="en"
-            className={`text-secondText ${manrope.className}`}
-        >
+        <html lang="en" className={`text-secondText ${manrope.className}`}>
             <body className="w-screen h-screen overflow-x-hidden">
                 {children}
             </body>

@@ -17,7 +17,11 @@ export const ServerInfo = (props: Props) => {
             className={`w-full inline-flex gap-4 items-center ${props.className}`}
         >
             <div className="inline-flex gap-4 items-center">
-                <ServerIcon className="w-12 h-12" edition={props.edition} server={props.serverData}/>
+                <ServerIcon
+                    className="w-12 h-12"
+                    edition={props.edition}
+                    server={props.serverData}
+                />
 
                 <div className="flex flex-col">
                     <h3 className="text-lg whitespace-nowrap text-mainText font-medium leading-4">

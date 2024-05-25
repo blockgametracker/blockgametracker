@@ -45,20 +45,18 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
             </ServerInfo>
 
             <div className="w-full h-48 p-4">
-                    <Graph
-                        data={dataMapped}
-                        fill={true}
-                        areaBaselineValue={minY}
-                        ticksX={ticks.ticksX}
-                        ticksY={ticks.ticksY}
-                        colors={greenGraph}
-                        peak={peak.x}
-                        dataRange={urlParams.rangeParams.range}
-                    />
-                </div>
-            <ServerStatistics
-                serverData={serverData}
-            />
+                <Graph
+                    data={dataMapped}
+                    fill={true}
+                    areaBaselineValue={minY}
+                    ticksX={ticks.ticksX}
+                    ticksY={ticks.ticksY}
+                    colors={greenGraph}
+                    peak={peak.x}
+                    dataRange={urlParams.rangeParams.range}
+                />
+            </div>
+            <ServerStatistics serverData={serverData} />
         </Container>
     )
 }

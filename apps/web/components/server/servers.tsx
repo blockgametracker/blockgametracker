@@ -1,9 +1,9 @@
 import { ServerCard } from "./serverCard"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
-import { Button, buttonStyles } from "@/components/button/button"
-import { URLParams as Props, buildURL } from "@/utils/urlBuilder"
+import { URLParams as Props } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { Fragment } from "react"
+import { ServerObserver } from "./serverObserver"
 
 export const Servers = async (props: Props) => {
     const serverList = await getTotalEnsembled(
@@ -26,36 +26,11 @@ export const Servers = async (props: Props) => {
                     </Fragment>
                 ))}
             </div>
-            <div className="w-full flex justify-center gap-4">
-                {props.showServers > 12 && (
-                    <Button
-                        ariaLabel="Show less"
-                        buttonStyle={buttonStyles.default}
-                        href={buildURL(
-                            props.rangeParams,
-                            props.edition,
-                            null,
-                            null,
-                        )}
-                    >
-                        Show less
-                    </Button>
-                )}
-                {props.showServers < serverList.length && (
-                    <Button
-                        ariaLabel="Show more"
-                        buttonStyle={buttonStyles.default}
-                        href={buildURL(
-                            props.rangeParams,
-                            props.edition,
-                            null,
-                            props.showServers + 8,
-                        )}
-                    >
-                        Show more
-                    </Button>
-                )}
-            </div>
+            <ServerObserver
+                id="server-observer"
+                max={serverList.length}
+                {...props}
+            />
         </div>
     )
 }

@@ -27,7 +27,7 @@ export function getURLParams(
 
     return {
         rangeParams: getRangeParams(dateRange),
-        edition: edition as MinecraftEdition ?? "java" as MinecraftEdition, //TODO can we just convert this?
+        edition: (edition as MinecraftEdition) ?? ("java" as MinecraftEdition), //TODO can we just convert this?
         servers: urlServers ?? [],
         showServers: showServers ? Number(showServers) : 12,
     }

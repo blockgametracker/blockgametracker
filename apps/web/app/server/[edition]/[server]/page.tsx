@@ -18,7 +18,15 @@ export async function generateMetadata({
     return {
         // TODO
         title: `${serverInfo.name} | Blockgametracker`,
-        keywords: ["blockgame", "minecraft", "minecraft server", "minecraft playercout", "player tracker", "minecraft list", serverInfo.name],
+        keywords: [
+            "blockgame",
+            "minecraft",
+            "minecraft server",
+            "minecraft playercout",
+            "player tracker",
+            "minecraft list",
+            serverInfo.name,
+        ],
     }
 }
 

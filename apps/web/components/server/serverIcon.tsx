@@ -16,10 +16,7 @@ export const ServerIcon = ({
     server: ServerData
 }) => (
     <Image
-        src={serverToImage(
-            edition,
-            server.server_name,
-        )}
+        src={serverToImage(edition, server.server_name)}
         alt={`${server.server_name} icon`}
         className={`fade gradient object-cover aspect-square image group-hover:opacity-40 group-hover:blur-sm ${className}`}
         sizes="(max-width: 384px) 64px, 64px"

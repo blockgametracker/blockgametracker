@@ -100,17 +100,17 @@ export const Graph = ({
                 markers={
                     peak
                         ? [
-                            {
-                                axis: "x",
-                                lineStyle: {
-                                    stroke: COLOR_MAX,
-                                    strokeWidth: 2,
-                                    strokeDasharray: "8 8",
-                                    strokeDashoffset: "0",
-                                },
-                                value: peak ? peak : "",
-                            },
-                        ]
+                              {
+                                  axis: "x",
+                                  lineStyle: {
+                                      stroke: COLOR_MAX,
+                                      strokeWidth: 2,
+                                      strokeDasharray: "8 8",
+                                      strokeDashoffset: "0",
+                                  },
+                                  value: peak ? peak : "",
+                              },
+                          ]
                         : []
                 }
                 fill={[{ match: "*", id: "gradientA" }]}
