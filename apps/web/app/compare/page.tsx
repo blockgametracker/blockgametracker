@@ -12,6 +12,7 @@ import { MinecraftEdition } from "@repo/gateway"
 export const metadata: Metadata = {
     // TODO
     title: "Compare | Blockgametracker",
+    keywords: ["blockgame", "server compare", "minecraft", "minecraft server", "minecraft playercout", "player tracker", "minecraft list"],
 }
 
 const Compare = async ({ searchParams }: PageParams) => {

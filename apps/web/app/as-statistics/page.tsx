@@ -1,30 +1,25 @@
 import type { PageParams } from "@/utils/next"
 import type { Metadata } from "next"
 import { Layout } from "@/components/layout"
-import { MinecraftEdition, getServerBySlug } from "@repo/gateway"
+import { MinecraftEdition } from "@repo/gateway"
 
 interface Params {
     server: string
     edition: MinecraftEdition
 }
 
-export async function generateMetadata({
-    params,
-}: PageParams<Params>): Promise<Metadata> {
-    const serverInfo = await getServerBySlug(params.edition, params.server)
-
+export async function generateMetadata({}: PageParams<Params>): Promise<Metadata> {
     return {
         // TODO
-        title: `${serverInfo.name} | Blockgametracker`,
+        title: "AS Statistics | Blockgametracker",
+        keywords: ["blockgame", "minecraft", "minecraft server", "minecraft playercout", "player tracker", "minecraft list"],
     }
 }
 
-const Server = async ({ params, searchParams }: PageParams<Params>) => {
+const Server = async ({ searchParams }: PageParams) => {
     return (
         <Layout page="as-statistics">
-            <iframe className="w-full h-full" src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk" width="450" height="200">
-
-            </iframe>
+            <iframe className="w-full h-full" src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk" width="450" height="200" />
         </Layout>
     )
 }
