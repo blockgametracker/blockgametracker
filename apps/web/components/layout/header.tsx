@@ -1,8 +1,7 @@
 import { Icon } from "@/components/icon"
-import Link from "next/link"
 import localFont from "next/font/local"
 import { StatisticLarge } from "@/components/statistic/large"
-import { getEnsembledTotal } from "@repo/gateway"
+import { getEnsembledTotal, getServers } from "@repo/gateway"
 
 const Expose = localFont({
     src: "../../public/fonts/Expose-Bold.otf",
@@ -12,6 +11,7 @@ const Expose = localFont({
 export const Header = async () => {
     const totalJava = await getEnsembledTotal("java")
     const totalBedrock = await getEnsembledTotal("bedrock")
+    const servers = await getServers()
 
     return (
         <div className="w-full flex flex-col gap-4 overflow-hidden items-center">
@@ -26,22 +26,13 @@ export const Header = async () => {
                 <h1
                     className={`whitespace-nowrap text-3xl phone:text-5xl tablet:text-6xl text-center text-mainColor ${Expose.className}`}
                 >
-                    TRACKING MINECRAFT
-                    <br className="flex tablet:hidden" /> SERVER PLAYERCOUNTS
+                    TRACKING {servers.length.toLocaleString()} MINECRAFT SERVERS
                 </h1>
 
                 <div className="flex flex-col gap-8 items-center">
                     <p className="max-w-xl tablet:max-w-fit text-xl text-center text-mainText">
-                        Historical Minecraft server playercounts of over 70
-                        minecraft servers, saved for as long as possible.
-                        Inspired by{" "}
-                        <Link
-                            href="https://www.minetrack.me/"
-                            className="text-mainText"
-                        >
-                            Minetrack
-                        </Link>
-                        .
+                        Historical Minecraft server playercounts, saved for as
+                        long as possible.
                     </p>
 
                     <div className="w-fit inline-flex gap-4">
