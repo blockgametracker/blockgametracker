@@ -5,13 +5,17 @@ export interface ParsedApiQuery {
 }
 
 /** A server's data, as represented on the page. */
-export interface ServerData {
+export interface ServerData extends ComputedServerData {
     /** The server's slug. */
     server_slug: string
     /** The server's name. */
     server_name: string
     /** The server's hostname */
     hostname: string
+}
+
+/** The server's graphically-presented data, exclusively. */
+export interface ComputedServerData {
     /** The player information for the server. */
     data: ParsedApiQuery[]
 }

@@ -1,5 +1,5 @@
 import { Theme } from "@nivo/core"
-import type { ServerData } from "./parsedData"
+import type { ComputedServerData } from "./parsedData"
 
 /** Available colours on the graph. */
 export const GRAPH_COLORS = [
@@ -76,7 +76,7 @@ function getTicksY(minY: number, maxY: number) {
 }
 
 /** Calculates ticks for a chart. */
-export function getTicks(serverData: ServerData, stepX: number): TickResult {
+export function getTicks(serverData: ComputedServerData, stepX: number): TickResult {
     const valuesY = serverData.data.map((item) => item.y)
     const maxY = Math.max(...valuesY)
     const minY = Math.min(...valuesY)
@@ -86,9 +86,11 @@ export function getTicks(serverData: ServerData, stepX: number): TickResult {
 
     const dataLength = serverData.data.length
     const maxLength = Math.ceil(dataLength / stepX)
+    const uniqueLabels = Array.from(new Set(serverData.data.map((data) => data.x))).sort((a, b) => a.localeCompare(b))
+    console.log(uniqueLabels)
 
     for (let i = Math.floor(maxLength / 2); i < dataLength; i += maxLength) {
-        ticksX.push(serverData.data[i].x)
+        ticksX.push(uniqueLabels[i])
     }
 
     return { ticksX, ticksY }

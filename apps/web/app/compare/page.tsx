@@ -8,6 +8,7 @@ import type { PageParams } from "@/utils/next"
 import type { Metadata } from "next"
 import { getURLParams } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
+import { ComputedServerData } from "@/utils/parsedData"
 
 export const metadata: Metadata = {
     // TODO
@@ -53,11 +54,29 @@ const Compare = async ({ searchParams }: PageParams) => {
     })
 
     let ticks: TickResult = {
-        ticksX: [""],
-        ticksY: [0],
+        ticksX: selectedServers[0]
+            ? getTicks(selectedServers[0], 6).ticksX
+            : [""],
+        ticksY: selectedServers[0]
+            ? getTicks(
+                  selectedServers.reduce(
+                      (acc, curr) => {
+                          acc.data.push(
+                              ...curr.data.map((data) => {
+                                  return {
+                                      x: data.x,
+                                      y: data.y,
+                                  }
+                              }),
+                          )
+                          return acc
+                      },
+                      { data: [] } as ComputedServerData,
+                  ),
+                  0,
+              ).ticksY
+            : [0],
     }
-    if (selectedServers[0] !== undefined)
-        ticks = getTicks(selectedServers[0], 6)
 
     return (
         <Layout page="Compare">
