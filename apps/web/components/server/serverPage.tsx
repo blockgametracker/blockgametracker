@@ -2,7 +2,8 @@ import { getTicks, greenGraph } from "@/utils/graphUtils"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { Graph } from "@/components/graphs/graph"
-import { Section, DarkContainer } from "@/components/layout/content"
+import { Section } from "@/components/layout/section"
+import { DarkContainer } from "@/components/layout/darkContainer"
 import { StatisticSmall } from "@/components/statistic/small"
 import { ServerButton } from "../button/serverButton"
 import { ServerInfo } from "./serverInfo"
@@ -58,7 +59,10 @@ export const ServerPage = async (props: Props) => {
 
                     <DarkContainer>
                         <h1>General information</h1>
-                        <StatisticSmall title="Players" value={online.y} />
+                        <StatisticSmall
+                            title="Players"
+                            value={online.y.toLocaleString()}
+                        />
                         <StatisticSmall title="Host" value={server.hostname} />
                     </DarkContainer>
                 </div>

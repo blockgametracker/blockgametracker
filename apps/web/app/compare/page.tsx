@@ -1,4 +1,5 @@
-import { Container, Section } from "@/components/layout/content"
+import { Section } from "@/components/layout/section"
+import { Container } from "@/components/layout/container"
 import { Layout } from "@/components/layout"
 import { Graph } from "@/components/graphs/graph"
 import { getTotalEnsembled } from "@/utils/dataFetcher"

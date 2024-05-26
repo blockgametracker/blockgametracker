@@ -1,11 +1,12 @@
 import Link from "next/link"
-import { Section } from "./content"
+import { Section } from "./section"
 
 export const Footer = () => (
     <Section className="flex items-center pt-4 pb-4 mt-auto border-t-2 bg-darkFill border-darkOverlay">
         <div className="flex flex-col tablet:flex-row gap-4 items-center tablet:items-start">
             <p className="tablet:mr-auto">
-                Copyright © 2024 blockgametracker. All rights reserved.
+                Copyright © {new Date().getFullYear()} blockgametracker. All
+                rights reserved.
             </p>
 
             <div className="flex flex-col items-center tablet:items-start tablet:flex-row tablet:gap-2">

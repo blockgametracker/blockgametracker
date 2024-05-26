@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Icon } from "@/components/icon"
 import { NavButton } from "../../button/navButton"
-import { Section } from "@/components/layout/content"
+import { Section } from "@/components/layout/section"
 import { useSearchParams } from "next/navigation"
 import { Dropdown } from "./navDropdown"
 import { useState } from "react"

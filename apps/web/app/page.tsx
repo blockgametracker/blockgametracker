@@ -1,5 +1,5 @@
 import { Servers } from "@/components/server/servers"
-import { Section } from "@/components/layout/content"
+import { Section } from "@/components/layout/section"
 import { Layout } from "@/components/layout"
 import { Header } from "@/components/layout/header"
 import type { PageParams } from "@/utils/next"

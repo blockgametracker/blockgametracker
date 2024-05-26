@@ -4,13 +4,12 @@ import React from "react"
 import { ServerData } from "@/utils/parsedData"
 import Image from "next/image"
 
-export const ServerIcon = ({
-    className,
-    server,
-}: {
+interface Props {
     className?: string
     server: ServerData
-}) => (
+}
+
+export const ServerIcon = ({ className, server }: Props) => (
     <Image
         src={server.icon}
         alt={`${server.server_name} icon`}

@@ -1,22 +1,20 @@
 "use client"
 
 import React, { useState } from "react"
-import { DarkContainer } from "../layout/content"
+import { DarkContainer } from "../layout/darkContainer"
 import { URLParams, buildURL, toggleServer } from "@/utils/urlBuilder"
 import { ServerData } from "@/utils/parsedData"
 import { GraphServers } from "./graphServers"
 import { ServerButton } from "../button/serverButton"
 import { ServerCardSmall } from "../server/serverCardSmall"
 
-export const GraphLegend = ({
-    urlParams,
-    servers,
-    selectedServers,
-}: {
+interface Props {
     urlParams: URLParams
     servers: ServerData[]
     selectedServers: ServerData[]
-}) => {
+}
+
+export const GraphLegend = ({ urlParams, servers, selectedServers }: Props) => {
     const [active, setActive] = useState(false)
 
     return (
@@ -30,7 +28,7 @@ export const GraphLegend = ({
                     onClick={(e) => e.stopPropagation()}
                     className="flex flex-col gap-4 w-2/3 h-2/3 noscroll"
                 >
-                    <h2>Server compare selection</h2>
+                    <h2>Compare servers</h2>
                     <GraphServers urlParams={urlParams} servers={servers} />
                 </DarkContainer>
             </div>
@@ -42,9 +40,8 @@ export const GraphLegend = ({
 
                     return (
                         <ServerCardSmall
-                            urlParams={urlParams}
                             server={server}
-                            servers={urlParams.servers}
+                            key={`legend-card-${server.server_slug}`}
                         >
                             <ServerButton
                                 ariaLabel="Remove server"
@@ -64,7 +61,7 @@ export const GraphLegend = ({
                     className="h-full py-4 border-2 rounded-md bg-darkFill border-darkOverlay"
                     onClick={() => setActive(true)}
                 >
-                    Add server
+                    Add servers
                 </button>
             </div>
         </>
