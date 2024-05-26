@@ -10,6 +10,12 @@ const nextConfig = {
                 port: "",
                 pathname: "/icons/**",
             },
+            {
+                protocol: "https",
+                hostname: "ds-api.blockgametracker.gg",
+                port: "",
+                pathname: "/servers/**",
+            },
         ],
     },
 }

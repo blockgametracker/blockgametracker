@@ -1,18 +1,12 @@
 import type { Metadata } from "next"
-import localFont from "next/font/local"
 import "./globals.css"
 import { Manrope } from "next/font/google"
 
 const manrope = Manrope({ subsets: ["latin"] })
 
-const Satoshi = localFont({
-    src: "../public/fonts/Satoshi-Regular.otf",
-    display: "swap",
-})
-
 export const metadata: Metadata = {
     //TODO
-    title: "Home | Blockgametracker",
+    title: "Home | blockgametracker",
     description:
         "Historical Minecraft server playercounts of over 70 minecraft servers, saved for as long as possible.",
     keywords: [

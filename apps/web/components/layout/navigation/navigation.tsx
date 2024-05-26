@@ -5,7 +5,6 @@ import { Icon } from "@/components/icon"
 import { NavButton } from "../../button/navButton"
 import { Section } from "@/components/layout/content"
 import { useSearchParams } from "next/navigation"
-import { searchParamToRange } from "@/utils/dataRange"
 import { Dropdown } from "./navDropdown"
 import { useState } from "react"
 import { buildURL, getURLParams } from "@/utils/urlBuilder"
@@ -18,7 +17,6 @@ interface Props {
 export const Navigation = (props: Props) => {
     const searchParams = useSearchParams()
     const selectedRange = searchParams.get("range") as string
-    const dateRange = searchParamToRange(selectedRange)
 
     const urlParams = getURLParams(
         selectedRange,
@@ -42,7 +40,7 @@ export const Navigation = (props: Props) => {
                             className="w-6 h-6 fill-mainColor"
                         />
                         <p className="text-mainText flex tablet:hidden">
-                            Blockgametracker
+                            blockgametracker
                         </p>
                     </Link>
 
@@ -76,6 +74,7 @@ export const Navigation = (props: Props) => {
                             Compare Servers
                         </NavButton>
                         <NavButton
+                            target="as-statistics"
                             currentPage={props.page}
                             href={`/as-statistics${buildURL(urlParams.rangeParams, urlParams.edition, null, urlParams.showServers)}`}
                         >

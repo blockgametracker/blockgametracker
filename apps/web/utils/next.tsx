@@ -6,9 +6,3 @@ interface NextPageParams<Params = {}> {
 
 /** The page parameters provided by NextJS. */
 export type PageParams<Params = {}> = Readonly<NextPageParams<Params>>
-
-/** Returns an image URL for a given server-edition combination. */
-export const serverToImage = (edition: string, serverName: string) =>
-    `https://assets.blockgametracker.gg/icons/${edition}/${serverName
-        .toLowerCase()
-        .replaceAll(" ", "_")}.png`

@@ -59,11 +59,14 @@ export type MinecraftEdition = "java" | "bedrock"
 /** A unit of time. */
 type TimeUnit = "s" | "m" | "h" | "d" | "m" | "y"
 
+/** A plus, minus, or nothing at all. */
+type PM = "+" | "-" | ""
+
 /** The `start` attribute of a Prometheus query. */
-export type QueryStart = `-${number}${TimeUnit}`
+export type QueryStart = `${PM}${number}${TimeUnit}`
 
 /** The `step` attribute of a Prometheus query. */
-export type QueryStep = `${number}${TimeUnit}`
+export type QueryStep = `${PM}${number}${TimeUnit}`
 
 /** The server object. */
 export interface Server {

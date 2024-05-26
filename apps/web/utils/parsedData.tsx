@@ -12,6 +12,8 @@ export interface ServerData extends ComputedServerData {
     server_name: string
     /** The server's hostname */
     hostname: string
+    /** The server's icon. */
+    icon: string
 }
 
 /** The server's graphically-presented data, exclusively. */

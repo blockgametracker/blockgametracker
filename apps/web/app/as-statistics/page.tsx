@@ -1,17 +1,11 @@
-import type { PageParams } from "@/utils/next"
 import type { Metadata } from "next"
 import { Layout } from "@/components/layout"
-import { MinecraftEdition } from "@repo/gateway"
+import { Suspense } from "react"
 
-interface Params {
-    server: string
-    edition: MinecraftEdition
-}
-
-export async function generateMetadata({}: PageParams<Params>): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
     return {
         // TODO
-        title: "AS Statistics | Blockgametracker",
+        title: "AS Statistics | blockgametracker",
         keywords: [
             "blockgame",
             "minecraft",
@@ -23,16 +17,18 @@ export async function generateMetadata({}: PageParams<Params>): Promise<Metadata
     }
 }
 
-const Server = async ({ searchParams }: PageParams) => {
+const Server = async () => {
     return (
-        <Layout page="as-statistics">
-            <iframe
-                className="w-full h-full"
-                src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk"
-                width="450"
-                height="200"
-            />
-        </Layout>
+        <Suspense>
+            <Layout page="as-statistics">
+                <iframe
+                    className="w-full h-full"
+                    src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk"
+                    width="450"
+                    height="200"
+                />
+            </Layout>
+        </Suspense>
     )
 }
 

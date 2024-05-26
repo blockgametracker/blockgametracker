@@ -1,4 +1,3 @@
-import { DarkContainer } from "@/components/layout/content"
 import { Icon, IconName } from "@/components/icon"
 
 interface Props {

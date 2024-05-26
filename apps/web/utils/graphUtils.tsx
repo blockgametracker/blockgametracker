@@ -76,7 +76,10 @@ function getTicksY(minY: number, maxY: number) {
 }
 
 /** Calculates ticks for a chart. */
-export function getTicks(serverData: ComputedServerData, stepX: number): TickResult {
+export function getTicks(
+    serverData: ComputedServerData,
+    stepX: number,
+): TickResult {
     const valuesY = serverData.data.map((item) => item.y)
     const maxY = Math.max(...valuesY)
     const minY = Math.min(...valuesY)
@@ -86,11 +89,9 @@ export function getTicks(serverData: ComputedServerData, stepX: number): TickRes
 
     const dataLength = serverData.data.length
     const maxLength = Math.ceil(dataLength / stepX)
-    const uniqueLabels = Array.from(new Set(serverData.data.map((data) => data.x))).sort((a, b) => a.localeCompare(b))
-    console.log(uniqueLabels)
 
     for (let i = Math.floor(maxLength / 2); i < dataLength; i += maxLength) {
-        ticksX.push(uniqueLabels[i])
+        ticksX.push(serverData.data[i].x)
     }
 
     return { ticksX, ticksY }

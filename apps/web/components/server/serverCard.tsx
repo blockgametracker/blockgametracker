@@ -1,4 +1,4 @@
-import { Container, DarkContainer } from "@/components/layout/content"
+import { Container } from "@/components/layout/content"
 import { Graph } from "@/components/graphs/graph"
 import { getTicks, greenGraph } from "@/utils/graphUtils"
 import { ServerButton } from "../button/serverButton"

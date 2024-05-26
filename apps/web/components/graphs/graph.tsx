@@ -1,7 +1,7 @@
 "use client"
 
 import { ResponsiveLine } from "@nivo/line"
-import { Container, DarkContainer } from "@/components/layout/content"
+import { DarkContainer } from "@/components/layout/content"
 import { linearGradientDef } from "@nivo/core"
 import { COLOR_MAX, theme } from "@/utils/graphUtils"
 import { Icon } from "@/components/icon"

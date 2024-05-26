@@ -6,9 +6,9 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule)
 
     const config = new DocumentBuilder()
-        .setTitle("BlockGameTracker API")
+        .setTitle("blockgametracker API")
         .setDescription(
-            "Interacts with the BlockGameTracker VictoriaMetrics instance",
+            "Interacts with the blockgametracker VictoriaMetrics instance",
         )
         .setVersion("1.0")
         .build()

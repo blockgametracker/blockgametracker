@@ -1,4 +1,4 @@
-import { Container, DarkContainer, Section } from "@/components/layout/content"
+import { Container, Section } from "@/components/layout/content"
 import { Layout } from "@/components/layout"
 import { Graph } from "@/components/graphs/graph"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
@@ -12,7 +12,7 @@ import { ComputedServerData } from "@/utils/parsedData"
 
 export const metadata: Metadata = {
     // TODO
-    title: "Compare | Blockgametracker",
+    title: "Compare | blockgametracker",
     keywords: [
         "blockgame",
         "server compare",

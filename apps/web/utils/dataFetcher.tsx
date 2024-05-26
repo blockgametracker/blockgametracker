@@ -41,6 +41,7 @@ export const getTotalEnsembled = async (
                 server_name: serverData.name,
                 hostname: serverData.hostname,
                 data: convertTime(server.data),
+                icon: serverData.icon,
             }
         }),
     )
@@ -65,6 +66,7 @@ export const getOnline = async (
         server_name: server.name,
         hostname: server.hostname,
         data: convertTime(onlineInRange.data),
+        icon: server.icon,
     }
 }
 

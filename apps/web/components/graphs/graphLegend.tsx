@@ -5,7 +5,6 @@ import { DarkContainer } from "../layout/content"
 import { URLParams, buildURL, toggleServer } from "@/utils/urlBuilder"
 import { ServerData } from "@/utils/parsedData"
 import { GraphServers } from "./graphServers"
-import { ServerInfo } from "../server/serverInfo"
 import { ServerButton } from "../button/serverButton"
 import { ServerCardSmall } from "../server/serverCardSmall"
 
