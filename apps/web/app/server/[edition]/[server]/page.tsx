@@ -4,6 +4,7 @@ import { ServerPage } from "@/components/server/serverPage"
 import type { Metadata } from "next"
 import { Layout } from "@/components/layout"
 import { MinecraftEdition, getServerBySlug } from "@repo/gateway"
+import { notFound } from "next/navigation"
 
 interface Params {
     server: string
@@ -14,6 +15,8 @@ export async function generateMetadata({
     params,
 }: PageParams<Params>): Promise<Metadata> {
     const serverInfo = await getServerBySlug(params.edition, params.server)
+
+    if (!serverInfo) return notFound()
 
     return {
         // TODO
@@ -38,6 +41,7 @@ const Server = async ({ params, searchParams }: PageParams<Params>) => {
     )
     const serverInfo = await getServerBySlug(urlParams.edition, params.server)
 
+    if (!serverInfo) return notFound()
 
     return (
         <Layout page={serverInfo.name}>

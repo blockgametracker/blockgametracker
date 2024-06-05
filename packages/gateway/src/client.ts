@@ -12,6 +12,9 @@ import type {
 /** Returns the JSON response to a request at the given endpoint. */
 const request = async <T>(endpoint: string) => {
     const res = await fetch(`${process.env.API_URL}/${endpoint}`)
+
+    if (!res.ok) return
+
     const json = await res.json()
     return json as T
 }
