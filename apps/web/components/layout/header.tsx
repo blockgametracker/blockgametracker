@@ -2,6 +2,7 @@ import { Icon } from "@/components/icon"
 import localFont from "next/font/local"
 import { StatisticLarge } from "@/components/statistic/large"
 import { getEnsembledTotal, getServers } from "@repo/gateway"
+import { MinecraftEdition } from "@repo/gateway"
 
 const Expose = localFont({
     src: "../../public/fonts/Expose-Bold.otf",
@@ -9,8 +10,8 @@ const Expose = localFont({
 })
 
 export const Header = async () => {
-    const totalJava = await getEnsembledTotal("java")
-    const totalBedrock = await getEnsembledTotal("bedrock")
+    const totalJava = await getEnsembledTotal(MinecraftEdition.JAVA)
+    const totalBedrock = await getEnsembledTotal(MinecraftEdition.BEDROCK)
     const servers = await getServers()
 
     return (
@@ -26,7 +27,7 @@ export const Header = async () => {
                 <h1
                     className={`whitespace-nowrap text-3xl phone:text-5xl tablet:text-6xl text-center text-mainColor ${Expose.className}`}
                 >
-                    TRACKING {servers.length.toLocaleString()} MINECRAFT SERVERS
+                    TRACKING {servers!.length.toLocaleString()} MINECRAFT SERVERS
                 </h1>
 
                 <div className="flex flex-col gap-8 items-center">
@@ -40,12 +41,12 @@ export const Header = async () => {
                             <StatisticLarge
                                 iconName="user"
                                 title="Minecraft Java playercount"
-                                value={`${totalJava.data.y.toLocaleString()}`}
+                                value={`${totalJava!.data.y.toLocaleString()}`}
                             />
                             <StatisticLarge
                                 iconName="user"
                                 title="Minecraft Bedrock playercount"
-                                value={`${totalBedrock.data.y.toLocaleString()}`}
+                                value={`${totalBedrock!.data.y.toLocaleString()}`}
                             />
                         </div>
                     </div>

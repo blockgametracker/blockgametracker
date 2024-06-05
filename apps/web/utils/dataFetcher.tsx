@@ -23,14 +23,14 @@ export const getTotalEnsembled = async (
         step,
     )
 
-    onlineInRange.data.sort((a, b) => {
+    onlineInRange!.data.sort((a, b) => {
         const lastAY = a.data[a.data.length - 1]?.y || 0
         const lastBY = b.data[b.data.length - 1]?.y || 0
         return lastBY - lastAY
     })
 
     return await Promise.all(
-        onlineInRange.data.map(async (server) => {
+        onlineInRange!.data.map(async (server) => {
             const serverData = await getServerBySlug(
                 edition,
                 server.server_slug,
@@ -38,10 +38,10 @@ export const getTotalEnsembled = async (
 
             return {
                 server_slug: server.server_slug,
-                server_name: serverData.name,
-                hostname: serverData.hostname,
+                server_name: serverData!.name,
+                hostname: serverData!.hostname,
                 data: convertTime(server.data),
-                icon: serverData.icon,
+                icon: serverData!.icon,
             }
         }),
     )
@@ -65,7 +65,7 @@ export const getOnline = async (
         server_slug: server.slug,
         server_name: server.name,
         hostname: server.hostname,
-        data: convertTime(onlineInRange.data),
+        data: convertTime(onlineInRange!.data),
         icon: server.icon,
     }
 }
@@ -73,6 +73,6 @@ export const getOnline = async (
 /** Gets the information of a server with given name. */
 export async function getServer(serverName: string): Promise<Server | null> {
     const servers = await getServers()
-    const foundServer = servers.find((server) => server.name === serverName)
+    const foundServer = servers!.find((server) => server.name === serverName)
     return foundServer || null
 }
