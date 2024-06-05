@@ -1,3 +1,4 @@
+import { NotFoundException } from "@nestjs/common"
 import { MinecraftEdition, Server } from "@repo/gateway"
 
 /** Interacts with the DataSource API. */
@@ -18,6 +19,9 @@ export class DataSourceService {
             },
             body: body ? new URLSearchParams(body) : undefined,
         })
+
+        // If the response is not ok, the server does not exist
+        if (!res.ok) throw new NotFoundException()
 
         return await res.json()
     }
