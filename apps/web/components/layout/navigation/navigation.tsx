@@ -88,9 +88,9 @@ export const Navigation = (props: Props) => {
                         </NavButton>
                         <NavButton
                             currentPage={props.page}
-                            href="https://blockgametracker.gg/d/y9qAlLSVz/blockgametracker?orgId=1&refresh=30s"
+                            href="https://grafana.blockgametracker.gg"
                         >
-                            Legacy Dashboard
+                            Grafana
                         </NavButton>
                     </div>
 
