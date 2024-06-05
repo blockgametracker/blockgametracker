@@ -10,6 +10,7 @@ import { ServerInfo } from "./serverInfo"
 import { getOnline, getServer } from "@/utils/dataFetcher"
 
 interface Props {
+    serverSlug: string
     serverName: string
     edition: string
     urlParams: URLParams
@@ -51,7 +52,7 @@ export const ServerPage = async (props: Props) => {
                             <ServerButton
                                 className="ml-auto"
                                 ariaLabel="Compare server"
-                                href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.edition, [props.serverName], null)}`}
+                                href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.edition, [props.serverSlug], null)}`}
                                 iconName="compare"
                             />
                         </ServerInfo>

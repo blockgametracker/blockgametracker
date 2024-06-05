@@ -36,13 +36,15 @@ const Server = async ({ params, searchParams }: PageParams<Params>) => {
         searchParams?.edition,
         searchParams?.compact,
     )
-    const serverInfo = await getServerBySlug(params.edition, params.server)
+    const serverInfo = await getServerBySlug(urlParams.edition, params.server)
+
 
     return (
         <Layout page={serverInfo.name}>
             <ServerPage
                 serverName={serverInfo.name}
-                edition={params.edition}
+                serverSlug={serverInfo.slug}
+                edition={urlParams.edition}
                 urlParams={urlParams}
             />
         </Layout>
