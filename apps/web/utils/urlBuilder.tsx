@@ -1,4 +1,4 @@
-import { MinecraftEdition } from "@repo/gateway"
+import { MinecraftEdition, getEditionOrDefault } from "@repo/gateway"
 import {
     DataRangeParams,
     getRangeParams,
@@ -20,16 +20,20 @@ export function getURLParams(
     edition?: string,
     servers?: string,
     showServers?: string,
-) {
+): URLParams {
     const dateRange = searchParamToRange(rangeParams)
-    const urlServers: string[] =
-        servers?.split(",").map((server) => server.trim()) || []
+
+    const urlServers = servers?.split(",").map((server) => server.trim()) ?? []
+    const validatedEdition = getEditionOrDefault(edition)
+
+    const parsedShowServers = Number.parseInt(showServers ?? "")
+    const validShowServers = !isNaN(parsedShowServers) ? parsedShowServers : 12
 
     return {
         rangeParams: getRangeParams(dateRange),
-        edition: (edition as MinecraftEdition) ?? ("java" as MinecraftEdition), //TODO can we just convert this?
-        servers: urlServers ?? [],
-        showServers: showServers ? Number(showServers) : 12,
+        edition: validatedEdition,
+        servers: urlServers,
+        showServers: validShowServers,
     }
 }
 

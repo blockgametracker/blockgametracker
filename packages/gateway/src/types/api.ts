@@ -54,7 +54,10 @@ export type ApiServerNameResponse = BaseApiResponse<ServerIdentifier[]>
 export type ApiServerInfoResponse = BaseApiResponse<ServerInfo[]>
 
 /** A Minecraft edition. */
-export type MinecraftEdition = "java" | "bedrock"
+export enum MinecraftEdition {
+    JAVA = "java",
+    BEDROCK = "bedrock",
+}
 
 /** A unit of time. */
 type TimeUnit = "s" | "m" | "h" | "d" | "m" | "y"
