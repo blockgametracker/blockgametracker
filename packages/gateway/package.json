@@ -12,8 +12,5 @@
     "devDependencies": {
         "rimraf": "^5.0.7",
         "typescript": "^5.4.5"
-    },
-    "dependencies": {
-        "server-only": "^0.0.1"
     }
 }
