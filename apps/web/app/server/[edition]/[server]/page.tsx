@@ -19,7 +19,6 @@ export async function generateMetadata({
     if (!serverInfo) return notFound()
 
     return {
-        // TODO
         title: `${serverInfo.name} | blockgametracker`,
         keywords: [
             "blockgame",

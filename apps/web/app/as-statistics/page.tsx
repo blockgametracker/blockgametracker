@@ -4,7 +4,6 @@ import { Suspense } from "react"
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
-        // TODO
         title: "AS Statistics | blockgametracker",
         keywords: [
             "blockgame",

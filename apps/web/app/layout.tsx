@@ -5,7 +5,6 @@ import { Manrope } from "next/font/google"
 const manrope = Manrope({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-    //TODO
     title: "Home | blockgametracker",
     description:
         "Historical Minecraft server playercounts of over 80 minecraft servers, saved for as long as possible.",
@@ -17,7 +16,40 @@ export const metadata: Metadata = {
         "player tracker",
         "minecraft list",
     ],
-    authors: [],
+    themeColor: {
+        color: "#00d653",
+    },
+    alternates: {
+        canonical: "https://blockgametracker.gg/",
+    },
+    twitter: {
+        card: "summary",
+        site: "https://blockgametracker.gg/",
+        title: "Blockgametracker",
+        images: "https://blockgametracker.gg/favicon-32x32.png",
+        creator: "Anthony, Jelle, Michael",
+    },
+    openGraph: {
+        title: "Blockgametracker",
+        description: "Historical Minecraft server playercounts of over 80 minecraft servers, saved for as long as possible.",
+        type: "website",
+        url: "https://blockgametracker.gg/",
+        images: "https://blockgametracker.gg/favicon-32x32.png",
+    },
+    authors: [
+        {
+            name: "Anthony",
+            url: "https://github.com/MagicA550",
+        },
+        {
+            name: "Jelle",
+            url: "https://grafisch.media",
+        },
+        {
+            name: "Michael",
+            url: "https://github.com/clrxbl",
+        }
+    ],
 }
 
 export const revalidate = 30

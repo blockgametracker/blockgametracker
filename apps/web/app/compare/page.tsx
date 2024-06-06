@@ -12,7 +12,6 @@ import { MinecraftEdition } from "@repo/gateway"
 import { ComputedServerData } from "@/utils/parsedData"
 
 export const metadata: Metadata = {
-    // TODO
     title: "Compare | blockgametracker",
     keywords: [
         "blockgame",
