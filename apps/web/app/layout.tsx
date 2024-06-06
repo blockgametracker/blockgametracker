@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     //TODO
     title: "Home | blockgametracker",
     description:
-        "Historical Minecraft server playercounts of over 70 minecraft servers, saved for as long as possible.",
+        "Historical Minecraft server playercounts of over 80 minecraft servers, saved for as long as possible.",
     keywords: [
         "blockgame",
         "minecraft",
