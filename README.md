@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/blockgametracker.png">
-    <img src="https://blockgametracker.gg" height="128">
+  <a href="https://blockgametracker.gg">
+    <img src="https://github.com/blockgametracker.png" height="128">
     <h1 align="center">blockgametracker</h1>
   </a>
 </p>
