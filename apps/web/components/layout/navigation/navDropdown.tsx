@@ -48,7 +48,7 @@ export const Dropdown = (props: Props) => {
                                 getRangeParams(range),
                                 props.urlParams.edition,
                                 props.urlParams.servers,
-                                null,
+                                props.urlParams.showServers,
                             )}
                             key={`dropdown-${range}`}
                         >
