@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import { ServerData } from "@/utils/parsedData"
 import Image from "next/image"
 

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { PropsWithChildren } from "react"
+import { PropsWithChildren } from "react"
 import { DarkContainer } from "../layout/darkContainer"
 import { ServerData } from "@/utils/parsedData"
 import { ServerIcon } from "../server/serverIcon"

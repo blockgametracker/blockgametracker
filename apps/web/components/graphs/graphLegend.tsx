@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import { useState } from "react"
 import { DarkContainer } from "../layout/darkContainer"
 import { URLParams, buildURL, toggleServer } from "@/utils/urlBuilder"
 import { ServerData } from "@/utils/parsedData"
