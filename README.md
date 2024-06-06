@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/blockgametracker/blockgametracker/blob/develop/apps/web/public/android-chrome-192x192.png?raw=true">
+  <a href="https://github.com/blockgametracker/blockgametracker/blob/main/apps/web/public/android-chrome-192x192.png?raw=true">
     <img src="https://blockgametracker.gg" height="128">
     <h1 align="center">blockgametracker</h1>
   </a>
