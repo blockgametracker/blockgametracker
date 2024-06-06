@@ -27,7 +27,7 @@ export const Header = async () => {
                 <h1
                     className={`whitespace-nowrap text-3xl phone:text-5xl tablet:text-6xl text-center text-mainColor ${Expose.className}`}
                 >
-                    TRACKING {servers!.length.toLocaleString()} MINECRAFT
+                    TRACKING {servers?.length.toLocaleString() || 0} MINECRAFT
                     SERVERS
                 </h1>
 
@@ -42,12 +42,12 @@ export const Header = async () => {
                             <StatisticLarge
                                 iconName="user"
                                 title="Minecraft Java playercount"
-                                value={`${totalJava!.data.y.toLocaleString()}`}
+                                value={`${totalJava?.data.y.toLocaleString() || 0}`}
                             />
                             <StatisticLarge
                                 iconName="user"
                                 title="Minecraft Bedrock playercount"
-                                value={`${totalBedrock!.data.y.toLocaleString()}`}
+                                value={`${totalBedrock?.data.y.toLocaleString() || 0}`}
                             />
                         </div>
                     </div>
