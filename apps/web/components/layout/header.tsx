@@ -25,7 +25,7 @@ export const Header = async () => {
                 </div>
 
                 <h1
-                    className={`whitespace-nowrap text-3xl phone:text-5xl tablet:text-6xl text-center text-mainColor ${Expose.className}`}
+                    className={`text-3xl phone:text-5xl tablet:text-6xl text-center text-mainColor ${Expose.className}`}
                 >
                     TRACKING {servers?.length.toLocaleString() || 0} MINECRAFT
                     SERVERS

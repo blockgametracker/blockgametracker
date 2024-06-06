@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
         title: "Blockgametracker",
+        siteName: "Blockgametracker",
         description: "Historical Minecraft server playercounts of over 80 minecraft servers, saved for as long as possible.",
         type: "website",
         url: "https://blockgametracker.gg/",
