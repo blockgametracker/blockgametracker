@@ -24,14 +24,14 @@ export const Servers = async (props: Props) => {
                     <ServerObserver
                         id={`server-observer-${index}`}
                         max={serverList.length}
-                        active={index >= props.showServers}
+                        active={false}
                         key={`card-container-${serverData.server_slug}`}
                         {...props}
                     >
                         <ServerCard
                             urlParams={props}
                             serverData={serverData}
-                            loaded={index < props.showServers}
+                            loaded
                         />
                     </ServerObserver>
                 ))}
