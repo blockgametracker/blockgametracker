@@ -40,6 +40,7 @@ export const ServerPage = async (props: Props) => {
                         ticksX={ticks.ticksX}
                         ticksY={ticks.ticksY}
                         colors={greenGraph}
+                        loaded
                     />
                 </DarkContainer>
 

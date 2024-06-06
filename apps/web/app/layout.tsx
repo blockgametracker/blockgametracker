@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { Manrope } from "next/font/google"
 
@@ -16,26 +16,24 @@ export const metadata: Metadata = {
         "player tracker",
         "minecraft list",
     ],
-    themeColor: {
-        color: "#00d653",
-    },
     alternates: {
         canonical: "https://blockgametracker.gg/",
     },
     twitter: {
         card: "summary",
         site: "https://blockgametracker.gg/",
-        title: "Blockgametracker",
-        images: "https://blockgametracker.gg/favicon-32x32.png",
+        title: "blockgametracker",
+        images: "https://blockgametracker.gg/android-chrome-192x192.png",
         creator: "Anthony, Jelle, Michael",
     },
     openGraph: {
-        title: "Blockgametracker",
-        siteName: "Blockgametracker",
-        description: "Historical Minecraft server playercounts of over 80 minecraft servers, saved for as long as possible.",
+        title: "blockgametracker",
+        siteName: "blockgametracker",
+        description:
+            "Historical Minecraft server playercounts of over 80 minecraft servers, saved for as long as possible.",
         type: "website",
         url: "https://blockgametracker.gg/",
-        images: "https://blockgametracker.gg/favicon-32x32.png",
+        images: "https://blockgametracker.gg/android-chrome-192x192.png",
     },
     authors: [
         {
@@ -49,8 +47,12 @@ export const metadata: Metadata = {
         {
             name: "Michael",
             url: "https://github.com/clrxbl",
-        }
+        },
     ],
+}
+
+export const viewport: Viewport = {
+    themeColor: "#00d653",
 }
 
 export const revalidate = 30
