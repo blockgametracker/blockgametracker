@@ -91,6 +91,7 @@ const Compare = async ({ searchParams }: PageParams) => {
                                 ticksX={ticks.ticksX}
                                 ticksY={ticks.ticksY}
                                 fill={false}
+                                loaded
                             />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center">

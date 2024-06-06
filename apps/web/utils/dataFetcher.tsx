@@ -76,5 +76,8 @@ export const getOnline = async (
 /** Gets the information of a server with given name. */
 export async function getServer(serverName: string): Promise<Server | null> {
     const servers = await getServers()
-    return servers && servers.find((server) => server.name === serverName) || null
+    return (
+        (servers && servers.find((server) => server.name === serverName)) ||
+        null
+    )
 }
