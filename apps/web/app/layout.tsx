@@ -16,9 +16,6 @@ export const metadata: Metadata = {
         "player tracker",
         "minecraft list",
     ],
-    themeColor: {
-        color: "#00d653",
-    },
     alternates: {
         canonical: "https://blockgametracker.gg/",
     },
