@@ -20,17 +20,22 @@ export const Servers = async (props: Props) => {
             <div
                 className={`w-full grid gap-4 grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4`}
             >
-                {serverList.slice(0, props.showServers).map((serverData) => (
-                    <Fragment key={`card-container-${serverData.server_slug}`}>
-                        <ServerCard urlParams={props} serverData={serverData} />
-                    </Fragment>
+                {serverList.map((serverData, index) => (
+                    <ServerObserver
+                        id={`server-observer-${index}`}
+                        max={serverList.length}
+                        active={index === props.showServers}
+                        key={`card-container-${serverData.server_slug}`}
+                        {...props}
+                    >
+                        <ServerCard
+                            urlParams={props}
+                            serverData={serverData}
+                            loaded={index < props.showServers}
+                        />
+                    </ServerObserver>
                 ))}
             </div>
-            <ServerObserver
-                id="server-observer"
-                max={serverList.length}
-                {...props}
-            />
         </div>
     )
 }

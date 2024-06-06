@@ -27,7 +27,8 @@ export const Header = async () => {
                 <h1
                     className={`whitespace-nowrap text-3xl phone:text-5xl tablet:text-6xl text-center text-mainColor ${Expose.className}`}
                 >
-                    TRACKING {servers!.length.toLocaleString()} MINECRAFT SERVERS
+                    TRACKING {servers!.length.toLocaleString()} MINECRAFT
+                    SERVERS
                 </h1>
 
                 <div className="flex flex-col gap-8 items-center">

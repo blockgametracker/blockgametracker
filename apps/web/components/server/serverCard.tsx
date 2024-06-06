@@ -11,9 +11,10 @@ import { getPeakDate } from "@/utils/dataUtils"
 interface Props {
     urlParams: URLParams
     serverData: ServerData
+    loaded: boolean
 }
 
-export const ServerCard = async ({ urlParams, serverData }: Props) => {
+export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
     const ticks = getTicks(serverData, 6)
     const dataMapped = [serverData]
     const peak = getPeakDate(serverData.data)
@@ -54,6 +55,7 @@ export const ServerCard = async ({ urlParams, serverData }: Props) => {
                     colors={greenGraph}
                     peak={peak.x}
                     dataRange={urlParams.rangeParams.range}
+                    loaded={loaded}
                 />
             </div>
             <ServerStatistics serverData={serverData} />
