@@ -5,7 +5,7 @@
   </a>
 </p>
 
-<p align="center">Minecraft Meets Big Data.</p>
+<p align="center">Historical Minecraft server playercounts, saved for as long as possible.</p>
 
 ## Quotes
 
