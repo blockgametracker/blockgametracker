@@ -10,6 +10,7 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@next/third-parties": "^14.2.3",
         "@nivo/core": "^0.87.0",
         "@nivo/line": "^0.87.0",
         "@repo/gateway": "*",
