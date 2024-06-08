@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const Server = async () => {
     return (
         <Suspense>
-            <Layout page="as-statistics">
+            <Layout page="as-statistics" className="w-full h-full">
                 <iframe
                     className="w-full h-full"
                     src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk"

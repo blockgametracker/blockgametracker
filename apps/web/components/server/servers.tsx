@@ -25,7 +25,7 @@ export const Servers = async (props: Props) => {
                         id={`server-observer-${index}`}
                         max={serverList.length}
                         active={false}
-                        key={`card-container-${serverData.server_slug}`}
+                        key={index}
                         {...props}
                     >
                         <ServerCard

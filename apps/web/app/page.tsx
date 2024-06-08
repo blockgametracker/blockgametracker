@@ -14,20 +14,14 @@ const Page = ({ searchParams }: PageParams) => {
     )
 
     return (
-        <Layout page="Home">
-            <div className="w-full">
-                <Section className="">
-                    <div className="flex flex-col gap-16 items-center pt-16">
-                        <Header />
-                    </div>
-                </Section>
+        <Layout page="Home" className="flex flex-col w-full gap-16">
+            <div className="flex flex-col gap-16 items-center pt-32">
+                <Header />
             </div>
 
-            <Section>
-                <div className="flex flex-col gap-8">
-                    <Servers {...urlParams} />
-                </div>
-            </Section>
+            <div className="flex flex-col gap-8">
+                <Servers {...urlParams} />
+            </div>
         </Layout>
     )
 }

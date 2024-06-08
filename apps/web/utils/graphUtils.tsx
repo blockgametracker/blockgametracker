@@ -33,6 +33,8 @@ export const theme: Theme = {
     grid: {
         line: {
             stroke: "#262629",
+            strokeDasharray: "15, 10",
+            strokeWidth: 1,
         },
     },
     axis: {

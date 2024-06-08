@@ -1,12 +1,12 @@
 "use client"
 
 import { ResponsiveLine } from "@nivo/line"
-import { DarkContainer } from "@/components/layout/darkContainer"
 import { linearGradientDef } from "@nivo/core"
 import { COLOR_MAX, theme } from "@/utils/graphUtils"
 import type { ServerData } from "@/utils/parsedData"
 import { DataRange } from "@/utils/dataRange"
 import { Loading } from "./loading"
+import { Container } from "../layout/container"
 
 interface Props {
     data: ServerData[]
@@ -121,7 +121,7 @@ export const Graph = ({
                     }
                     fill={[{ match: "*", id: "gradientA" }]}
                     sliceTooltip={({ slice }) => (
-                        <DarkContainer className="flex flex-col z-50">
+                        <Container className="flex flex-col z-50 p-4">
                             <strong className="text-mainText font-normal whitespace-nowrap">
                                 {slice.points[0].data.xFormatted}
                             </strong>
@@ -146,7 +146,7 @@ export const Graph = ({
                                     </div>
                                 </div>
                             ))}
-                        </DarkContainer>
+                        </Container>
                     )}
                 />
             )}

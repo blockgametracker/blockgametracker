@@ -3,11 +3,14 @@ import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { Graph } from "@/components/graphs/graph"
 import { Section } from "@/components/layout/section"
-import { DarkContainer } from "@/components/layout/darkContainer"
 import { StatisticSmall } from "@/components/statistic/small"
-import { ServerButton } from "../button/serverButton"
-import { ServerInfo } from "./serverInfo"
 import { getOnline, getServer } from "@/utils/dataFetcher"
+import { Container } from "../layout/container"
+import { ServerSection } from "./serverSection"
+import { ServerStatistics } from "./serverStatistics"
+import { getPeakDate } from "@/utils/dataUtils"
+import { ServerInfo } from "./serverInfo"
+import { ServerButton } from "../button/serverButton"
 
 interface Props {
     serverSlug: string
@@ -29,46 +32,51 @@ export const ServerPage = async (props: Props) => {
     const online = serverData.data[serverData.data.length - 1]
     const ticks = getTicks(serverData, 8)
     const dataMapped = [serverData]
+    const peak = getPeakDate(serverData.data)
+    const minY = Math.min(...serverData.data.map((item) => item.y))
 
     return (
-        <Section className="w-full tablet:h-full">
-            <div className="flex flex-col tablet:flex-row gap-4 w-full tablet:h-full">
-                <DarkContainer className="w-full h-96 tablet:w-4/5 tablet:h-full ">
+        <>
+            <Container className="flex flex-col w-full tablet:w-1/5 h-fit gap-4 border-r-2 divide-y-2 divide-darkOverlay bg-darkFill border-darkOverlay">
+                <div className="flex flex-row p-4 items-center">
+                    <ServerInfo serverData={serverData} edition={props.urlParams.edition} />
+                    <ServerButton
+                        className="ml-auto"
+                        ariaLabel="Compare server"
+                        href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.edition, [props.serverSlug], null)}`}
+                        iconName="compare"
+                    />
+                </div>
+                <div className="flex flex-col px-4 divide-y-2 divide-darkOverlay">
+                    <ServerSection title="Server information" icon="information">
+                        <StatisticSmall title="Players" value={online.y.toLocaleString()} />
+                        <StatisticSmall title="Host" value={server.hostname} />
+                        <StatisticSmall title="Edition" value={props.edition} />
+                    </ServerSection>
+                    <ServerSection title="Data information" icon="graph">
+                        <StatisticSmall title="Data range" value={props.urlParams.rangeParams.start.toString().replace("-", "")} />
+                        <StatisticSmall title="Data step" value={props.urlParams.rangeParams.step} />
+                        <StatisticSmall title="Data points" value={serverData.data.length} />
+                    </ServerSection>
+                </div>
+            </Container>
+            
+            <Container className="flex flex-col w-full h-96 tablet:w-4/5 tablet:h-full divide-y-2 divide-darkOverlay shrink-0">
+                <div className="flex w-full h-full p-4">
                     <Graph
                         data={dataMapped}
                         fill={true}
                         ticksX={ticks.ticksX}
                         ticksY={ticks.ticksY}
                         colors={greenGraph}
+                        areaBaselineValue={minY}
+                        peak={peak.x}
+                        dataRange={props.urlParams.rangeParams.range}
                         loaded
                     />
-                </DarkContainer>
-
-                <div className="flex flex-col w-full tablet:w-1/5 tablet:h-full gap-4">
-                    <DarkContainer>
-                        <ServerInfo
-                            serverData={serverData}
-                            edition={props.urlParams.edition}
-                        >
-                            <ServerButton
-                                className="ml-auto"
-                                ariaLabel="Compare server"
-                                href={`/compare/${buildURL(props.urlParams.rangeParams, props.urlParams.edition, [props.serverSlug], null)}`}
-                                iconName="compare"
-                            />
-                        </ServerInfo>
-                    </DarkContainer>
-
-                    <DarkContainer>
-                        <h1>General information</h1>
-                        <StatisticSmall
-                            title="Players"
-                            value={online.y.toLocaleString()}
-                        />
-                        <StatisticSmall title="Host" value={server.hostname} />
-                    </DarkContainer>
                 </div>
-            </div>
-        </Section>
+                <ServerStatistics serverData={serverData} />
+            </Container>
+        </>
     )
 }

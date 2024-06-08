@@ -39,3 +39,34 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+.gradient {
+    mask-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.4) 1%,
+        rgba(0, 0, 0, 1) 30%
+    );
+}
+
+.header {
+    padding: 0;
+    margin: 0;
+    background-image: radial-gradient(#1c1c20 2.5px, transparent 2.5px);
+    background-size: 30px 30px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #88888800;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4d4d4d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}

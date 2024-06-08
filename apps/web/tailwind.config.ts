@@ -13,6 +13,7 @@ const config: Config = {
                 bgfill: "#e0e0e0",
                 dark: "#0b0b0c",
                 darkFill: "#0f0f11",
+                darkSelected: "#171719",
                 darkOverlay: "#1f1f21",
                 mainColor: "#00d653",
                 secondColor: "#16a752",
