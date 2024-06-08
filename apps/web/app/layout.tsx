@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { Manrope } from "next/font/google"
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google"
 
 const manrope = Manrope({ subsets: ["latin"] })
 
@@ -56,7 +56,7 @@ export const viewport: Viewport = {
     themeColor: "#00d653",
 }
 
-export const revalidate = 30
+export const revalidate = 60
 
 export default function RootLayout({
     children,
