@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { Manrope } from "next/font/google"
+import Script from "next/script"
 
 const manrope = Manrope({ subsets: ["latin"] })
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
         "blockgame",
         "minecraft",
         "minecraft server",
-        "minecraft playercout",
+        "minecraft playercount",
         "player tracker",
         "minecraft list",
     ],
@@ -64,6 +65,18 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`text-secondText ${manrope.className}`}>
+            <head>
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=G-5NNJV9KCDP"></Script>
+                <Script id="google-analytics">
+                    {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+
+                    gtag('config', 'G-5NNJV9KCDP');
+                    `}
+                </Script>
+            </head>
             <body className="w-screen h-screen overflow-x-hidden">
                 {children}
             </body>
