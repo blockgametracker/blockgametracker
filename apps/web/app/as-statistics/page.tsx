@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Layout } from "@/components/layout"
 import { Suspense } from "react"
+import { getURLParams } from "@/utils/urlBuilder"
+import { PageParams } from "@/utils/next"
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
@@ -16,10 +18,12 @@ export async function generateMetadata(): Promise<Metadata> {
     }
 }
 
-const Server = async () => {
+const Server = async ({ searchParams }: PageParams) => {
+    const urlParams = getURLParams(searchParams)
+
     return (
         <Suspense>
-            <Layout page="as-statistics" className="w-full h-full">
+            <Layout page="as-statistics" className="w-full h-full" urlParams={urlParams}>
                 <iframe
                     className="w-full h-full"
                     src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk"

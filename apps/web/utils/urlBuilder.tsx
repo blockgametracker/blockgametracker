@@ -1,58 +1,68 @@
-import { MinecraftEdition, getEditionOrDefault } from "@repo/gateway"
 import {
-    DataRangeParams,
-    getRangeParams,
-    searchParamToRange,
-} from "./dataRange"
+    MinecraftEdition,
+    QueryStart,
+    QueryStep,
+    getEditionOrDefault,
+} from "@repo/gateway"
 import { ServerData } from "./parsedData"
 
 /** The URL parameters provided to the page. */
 export interface URLParams {
-    rangeParams: DataRangeParams
     edition: MinecraftEdition
+    start: QueryStart
+    step: QueryStep
+    view: string
     servers: string[]
     showServers: number
 }
 
 /** Returns the URL Params for the given internally stored data. */
-export function getURLParams(
-    rangeParams?: string,
-    edition?: string,
-    servers?: string,
-    showServers?: string,
-): URLParams {
-    const dateRange = searchParamToRange(rangeParams)
+export function getURLParams(searchParams?: {
+    [key: string]: string | undefined
+}): URLParams {
+    const { edition, start, step, view, servers, showServers } =
+        searchParams || {}
 
-    const urlServers = servers?.split(",").map((server) => server.trim()) ?? []
     const validatedEdition = getEditionOrDefault(edition)
+    const urlServers = servers?.split(",").map((server) => server.trim()) ?? []
 
     const parsedShowServers = Number.parseInt(showServers ?? "")
     const validShowServers = !isNaN(parsedShowServers) ? parsedShowServers : 12
 
     return {
-        rangeParams: getRangeParams(dateRange),
         edition: validatedEdition,
-        servers: urlServers,
+        start: (start as QueryStart) ?? "-1d",
+        step: (step as QueryStart) ?? "4m",
+        view: typeof view === "string" ? view : "default",
+        servers: urlServers ?? [],
         showServers: validShowServers,
     }
 }
 
 /** Builds the URL given the parameters provided. */
 export function buildURL(
-    rangeParams: DataRangeParams,
-    edition: string | null,
-    servers: string[] | null,
-    showServers: number | null,
-) {
-    const params = new URLSearchParams({
-        range: rangeParams.range,
-    })
+    urlParams: URLParams,
+    updates?: Partial<URLParams>,
+): string {
+    // Create a copy of the URL parameters
+    const updatedParams = { ...urlParams, ...updates }
 
-    if (edition) params.append("edition", edition)
-    if (servers) params.append("servers", servers.join(","))
-    if (showServers) params.append("showServers", showServers.toString())
+    // Filter out empty string values and undefined values
+    const filteredParams = Object.fromEntries(
+        Object.entries(updatedParams).filter(
+            ([_, paramValue]) => paramValue !== "" && paramValue !== undefined,
+        ),
+    )
 
-    return `?${params.toString()}`
+    // Construct the query string, converting values to strings
+    const queryString = Object.entries(filteredParams)
+        .map(
+            ([paramKey, paramValue]) =>
+                `${paramKey}=${encodeURIComponent(String(paramValue))}`,
+        )
+        .join("&")
+
+    return `?${queryString}`
 }
 
 /** Toggles a server from the serverlist in the URL */

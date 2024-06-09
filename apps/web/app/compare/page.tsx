@@ -5,11 +5,12 @@ import { getTotalEnsembled } from "@/utils/dataFetcher"
 import { GRAPH_COLORS, TickResult, getTicks } from "@/utils/graphUtils"
 import type { PageParams } from "@/utils/next"
 import type { Metadata } from "next"
-import { getURLParams } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { ComputedServerData } from "@/utils/parsedData"
 import { GraphServers } from "@/components/graphs/graphServers"
 import { Icon } from "@/components/icon"
+import { Filters } from "@/components/filter/filters"
+import { getURLParams } from "@/utils/urlBuilder"
 
 export const metadata: Metadata = {
     title: "Compare | blockgametracker",
@@ -25,20 +26,14 @@ export const metadata: Metadata = {
 }
 
 const Compare = async ({ searchParams }: PageParams) => {
+    const urlParams = getURLParams(searchParams)
     const urlServers: string[] =
         searchParams?.servers?.split(",").map((server) => server.trim()) || []
 
-    const urlParams = getURLParams(
-        searchParams?.range,
-        searchParams?.edition,
-        searchParams?.servers,
-        searchParams?.showServers,
-    )
-
     const servers = await getTotalEnsembled(
         urlParams.edition as MinecraftEdition,
-        urlParams.rangeParams.start,
-        urlParams.rangeParams.step,
+        urlParams.start,
+        urlParams.step,
     )
 
     const selectedServers = servers.filter((server) => {
@@ -79,8 +74,10 @@ const Compare = async ({ searchParams }: PageParams) => {
     }
 
     return (
-        <Layout page="Compare" className="flex flex-col tablet:flex-row-reverse w-full tablet:h-full gap-8 tablet:overflow-hidden">
-            <div className="flex flex-col w-full tablet:w-4/5 gap-8 h-full">
+        <Layout page="Compare" className="flex flex-col tablet:flex-row w-full tablet:h-full gap-8 tablet:overflow-hidden" urlParams={urlParams}>
+            <Filters urlParams={urlParams} />
+
+            <div className="flex flex-col w-full tablet:w-4/6 gap-8 h-full">
                 <Container className="p-4 w-full h-96 tablet:h-full">
                     {selectedServers.length !== 0 ? (
                         <Graph
@@ -89,7 +86,7 @@ const Compare = async ({ searchParams }: PageParams) => {
                             ticksX={ticks.ticksX}
                             ticksY={ticks.ticksY}
                             fill={false}
-                            dataRange={urlParams.rangeParams.range}
+                            start={urlParams.start}
                             loaded
                         />
                     ) : (

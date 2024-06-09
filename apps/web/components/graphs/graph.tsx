@@ -4,9 +4,9 @@ import { ResponsiveLine } from "@nivo/line"
 import { linearGradientDef } from "@nivo/core"
 import { COLOR_MAX, theme } from "@/utils/graphUtils"
 import type { ServerData } from "@/utils/parsedData"
-import { DataRange } from "@/utils/dataRange"
 import { Loading } from "./loading"
 import { Container } from "../layout/container"
+import { QueryStart } from "@repo/gateway"
 
 interface Props {
     data: ServerData[]
@@ -16,7 +16,7 @@ interface Props {
     ticksX?: string[]
     ticksY?: number[]
     peak?: string
-    dataRange?: DataRange
+    start?: QueryStart
     loaded?: boolean
 }
 
@@ -28,7 +28,7 @@ export const Graph = ({
     ticksX,
     ticksY,
     peak,
-    dataRange,
+    start,
     loaded,
 }: Props) => {
     return (
@@ -53,7 +53,7 @@ export const Graph = ({
                         left: ticksY ? 40 : 0,
                     }}
                     enableArea={fill}
-                    areaOpacity={0.4}
+                    areaOpacity={0.3}
                     areaBaselineValue={
                         areaBaselineValue ? areaBaselineValue : 0
                     }
@@ -74,16 +74,18 @@ export const Graph = ({
                             const hour = tick.substring(11, 13)
                             const minute = tick.substring(14, 16)
 
-                            switch (dataRange) {
-                                case DataRange.HOUR:
+                            switch (start) {
+                                case "-1h":
                                     return `${hour}:${minute}`
-                                case DataRange.DAY:
+                                case "-6h":
                                     return `${hour}:${minute}`
-                                case DataRange.WEEK:
+                                case "-1d":
+                                    return `${hour}:${minute}`
+                                case "-7d":
                                     return `${month}/${day}`
-                                case DataRange.MONTH:
+                                case "-1m":
                                     return `${month}/${day}`
-                                case DataRange.YEAR:
+                                case "-1y":
                                     return `${month}/${year}`
                                 default:
                                     return tick
@@ -100,7 +102,7 @@ export const Graph = ({
                     defs={[
                         linearGradientDef("gradientA", [
                             { offset: 0, color: "inherit", opacity: 0.8 },
-                            { offset: 100, color: "inherit", opacity: 0.2 },
+                            { offset: 100, color: "inherit", opacity: 0.1 },
                         ]),
                     ]}
                     markers={

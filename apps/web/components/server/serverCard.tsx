@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout/container"
 import { Graph } from "@/components/graphs/graph"
 import { getTicks, greenGraph } from "@/utils/graphUtils"
-import { ServerButton } from "../button/serverButton"
+import { ServerButton } from "./serverButton"
 import { ServerInfo } from "./serverInfo"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { ServerData } from "@/utils/parsedData"
@@ -33,13 +33,13 @@ export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
                 <div className={`inline-flex gap-2 ml-auto`}>
                     <ServerButton
                         ariaLabel="Compare server"
-                        href={`/compare/${buildURL(urlParams.rangeParams, urlParams.edition, [serverData.server_slug], null)}`}
+                        href={`/compare/${buildURL(urlParams, { servers: [serverData.server_slug.toLowerCase()] })}`}
                         iconName="compare"
                         className="hidden phone:flex"
                     />
                     <ServerButton
                         ariaLabel="Open server"
-                        href={`/server/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams.rangeParams, urlParams.edition, urlParams.servers, null)}`}
+                        href={`/server/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams)}`}
                         iconName="fullscreen"
                     />
                 </div>
@@ -54,7 +54,7 @@ export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
                     ticksY={ticks.ticksY}
                     colors={greenGraph}
                     peak={peak.x}
-                    dataRange={urlParams.rangeParams.range}
+                    start={urlParams.start}
                     loaded={loaded}
                 />
             </div>

@@ -1,22 +1,21 @@
 import { ServerCard } from "./serverCard"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
-import { URLParams as Props } from "@/utils/urlBuilder"
+import { URLParams } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
-import { Fragment } from "react"
 import { ServerObserver } from "./serverObserver"
+import { calculateDataPoints } from "@/utils/dataUtils"
+import { Container } from "../layout/container"
+import { Icon } from "../icon"
 
-export const Servers = async (props: Props) => {
+export const Servers = async (urlParams: URLParams) => {
     const serverList = await getTotalEnsembled(
-        props.edition as MinecraftEdition,
-        props.rangeParams.start,
-        props.rangeParams.step,
+        urlParams.edition as MinecraftEdition,
+        urlParams.start,
+        urlParams.step,
     )
 
     return (
-        <div className="flex flex-col gap-8">
-            <div className="flex flex-col phone:flex-row gap-4 phone:items-center">
-                <h2 className="text-3xl mr-auto">Global server overview</h2>
-            </div>
+        <div className="flex h-full flex-col gap-8">
             <div
                 className={`w-full grid gap-4 grid-cols-1 tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4`}
             >
@@ -26,10 +25,10 @@ export const Servers = async (props: Props) => {
                         max={serverList.length}
                         active={false}
                         key={index}
-                        {...props}
+                        urlParams={urlParams}
                     >
                         <ServerCard
-                            urlParams={props}
+                            urlParams={urlParams}
                             serverData={serverData}
                             loaded
                         />

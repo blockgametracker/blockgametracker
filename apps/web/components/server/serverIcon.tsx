@@ -12,7 +12,7 @@ export const ServerIcon = ({ className, server }: Props) => (
     <Image
         src={server.icon}
         alt={`${server.server_name} icon`}
-        className={`fade gradient object-cover aspect-square image ${className}`}
+        className={`object-cover aspect-square image ${className}`}
         sizes="(max-width: 384px) 64px, 64px"
         title={server.server_name}
         width={64}

@@ -2,36 +2,23 @@
 
 import Link from "next/link"
 import { Icon } from "@/components/icon"
-import { NavButton } from "../../button/navButton"
-import { Section } from "@/components/layout/section"
-import { useSearchParams } from "next/navigation"
-import { Dropdown } from "./navDropdown"
+import { NavButton } from "./navButton"
 import { useState } from "react"
-import { buildURL, getURLParams } from "@/utils/urlBuilder"
-import { ServerFilters } from "@/components/server/serverFilters"
+import { URLParams, buildURL, getURLParams } from "@/utils/urlBuilder"
 
 interface Props {
     page: string
+    urlParams: URLParams
 }
 
 export const Navigation = (props: Props) => {
-    const searchParams = useSearchParams()
-    const selectedRange = searchParams.get("range") as string
-
-    const urlParams = getURLParams(
-        selectedRange,
-        searchParams.get("edition") as string,
-        searchParams.get("servers") as string,
-        searchParams.get("showServers") as string,
-    )
-
     const [active, setActive] = useState(false)
 
     return (
         <div className="h-20 top-0 w-full px-8 py-4 flex flex-col tablet:flex-row items-center border-b-2 border-darkOverlay bg-darkFill z-10">
             <div className="w-full tablet:w-fit flex flex-row items-center">
                 <Link
-                    href={`/${buildURL(urlParams.rangeParams, urlParams.edition, urlParams.servers, urlParams.showServers)}`}
+                    href={`/${buildURL(props.urlParams)}`}
                     className="inline-flex items-center max-w-content gap-2 tablet:mr-4"
                 >
                     <Icon
@@ -56,10 +43,10 @@ export const Navigation = (props: Props) => {
 
             <div className={`w-full ${active && "fixed left-0 top-0 w-full h-full bg-dark bg-opacity-60"}`}>
                 <div
-                    className={`w-full gap-4 tablet:gap-0 pt-8 tablet:pt-0 tablet:items-center ${active ? "w-full flex flex-col tablet:flex-row border-b-2 px-4 pb-8 bg-dark border-darkOverlay" : "hidden tablet:flex"}`}
+                    className={`w-full gap-4 tablet:gap-0 pt-4 tablet:pt-0 tablet:items-center ${active ? "w-full flex flex-col tablet:flex-row border-b-2 px-4 pb-8 bg-dark border-darkOverlay" : "hidden tablet:flex"}`}
                 >
                     <div className="flex flex-col tablet:flex-row">
-                        <div className="w-full flex justify-center mb-8">
+                        <div className="w-full flex justify-end pr-4">
                             <button
                                 className="group flex tablet:hidden"
                                 onClick={() => setActive(!active)}
@@ -73,21 +60,21 @@ export const Navigation = (props: Props) => {
                         <NavButton
                             target="home"
                             currentPage={props.page}
-                            href={`/${buildURL(urlParams.rangeParams, urlParams.edition, null, urlParams.showServers)}`}
+                            href={`/${buildURL(props.urlParams)}`}
                         >
                             Home
                         </NavButton>
                         <NavButton
                             target="compare"
                             currentPage={props.page}
-                            href={`/compare${buildURL(urlParams.rangeParams, urlParams.edition, null, urlParams.showServers)}`}
+                            href={`/compare${buildURL(props.urlParams)}`}
                         >
                             Compare Servers
                         </NavButton>
                         <NavButton
                             target="as-statistics"
                             currentPage={props.page}
-                            href={`/as-statistics${buildURL(urlParams.rangeParams, urlParams.edition, null, urlParams.showServers)}`}
+                            href={`/as-statistics${buildURL(props.urlParams)}`}
                         >
                             AS Statistics
                         </NavButton>
@@ -103,14 +90,6 @@ export const Navigation = (props: Props) => {
                         >
                             Grafana
                         </NavButton>
-                    </div>
-
-                    <div className="gap-4 tablet:gap-8 tablet:ml-auto flex flex-col tablet:flex-row">
-                        <ServerFilters {...urlParams} />
-                        <Dropdown
-                            selectedRange={selectedRange}
-                            urlParams={urlParams}
-                        />
                     </div>
                 </div>
             </div>

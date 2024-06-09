@@ -4,10 +4,11 @@ import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { useRouter } from "next/navigation"
 import { PropsWithChildren, useEffect } from "react"
 
-interface Props extends URLParams, PropsWithChildren {
+interface Props extends PropsWithChildren {
     id: string
     max: number
     active: boolean
+    urlParams: URLParams
 }
 
 export const ServerObserver = (props: Props) => {
@@ -27,16 +28,11 @@ export const ServerObserver = (props: Props) => {
             entries.forEach((entry) => {
                 if (
                     entry.isIntersecting &&
-                    props.showServers < props.max &&
+                    props.urlParams.showServers < props.max &&
                     props.active
                 ) {
                     router.replace(
-                        buildURL(
-                            props.rangeParams,
-                            props.edition,
-                            null,
-                            props.showServers + 8,
-                        ),
+                        buildURL(props.urlParams),
                     )
                 }
             })
@@ -48,7 +44,7 @@ export const ServerObserver = (props: Props) => {
         return () => {
             observer.disconnect()
         }
-    }, [props.showServers, props.edition, props.max, props.active])
+    }, [props.urlParams.showServers, props.urlParams.edition, props.max, props.active])
 
     return <div id={props.id}>{props.children}</div>
 }
