@@ -17,12 +17,12 @@ export const FilterButton = (props: Props) => {
     return (
         <Link
             href={buildURL(props.URLParams, props.updates)}
-            className={`inline-flex gap-4 w-full items-center px-4 py-1 ${isActive ? "bg-darkSelected text-mainText" : ""}`}
+            className={`inline-flex gap-4 w-full items-center px-8 py-1 ${isActive ? "bg-darkSelected text-mainText" : ""}`}
         >
             <div
                 className={`w-4 h-4 rounded-md border-2 ${isActive ? "border-mainText bg-mainText" : "border-darkOverlay"}`}
             >
-                <Icon iconName="close" className="fill-dark w-3 h-3" />
+                <Icon iconName="check" className="fill-dark w-3 h-3" />
             </div>
             {props.children}
         </Link>

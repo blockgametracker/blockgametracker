@@ -11,6 +11,7 @@ import { GraphServers } from "@/components/graphs/graphServers"
 import { Icon } from "@/components/icon"
 import { Filters } from "@/components/filter/filters"
 import { getURLParams } from "@/utils/urlBuilder"
+import { Content } from "@/components/layout/content"
 
 export const metadata: Metadata = {
     title: "Compare | blockgametracker",
@@ -54,34 +55,34 @@ const Compare = async ({ searchParams }: PageParams) => {
             : [""],
         ticksY: selectedServers[0]
             ? getTicks(
-                  selectedServers.reduce(
-                      (acc, curr) => {
-                          acc.data.push(
-                              ...curr.data.map((data) => {
-                                  return {
-                                      x: data.x,
-                                      y: data.y,
-                                  }
-                              }),
-                          )
-                          return acc
-                      },
-                      { data: [] } as ComputedServerData,
-                  ),
-                  0,
-              ).ticksY
+                selectedServers.reduce(
+                    (acc, curr) => {
+                        acc.data.push(
+                            ...curr.data.map((data) => {
+                                return {
+                                    x: data.x,
+                                    y: data.y,
+                                }
+                            }),
+                        )
+                        return acc
+                    },
+                    { data: [] } as ComputedServerData,
+                ),
+                0,
+            ).ticksY
             : [0],
     }
 
     return (
         <Layout
             page="Compare"
-            className="flex flex-col tablet:flex-row w-full tablet:h-full gap-8 tablet:overflow-hidden"
+            className="flex flex-col tablet:flex-row w-full tablet:h-full justify-end tablet:overflow-hidden"
             urlParams={urlParams}
         >
             <Filters urlParams={urlParams} />
 
-            <div className="flex flex-col w-full tablet:w-4/6 gap-8 h-full">
+            <Content>
                 <Container className="p-4 w-full h-96 tablet:h-full">
                     {selectedServers.length !== 0 ? (
                         <Graph
@@ -103,9 +104,9 @@ const Compare = async ({ searchParams }: PageParams) => {
                         </div>
                     )}
                 </Container>
-            </div>
 
-            <GraphServers urlParams={urlParams} servers={servers} />
+                <GraphServers urlParams={urlParams} servers={servers} />
+            </Content>
         </Layout>
     )
 }

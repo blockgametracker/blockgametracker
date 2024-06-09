@@ -14,7 +14,7 @@ export const Layout = ({ children, className, page, urlParams }: Props) => (
         <Navigation urlParams={urlParams} page={page} />
 
         <div className="flex flex-col w-full h-full tablet:overflow-y-auto">
-            <div className={`px-2 py-8 tablet:px-8 ${className}`}>
+            <div className={` ${className}`}>
                 {children}
             </div>
             <Footer />
