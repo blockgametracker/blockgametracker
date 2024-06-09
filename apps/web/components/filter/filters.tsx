@@ -8,7 +8,11 @@ import { MinecraftEdition } from "@repo/gateway"
 import { Icon } from "../icon"
 import { useState } from "react"
 
-export const Filters = ({ urlParams }: { urlParams: URLParams }) => {
+export interface Props {
+    urlParams: URLParams
+}
+
+export const Filters = (props: Props) => {
     const [active, setActive] = useState(false)
 
     return (
@@ -21,22 +25,22 @@ export const Filters = ({ urlParams }: { urlParams: URLParams }) => {
             </div>
             <div className={`divide-y-2 border-t-2 divide-darkOverlay border-darkOverlay overflow-scroll ${active ? "flex flex-col":"hidden tablet:flex flex-col"}`}>
                 <FilterSection filter="Edition" icon="information">
-                    <FilterButton updates={{ edition: "java" as MinecraftEdition }} URLParams={urlParams}>Java</FilterButton>
-                    <FilterButton updates={{ edition: "bedrock" as MinecraftEdition }} URLParams={urlParams}>Bedrock</FilterButton>
+                    <FilterButton updates={{ edition: MinecraftEdition.JAVA }} URLParams={props.urlParams}>Java</FilterButton>
+                    <FilterButton updates={{ edition: MinecraftEdition.BEDROCK }} URLParams={props.urlParams}>Bedrock</FilterButton>
                 </FilterSection>
 
                 <FilterSection filter="View" icon="graph">
-                    <FilterButton updates={{ view: "default" }} URLParams={urlParams}>Default</FilterButton>
-                    <FilterButton updates={{ view: "compact" }} URLParams={urlParams}>Compact</FilterButton>
+                    <FilterButton updates={{ view: "default" }} URLParams={props.urlParams}>Default</FilterButton>
+                    <FilterButton updates={{ view: "compact" }} URLParams={props.urlParams}>Compact</FilterButton>
                 </FilterSection>
 
                 <FilterSection filter="Data range" icon="graph">
-                    <FilterButton updates={{ start: "-1h", step: "30s" }} URLParams={urlParams}>Last 1 hour</FilterButton>
-                    <FilterButton updates={{ start: "-6h", step: "1m" }} URLParams={urlParams}>Last 6 hours</FilterButton>
-                    <FilterButton updates={{ start: "-1d", step: "4m" }} URLParams={urlParams}>Last 1 day</FilterButton>
-                    <FilterButton updates={{ start: "-7d", step: "1h" }} URLParams={urlParams}>Last 7 days</FilterButton>
-                    <FilterButton updates={{ start: "-30d", step: "6h" }} URLParams={urlParams}>Last 30 days</FilterButton>
-                    <FilterButton updates={{ start: "-1y", step: "1d" }} URLParams={urlParams}>Last 1 year</FilterButton>
+                    <FilterButton updates={{ start: "-1h", step: "30s" }} URLParams={props.urlParams}>Last 1 hour</FilterButton>
+                    <FilterButton updates={{ start: "-6h", step: "1m" }} URLParams={props.urlParams}>Last 6 hours</FilterButton>
+                    <FilterButton updates={{ start: "-1d", step: "4m" }} URLParams={props.urlParams}>Last 1 day</FilterButton>
+                    <FilterButton updates={{ start: "-7d", step: "1h" }} URLParams={props.urlParams}>Last 7 days</FilterButton>
+                    <FilterButton updates={{ start: "-30d", step: "6h" }} URLParams={props.urlParams}>Last 30 days</FilterButton>
+                    <FilterButton updates={{ start: "-1y", step: "1d" }} URLParams={props.urlParams}>Last 1 year</FilterButton>
                 </FilterSection>
             </div>
         </Container>
