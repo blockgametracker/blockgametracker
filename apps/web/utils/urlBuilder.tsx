@@ -34,7 +34,7 @@ export function getURLParams(searchParams?: {
         edition: validatedEdition,
         start: getRangeOrDefault<QueryStart>(start, "-1d"),
         step: getRangeOrDefault<QueryStep>(step, "4m"),
-        view: typeof view === "string" ? view : "default",
+        view: view ?? "default",
         servers: urlServers ?? [],
         showServers: validShowServers,
     }
