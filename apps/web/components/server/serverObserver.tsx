@@ -31,9 +31,7 @@ export const ServerObserver = (props: Props) => {
                     props.urlParams.showServers < props.max &&
                     props.active
                 ) {
-                    router.replace(
-                        buildURL(props.urlParams),
-                    )
+                    router.replace(buildURL(props.urlParams))
                 }
             })
         }
@@ -44,7 +42,12 @@ export const ServerObserver = (props: Props) => {
         return () => {
             observer.disconnect()
         }
-    }, [props.urlParams.showServers, props.urlParams.edition, props.max, props.active])
+    }, [
+        props.urlParams.showServers,
+        props.urlParams.edition,
+        props.max,
+        props.active,
+    ])
 
     return <div id={props.id}>{props.children}</div>
 }

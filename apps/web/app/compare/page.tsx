@@ -54,27 +54,31 @@ const Compare = async ({ searchParams }: PageParams) => {
             : [""],
         ticksY: selectedServers[0]
             ? getTicks(
-                selectedServers.reduce(
-                    (acc, curr) => {
-                        acc.data.push(
-                            ...curr.data.map((data) => {
-                                return {
-                                    x: data.x,
-                                    y: data.y,
-                                }
-                            }),
-                        )
-                        return acc
-                    },
-                    { data: [] } as ComputedServerData,
-                ),
-                0,
-            ).ticksY
+                  selectedServers.reduce(
+                      (acc, curr) => {
+                          acc.data.push(
+                              ...curr.data.map((data) => {
+                                  return {
+                                      x: data.x,
+                                      y: data.y,
+                                  }
+                              }),
+                          )
+                          return acc
+                      },
+                      { data: [] } as ComputedServerData,
+                  ),
+                  0,
+              ).ticksY
             : [0],
     }
 
     return (
-        <Layout page="Compare" className="flex flex-col tablet:flex-row w-full tablet:h-full gap-8 tablet:overflow-hidden" urlParams={urlParams}>
+        <Layout
+            page="Compare"
+            className="flex flex-col tablet:flex-row w-full tablet:h-full gap-8 tablet:overflow-hidden"
+            urlParams={urlParams}
+        >
             <Filters urlParams={urlParams} />
 
             <div className="flex flex-col w-full tablet:w-4/6 gap-8 h-full">
@@ -91,7 +95,10 @@ const Compare = async ({ searchParams }: PageParams) => {
                         />
                     ) : (
                         <div className="w-full h-full flex flex-col gap-4 items-center justify-center animate-pulse">
-                            <Icon iconName="icon" className="w-6 h-6 fill-mainColor" />
+                            <Icon
+                                iconName="icon"
+                                className="w-6 h-6 fill-mainColor"
+                            />
                             <p>Select servers to start comparing</p>
                         </div>
                     )}

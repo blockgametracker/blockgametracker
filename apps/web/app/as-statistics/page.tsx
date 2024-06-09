@@ -23,7 +23,11 @@ const Server = async ({ searchParams }: PageParams) => {
 
     return (
         <Suspense>
-            <Layout page="as-statistics" className="w-full h-full" urlParams={urlParams}>
+            <Layout
+                page="as-statistics"
+                className="w-full h-full"
+                urlParams={urlParams}
+            >
                 <iframe
                     className="w-full h-full"
                     src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk"

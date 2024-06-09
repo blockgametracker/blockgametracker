@@ -21,10 +21,7 @@ export const Navigation = (props: Props) => {
                     href={`/${buildURL(props.urlParams)}`}
                     className="inline-flex items-center max-w-content gap-2 tablet:mr-4"
                 >
-                    <Icon
-                        iconName="icon"
-                        className="w-6 h-6 fill-mainColor"
-                    />
+                    <Icon iconName="icon" className="w-6 h-6 fill-mainColor" />
                     <p className="text-mainText flex tablet:hidden">
                         blockgametracker
                     </p>
@@ -41,7 +38,9 @@ export const Navigation = (props: Props) => {
                 </button>
             </div>
 
-            <div className={`w-full ${active && "fixed left-0 top-0 w-full h-full bg-dark bg-opacity-60"}`}>
+            <div
+                className={`w-full ${active && "fixed left-0 top-0 w-full h-full bg-dark bg-opacity-60"}`}
+            >
                 <div
                     className={`w-full gap-4 tablet:gap-0 pt-4 tablet:pt-0 tablet:items-center ${active ? "w-full flex flex-col tablet:flex-row border-b-2 px-4 pb-8 bg-dark border-darkOverlay" : "hidden tablet:flex"}`}
                 >

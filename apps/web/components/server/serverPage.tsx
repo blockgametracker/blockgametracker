@@ -38,7 +38,7 @@ export const ServerPage = async (props: Props) => {
     return (
         <>
             <Filters urlParams={props.urlParams} />
-            
+
             <Container className="flex flex-col w-full h-96 tablet:w-4/6 tablet:h-full divide-y-2 divide-darkOverlay">
                 <div className="flex w-full h-full p-4">
                     <Graph
@@ -58,7 +58,10 @@ export const ServerPage = async (props: Props) => {
 
             <Container className="flex flex-col w-full tablet:w-1/6 h-fit border-r-2 divide-y-2 divide-darkOverlay bg-darkFill border-darkOverlay shrink-0">
                 <div className="flex flex-row p-4 items-center">
-                    <ServerInfo serverData={serverData} edition={props.urlParams.edition} />
+                    <ServerInfo
+                        serverData={serverData}
+                        edition={props.urlParams.edition}
+                    />
                     <ServerButton
                         className="ml-auto"
                         ariaLabel="Compare server"
@@ -67,15 +70,38 @@ export const ServerPage = async (props: Props) => {
                     />
                 </div>
                 <div className="flex flex-col px-4 divide-y-2 divide-darkOverlay">
-                    <ServerSection title="Server information" icon="information">
-                        <StatisticSmall title="Players" value={online.y.toLocaleString()} />
+                    <ServerSection
+                        title="Server information"
+                        icon="information"
+                    >
+                        <StatisticSmall
+                            title="Players"
+                            value={online.y.toLocaleString()}
+                        />
                         <StatisticSmall title="Host" value={server.hostname} />
-                        <StatisticSmall title="Edition" value={props.edition.charAt(0).toUpperCase() + props.edition.slice(1)} />
+                        <StatisticSmall
+                            title="Edition"
+                            value={
+                                props.edition.charAt(0).toUpperCase() +
+                                props.edition.slice(1)
+                            }
+                        />
                     </ServerSection>
                     <ServerSection title="Data information" icon="graph">
-                        <StatisticSmall title="Data range" value={props.urlParams.start.toString().replace("-", "")} />
-                        <StatisticSmall title="Data step" value={props.urlParams.step} />
-                        <StatisticSmall title="Data points" value={serverData.data.length} />
+                        <StatisticSmall
+                            title="Data range"
+                            value={props.urlParams.start
+                                .toString()
+                                .replace("-", "")}
+                        />
+                        <StatisticSmall
+                            title="Data step"
+                            value={props.urlParams.step}
+                        />
+                        <StatisticSmall
+                            title="Data points"
+                            value={serverData.data.length}
+                        />
                     </ServerSection>
                 </div>
             </Container>

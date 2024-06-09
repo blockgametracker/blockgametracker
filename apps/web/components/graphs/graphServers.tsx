@@ -5,7 +5,12 @@ import { ServerData } from "@/utils/parsedData"
 import Link from "next/link"
 import { ServerIcon } from "../server/serverIcon"
 import { Container } from "../layout/container"
-import { URLParams, buildURL, isServerToggled, toggleServer } from "@/utils/urlBuilder"
+import {
+    URLParams,
+    buildURL,
+    isServerToggled,
+    toggleServer,
+} from "@/utils/urlBuilder"
 
 interface Props {
     urlParams: URLParams
@@ -26,11 +31,20 @@ export const GraphServers = ({ urlParams, servers }: Props) => (
                     href={buildURL(urlParams, { servers: newServers })}
                     key={index}
                 >
-                    <div className={`group fade flex flex-row gap-4 items-center py-2 px-4 ${active && "bg-darkSelected"}`}>
+                    <div
+                        className={`group fade flex flex-row gap-4 items-center py-2 px-4 ${active && "bg-darkSelected"}`}
+                    >
                         <ServerIcon server={server} className="w-10 h-10 " />
                         <div>
-                            <p className="text-mainText font-semibold">{server.server_name}</p>
-                            <p>{server.data[server.data.length - 1].y.toLocaleString()} online</p>
+                            <p className="text-mainText font-semibold">
+                                {server.server_name}
+                            </p>
+                            <p>
+                                {server.data[
+                                    server.data.length - 1
+                                ].y.toLocaleString()}{" "}
+                                online
+                            </p>
                         </div>
                         <div
                             className={`w-4 h-4 ml-auto rounded-md border-2 flex items-center justify-center ${active ? "bg-mainText border-mainText" : "border-darkOverlay"}`}

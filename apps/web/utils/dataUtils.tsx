@@ -42,31 +42,31 @@ export function calculateDataPoints(start: string, step: string): number {
     // Helper function to convert time strings to minutes
     const timeToMinutes = (time: string): number => {
         const timeUnits: { [key: string]: number } = {
-            's': 1 / 60,
-            'm': 1,
-            'h': 60,
-            'd': 1440,
-            'w': 10080,
-            'M': 43200,
-            'y': 525600,
-        };
-
-        const unit = time.slice(-1);
-        const value = parseInt(time.slice(0, -1), 10);
-
-        if (!timeUnits[unit]) {
-            throw new Error(`Invalid time unit: ${unit}`);
+            s: 1 / 60,
+            m: 1,
+            h: 60,
+            d: 1440,
+            w: 10080,
+            M: 43200,
+            y: 525600,
         }
 
-        return value * timeUnits[unit];
-    };
+        const unit = time.slice(-1)
+        const value = parseInt(time.slice(0, -1), 10)
+
+        if (!timeUnits[unit]) {
+            throw new Error(`Invalid time unit: ${unit}`)
+        }
+
+        return value * timeUnits[unit]
+    }
 
     // Convert range and step to minutes
-    const rangeInMinutes = Math.abs(timeToMinutes(start));
-    const stepInMinutes = timeToMinutes(step);
+    const rangeInMinutes = Math.abs(timeToMinutes(start))
+    const stepInMinutes = timeToMinutes(step)
 
     // Calculate number of data points
-    const dataPoints = rangeInMinutes / stepInMinutes;
+    const dataPoints = rangeInMinutes / stepInMinutes
 
-    return Math.ceil(dataPoints); // Return the ceiling value to account for partial intervals
+    return Math.ceil(dataPoints) // Return the ceiling value to account for partial intervals
 }

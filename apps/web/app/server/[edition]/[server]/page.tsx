@@ -39,7 +39,11 @@ const Server = async ({ params, searchParams }: PageParams<Params>) => {
     if (!serverInfo) return notFound()
 
     return (
-        <Layout page={serverInfo.name} className="flex flex-col tablet:flex-row w-full tablet:h-full gap-8 tablet:overflow-hidden" urlParams={urlParams}>
+        <Layout
+            page={serverInfo.name}
+            className="flex flex-col tablet:flex-row w-full tablet:h-full gap-8 tablet:overflow-hidden"
+            urlParams={urlParams}
+        >
             <ServerPage
                 serverName={serverInfo.name}
                 serverSlug={serverInfo.slug}
