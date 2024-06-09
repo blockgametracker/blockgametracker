@@ -3,6 +3,7 @@ import {
     QueryStart,
     QueryStep,
     getEditionOrDefault,
+    getRangeOrDefault,
 } from "@repo/gateway"
 import { ServerData } from "./parsedData"
 
@@ -31,8 +32,8 @@ export function getURLParams(searchParams?: {
 
     return {
         edition: validatedEdition,
-        start: (start as QueryStart) ?? "-1d",
-        step: (step as QueryStart) ?? "4m",
+        start: getRangeOrDefault<QueryStart>(start, "-1d"),
+        step: getRangeOrDefault<QueryStep>(step, "4m"),
         view: typeof view === "string" ? view : "default",
         servers: urlServers ?? [],
         showServers: validShowServers,
