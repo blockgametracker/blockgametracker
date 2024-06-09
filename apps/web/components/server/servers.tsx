@@ -16,7 +16,7 @@ export const Servers = async (urlParams: URLParams) => {
     return (
         <div className="flex h-full flex-col gap-8">
             <div
-                className={`w-full grid gap-4 grid-cols-1 ${compact ? "normal:grid-cols-2":"tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
+                className={`w-full grid gap-4 grid-cols-1 ${compact ? "normal:grid-cols-2" : "tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
             >
                 {serverList.map((serverData, index) => (
                     <ServerObserver
@@ -26,18 +26,18 @@ export const Servers = async (urlParams: URLParams) => {
                         key={index}
                         urlParams={urlParams}
                     >
-                        {compact ?
+                        {compact ? (
                             <ServerCardSmall
                                 urlParams={urlParams}
                                 serverData={serverData}
                             />
-                            :
+                        ) : (
                             <ServerCard
                                 urlParams={urlParams}
                                 serverData={serverData}
                                 loaded
                             />
-                        }
+                        )}
                     </ServerObserver>
                 ))}
             </div>
