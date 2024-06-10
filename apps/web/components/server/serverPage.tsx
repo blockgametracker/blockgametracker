@@ -80,7 +80,10 @@ export const ServerPage = async (props: Props) => {
                                 title="Players"
                                 value={online.y.toLocaleString()}
                             />
-                            <StatisticSmall title="Host" value={server.hostname} />
+                            <StatisticSmall
+                                title="Host"
+                                value={server.hostname}
+                            />
                             <StatisticSmall
                                 title="Edition"
                                 value={

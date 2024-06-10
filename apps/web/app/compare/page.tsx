@@ -55,22 +55,22 @@ const Compare = async ({ searchParams }: PageParams) => {
             : [""],
         ticksY: selectedServers[0]
             ? getTicks(
-                selectedServers.reduce(
-                    (acc, curr) => {
-                        acc.data.push(
-                            ...curr.data.map((data) => {
-                                return {
-                                    x: data.x,
-                                    y: data.y,
-                                }
-                            }),
-                        )
-                        return acc
-                    },
-                    { data: [] } as ComputedServerData,
-                ),
-                0,
-            ).ticksY
+                  selectedServers.reduce(
+                      (acc, curr) => {
+                          acc.data.push(
+                              ...curr.data.map((data) => {
+                                  return {
+                                      x: data.x,
+                                      y: data.y,
+                                  }
+                              }),
+                          )
+                          return acc
+                      },
+                      { data: [] } as ComputedServerData,
+                  ),
+                  0,
+              ).ticksY
             : [0],
     }
 
