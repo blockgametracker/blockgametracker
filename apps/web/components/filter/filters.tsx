@@ -15,7 +15,7 @@ export const Filters = (props: Props) => {
     const [active, setActive] = useState(false)
 
     return (
-        <div className="flex flex-col w-full tablet:w-1/6 tablet:overflow-scroll tablet:h-full max-h-full shrink-0 overflow-hidden px-2 p-8 tablet:px-0 pb-0 tablet:p-0">
+        <div className="flex flex-col w-full tablet:w-1/6 tablet:overflow-y-scroll tablet:h-full shrink-0 overflow-hidden px-2 p-8 tablet:px-0 pb-0 tablet:p-0">
             <div className="w-full h-full border-2 tablet:border-0 tablet:border-r-2 bg-darkFill border-darkOverlay">
                 <div className="flex tablet:hidden flex-row items-center p-4">
                     <h2>Options</h2>
@@ -30,7 +30,7 @@ export const Filters = (props: Props) => {
                     </button>
                 </div>
                 <div
-                    className={`divide-y-2 divide-darkOverlay overflow-scroll ${active ? "flex flex-col" : "hidden tablet:flex flex-col"}`}
+                    className={`divide-y-2 divide-darkOverlay overflow-y-scroll ${active ? "flex flex-col" : "hidden tablet:flex flex-col"}`}
                 >
                     <FilterSection filter="Edition" icon="information">
                         <FilterButton

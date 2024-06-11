@@ -1,13 +1,12 @@
 import { ServerCard } from "./serverCard"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
 import { URLParams } from "@/utils/urlBuilder"
-import { MinecraftEdition } from "@repo/gateway"
 import { ServerObserver } from "./serverObserver"
 import { ServerCardSmall } from "./serverCardSmall"
 
 export const Servers = async (urlParams: URLParams) => {
     const serverList = await getTotalEnsembled(
-        urlParams.edition as MinecraftEdition,
+        urlParams.edition,
         urlParams.start,
         urlParams.step,
     )

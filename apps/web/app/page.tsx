@@ -15,7 +15,7 @@ const Page = ({ searchParams }: PageParams) => {
     return (
         <Layout
             page="Home"
-            className="flex flex-col tablet:flex-row w-full tablet:justify-end tablet:overflow-hidden"
+            className="flex flex-col tablet:flex-row w-full tablet:h-full tablet:justify-end tablet:overflow-hidden"
             urlParams={urlParams}
         >
             <Filters urlParams={urlParams} />
