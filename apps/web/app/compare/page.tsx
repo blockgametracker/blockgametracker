@@ -15,6 +15,9 @@ import { Content } from "@/components/layout/content"
 
 export const metadata: Metadata = {
     title: "Compare | blockgametracker",
+    alternates: {
+        canonical: "https://blockgametracker.gg/compare",
+    },
     keywords: [
         "blockgame",
         "server compare",

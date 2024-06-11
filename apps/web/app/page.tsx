@@ -15,14 +15,14 @@ const Page = ({ searchParams }: PageParams) => {
     return (
         <Layout
             page="Home"
-            className="flex flex-col tablet:flex-row w-full tablet:justify-end"
+            className="flex flex-col tablet:flex-row w-full tablet:justify-end tablet:overflow-hidden"
             urlParams={urlParams}
         >
             <Filters urlParams={urlParams} />
 
             <Content>
                 {dataPoints < 400 ? (
-                    <div className="w-full tablet:w-full tablet:overflow-scroll">
+                    <div className="w-full tablet:w-full">
                         <Servers {...urlParams} />
                     </div>
                 ) : (

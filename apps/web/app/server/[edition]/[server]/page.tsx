@@ -20,6 +20,9 @@ export async function generateMetadata({
 
     return {
         title: `${serverInfo.name} | blockgametracker`,
+        alternates: {
+            canonical: `https://blockgametracker.gg/server/${serverInfo.platform}/${serverInfo.slug.toLowerCase()}`,
+        },
         keywords: [
             "blockgame",
             "minecraft",

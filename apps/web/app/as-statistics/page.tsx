@@ -7,6 +7,9 @@ import { PageParams } from "@/utils/next"
 export async function generateMetadata(): Promise<Metadata> {
     return {
         title: "AS Statistics | blockgametracker",
+        alternates: {
+            canonical: "https://blockgametracker.gg/as-statistics",
+        },
         keywords: [
             "blockgame",
             "minecraft",
