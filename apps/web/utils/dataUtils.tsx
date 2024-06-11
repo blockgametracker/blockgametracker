@@ -38,8 +38,8 @@ export const getPeakDate = (data: ParsedApiQuery[]): ParsedApiQuery => {
     return { x, y }
 }
 
+/** Returns the number of data points in a given time frame. */
 export function calculateDataPoints(start: string, step: string): number {
-    // Helper function to convert time strings to minutes
     const timeToMinutes = (time: string): number => {
         const timeUnits: { [key: string]: number } = {
             s: 1 / 60,
@@ -61,12 +61,10 @@ export function calculateDataPoints(start: string, step: string): number {
         return value * timeUnits[unit]
     }
 
-    // Convert range and step to minutes
     const rangeInMinutes = Math.abs(timeToMinutes(start))
     const stepInMinutes = timeToMinutes(step)
 
-    // Calculate number of data points
     const dataPoints = rangeInMinutes / stepInMinutes
 
-    return Math.ceil(dataPoints) // Return the ceiling value to account for partial intervals
+    return Math.ceil(dataPoints)
 }
