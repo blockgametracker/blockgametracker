@@ -5,14 +5,19 @@ import { getTotalEnsembled } from "@/utils/dataFetcher"
 import { GRAPH_COLORS, TickResult, getTicks } from "@/utils/graphUtils"
 import type { PageParams } from "@/utils/next"
 import type { Metadata } from "next"
-import { getURLParams } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 import { ComputedServerData } from "@/utils/parsedData"
 import { GraphServers } from "@/components/graphs/graphServers"
 import { Icon } from "@/components/icon"
+import { Filters } from "@/components/filter/filters"
+import { getURLParams } from "@/utils/urlBuilder"
+import { Content } from "@/components/layout/content"
 
 export const metadata: Metadata = {
     title: "Compare | blockgametracker",
+    alternates: {
+        canonical: "https://blockgametracker.gg/compare",
+    },
     keywords: [
         "blockgame",
         "server compare",
@@ -25,20 +30,14 @@ export const metadata: Metadata = {
 }
 
 const Compare = async ({ searchParams }: PageParams) => {
+    const urlParams = getURLParams(searchParams)
     const urlServers: string[] =
         searchParams?.servers?.split(",").map((server) => server.trim()) || []
 
-    const urlParams = getURLParams(
-        searchParams?.range,
-        searchParams?.edition,
-        searchParams?.servers,
-        searchParams?.showServers,
-    )
-
     const servers = await getTotalEnsembled(
         urlParams.edition as MinecraftEdition,
-        urlParams.rangeParams.start,
-        urlParams.rangeParams.step,
+        urlParams.start,
+        urlParams.step,
     )
 
     const selectedServers = servers.filter((server) => {
@@ -59,28 +58,34 @@ const Compare = async ({ searchParams }: PageParams) => {
             : [""],
         ticksY: selectedServers[0]
             ? getTicks(
-                selectedServers.reduce(
-                    (acc, curr) => {
-                        acc.data.push(
-                            ...curr.data.map((data) => {
-                                return {
-                                    x: data.x,
-                                    y: data.y,
-                                }
-                            }),
-                        )
-                        return acc
-                    },
-                    { data: [] } as ComputedServerData,
-                ),
-                0,
-            ).ticksY
+                  selectedServers.reduce(
+                      (acc, curr) => {
+                          acc.data.push(
+                              ...curr.data.map((data) => {
+                                  return {
+                                      x: data.x,
+                                      y: data.y,
+                                  }
+                              }),
+                          )
+                          return acc
+                      },
+                      { data: [] } as ComputedServerData,
+                  ),
+                  0,
+              ).ticksY
             : [0],
     }
 
     return (
-        <Layout page="Compare" className="flex flex-col tablet:flex-row-reverse w-full tablet:h-full gap-8 tablet:overflow-hidden">
-            <div className="flex flex-col w-full tablet:w-4/5 gap-8 h-full">
+        <Layout
+            page="Compare"
+            className="flex flex-col tablet:flex-row w-full tablet:h-full justify-end tablet:overflow-hidden"
+            urlParams={urlParams}
+        >
+            <Filters urlParams={urlParams} />
+
+            <Content>
                 <Container className="p-4 w-full h-96 tablet:h-full">
                     {selectedServers.length !== 0 ? (
                         <Graph
@@ -89,19 +94,22 @@ const Compare = async ({ searchParams }: PageParams) => {
                             ticksX={ticks.ticksX}
                             ticksY={ticks.ticksY}
                             fill={false}
-                            dataRange={urlParams.rangeParams.range}
+                            start={urlParams.start}
                             loaded
                         />
                     ) : (
                         <div className="w-full h-full flex flex-col gap-4 items-center justify-center animate-pulse">
-                            <Icon iconName="icon" className="w-6 h-6 fill-mainColor" />
+                            <Icon
+                                iconName="icon"
+                                className="w-6 h-6 fill-mainColor"
+                            />
                             <p>Select servers to start comparing</p>
                         </div>
                     )}
                 </Container>
-            </div>
 
-            <GraphServers urlParams={urlParams} servers={servers} />
+                <GraphServers urlParams={urlParams} servers={servers} />
+            </Content>
         </Layout>
     )
 }

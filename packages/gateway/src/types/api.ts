@@ -63,13 +63,13 @@ export enum MinecraftEdition {
 type TimeUnit = "s" | "m" | "h" | "d" | "m" | "y"
 
 /** A plus, minus, or nothing at all. */
-type PM = "+" | "-" | ""
+type PN = "+" | "-" | ""
 
 /** The `start` attribute of a Prometheus query. */
-export type QueryStart = `${PM}${number}${TimeUnit}`
+export type QueryStart = `${PN}${number}${TimeUnit}`
 
 /** The `step` attribute of a Prometheus query. */
-export type QueryStep = `${PM}${number}${TimeUnit}`
+export type QueryStep = `${PN}${number}${TimeUnit}`
 
 /** The server object. */
 export interface Server {

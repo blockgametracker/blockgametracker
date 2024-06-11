@@ -70,3 +70,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #4d4d4d;
 }
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}

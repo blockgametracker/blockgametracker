@@ -17,7 +17,7 @@ export const ServerButton = ({
     <Link
         aria-label={ariaLabel}
         href={href}
-        className={`fade group border-2 p-3 rounded-md bg-darkFill border-darkOverlay hover:border-secondText ${className}`}
+        className={`fade group border-2 p-3 rounded-md bg-darkFill border-darkOverlay hover:border-secondText h-fit ${className}`}
     >
         <Icon
             iconName={iconName}

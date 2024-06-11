@@ -13,7 +13,7 @@ export const GRAPH_COLORS = [
 
 export const COLOR_MAX = "#ea501d"
 export const COLOR_MEAN = "#2565ee"
-export const COLOR_CURRENT = "#09c050"
+export const COLOR_CURRENT = "#2dcf35"
 
 /** The ticked output of a time-series set of data. */
 export interface TickResult {
@@ -29,7 +29,7 @@ export const redGraph = ["#d12b2b"]
 
 /** The nivo graph theme. */
 export const theme: Theme = {
-    background: "#0f0f11",
+    background: "#0f0f10",
     grid: {
         line: {
             stroke: "#262629",

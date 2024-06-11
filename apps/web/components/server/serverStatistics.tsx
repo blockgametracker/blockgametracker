@@ -19,7 +19,7 @@ export const ServerStatistics = ({ serverData }: Props) => {
 
     return (
         <div
-            className={`flex flex-row gap-4 justify-between rounded-md divide-y-0 divide-x-2 px-0 divide-darkOverlay`}
+            className={`w-full flex flex-row gap-4 justify-between rounded-md divide-y-0 divide-x-2 px-0 divide-darkOverlay`}
         >
             <Tag text="Current" color={COLOR_CURRENT}>
                 {online.toLocaleString()}
