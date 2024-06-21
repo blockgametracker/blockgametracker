@@ -28,6 +28,7 @@ export const GraphServers = ({ urlParams, servers }: Props) => (
 
             return (
                 <Link
+                    rel="nofollow"
                     href={buildURL(urlParams, { servers: newServers })}
                     key={index}
                 >

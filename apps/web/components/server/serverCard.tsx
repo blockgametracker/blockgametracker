@@ -32,6 +32,7 @@ export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
             >
                 <div className={`inline-flex gap-2 ml-auto`}>
                     <ServerButton
+                        rel="nofollow"
                         ariaLabel="Compare server"
                         href={`/compare/${buildURL(urlParams, { servers: [serverData.server_slug.toLowerCase()] })}`}
                         iconName="compare"

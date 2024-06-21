@@ -65,6 +65,7 @@ export const ServerPage = async (props: Props) => {
                             edition={props.urlParams.edition}
                         />
                         <ServerButton
+                            rel="nofollow"
                             className="ml-auto"
                             ariaLabel="Compare server"
                             href={`/compare/${buildURL(props.urlParams, { servers: [serverData.server_slug.toLowerCase()] })}`}

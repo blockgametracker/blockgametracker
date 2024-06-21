@@ -16,6 +16,7 @@ export const FilterButton = (props: Props) => {
 
     return (
         <Link
+            rel="nofollow"
             href={buildURL(props.URLParams, props.updates)}
             className={`inline-flex gap-4 w-full items-center px-8 py-1 ${isActive ? "bg-darkSelected text-mainText" : ""}`}
         >
