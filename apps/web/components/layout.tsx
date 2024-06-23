@@ -1,7 +1,8 @@
 import { Navigation } from "@/components/layout/navigation/navigation"
-import { Footer } from "@/components/layout/footer"
 import { PropsWithChildren } from "react"
-import { URLParams, getURLParams } from "@/utils/urlBuilder"
+import { URLParams } from "@/utils/urlBuilder"
+import { Footer } from "./layout/footer"
+import { Filters } from "./filter/filters"
 
 interface Props extends PropsWithChildren {
     page: string
@@ -10,12 +11,14 @@ interface Props extends PropsWithChildren {
 }
 
 export const Layout = ({ children, className, page, urlParams }: Props) => (
-    <main className="w-full h-full flex flex-col">
+    <>
         <Navigation urlParams={urlParams} page={page} />
 
-        <div className="flex flex-col w-full h-full tablet:overflow-y-auto">
-            <div className={` ${className}`}>{children}</div>
-            <Footer />
+        <div className="flex flex-col grow-0 shrink-0 w-full tablet:w-[85vw] tablet:overflow-hidden">
+            <Filters urlParams={urlParams} />
+            <main className={`w-full h-full p-2 tablet:p-8 ${className}`}>
+                {children}
+            </main>
         </div>
-    </main>
+    </>
 )

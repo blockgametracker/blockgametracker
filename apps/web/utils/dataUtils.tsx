@@ -1,5 +1,5 @@
 import { ApiQuery, ApiResult } from "@repo/gateway"
-import { ParsedApiQuery } from "./parsedData"
+import { ParsedApiQuery, ServerData } from "./parsedData"
 
 /** Pads the time unit to ensure it has a leading zero, if needed. */
 export const padTimeUnit = (unit: number) => unit.toString().padStart(2, "0")
@@ -36,6 +36,13 @@ export const getPeakDate = (data: ParsedApiQuery[]): ParsedApiQuery => {
     const y = getPeak(data)
     const x = data.find((point) => point.y === y)?.x || ""
     return { x, y }
+}
+
+export const getPlayerCountFromList = (servers: ServerData[]) => {
+    return servers.reduce((total, server) => {
+        const lastPlayerCount = server.data[server.data.length - 1].y
+        return total + lastPlayerCount
+    }, 0)
 }
 
 /** Returns the number of data points in a given time frame. */

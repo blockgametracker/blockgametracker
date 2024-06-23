@@ -18,9 +18,9 @@ export const ServerInfo = (props: Props) => {
                 <ServerIcon className="w-12 h-12" server={props.serverData} />
 
                 <div className="flex flex-col">
-                    <h3 className="text-lg whitespace-nowrap text-mainText font-medium leading-4">
+                    <h2 className="text-lg whitespace-nowrap text-mainText font-medium leading-4">
                         {props.serverData.server_name}
-                    </h3>
+                    </h2>
                     <p className="whitespace-nowrap text-secondText">
                         {props.serverData.hostname}
                     </p>

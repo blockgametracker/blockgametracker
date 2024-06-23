@@ -12,95 +12,100 @@ export interface Props {
 }
 
 export const Filters = (props: Props) => {
-    const [active, setActive] = useState(false)
+    const [query, setQuery] = useState("")
+    //TODO change the way it redirects to the search page
+    const handleSubmit = (event: any) => {
+        event.preventDefault()
+        if (query.trim()) {
+            window.location.href = `/search?q=${encodeURIComponent(query)}`
+        }
+    }
 
     return (
-        <div className="flex flex-col w-full tablet:w-1/6 tablet:overflow-y-scroll tablet:h-full shrink-0 overflow-hidden px-2 p-8 tablet:px-0 pb-0 tablet:p-0">
-            <div className="w-full h-full border-2 tablet:border-0 tablet:border-r-2 bg-darkFill border-darkOverlay">
-                <div className="flex tablet:hidden flex-row items-center p-4">
-                    <h2>Options</h2>
-                    <button
-                        className="flex tablet:hidden ml-auto"
-                        onClick={() => setActive(!active)}
-                    >
-                        <Icon
-                            iconName={active ? "close" : "fullscreen"}
-                            className="w-4 h-4 fill-mainText"
-                        />
-                    </button>
-                </div>
-                <div
-                    className={`divide-y-2 divide-darkOverlay overflow-y-scroll ${active ? "flex flex-col" : "hidden tablet:flex flex-col"}`}
-                >
-                    <FilterSection filter="Edition" icon="information">
-                        <FilterButton
-                            updates={{ edition: MinecraftEdition.JAVA }}
-                            URLParams={props.urlParams}
-                        >
-                            Java
-                        </FilterButton>
-                        <FilterButton
-                            updates={{ edition: MinecraftEdition.BEDROCK }}
-                            URLParams={props.urlParams}
-                        >
-                            Bedrock
-                        </FilterButton>
-                    </FilterSection>
+        <div className="flex flex-col tablet:flex-row items-center gap-4 w-full shrink-0 px-2 tablet:px-8 py-4 border-b-2 bg-darkFill border-darkOverlay">
+            <div className="flex flex-row items-center w-full rounded-md border-2 bg-dark border-darkOverlay">
+                <Icon
+                    iconName="search"
+                    className="ml-4 size-4 fill-secondText"
+                />
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        id="fname"
+                        name="fname"
+                        className="p-4 w-full bg-transparent placeholder:text-secondText text-mainText focus:outline-none"
+                        placeholder="Search"
+                        onChange={(e) => setQuery(e.target.value)}
+                    />
+                </form>
+            </div>
 
-                    <FilterSection filter="View" icon="graph">
-                        <FilterButton
-                            updates={{ view: "default" }}
-                            URLParams={props.urlParams}
-                        >
-                            Default
-                        </FilterButton>
-                        <FilterButton
-                            updates={{ view: "compact" }}
-                            URLParams={props.urlParams}
-                        >
-                            Compact
-                        </FilterButton>
-                    </FilterSection>
+            <div
+                className={`flex flex-col tablet:flex-row max-tablet:w-full gap-4`}
+            >
+                <FilterSection filter="Edition" icon="cube">
+                    <FilterButton
+                        updates={{
+                            edition: MinecraftEdition.JAVA,
+                            servers: [],
+                        }}
+                        URLParams={props.urlParams}
+                        text="Java"
+                    />
+                    <FilterButton
+                        updates={{
+                            edition: MinecraftEdition.BEDROCK,
+                            servers: [],
+                        }}
+                        URLParams={props.urlParams}
+                        text="Bedrock"
+                    />
+                </FilterSection>
 
-                    <FilterSection filter="Data range" icon="clock">
-                        <FilterButton
-                            updates={{ start: "-1h", step: "30s" }}
-                            URLParams={props.urlParams}
-                        >
-                            Last 1 hour
-                        </FilterButton>
-                        <FilterButton
-                            updates={{ start: "-6h", step: "1m" }}
-                            URLParams={props.urlParams}
-                        >
-                            Last 6 hours
-                        </FilterButton>
-                        <FilterButton
-                            updates={{ start: "-1d", step: "4m" }}
-                            URLParams={props.urlParams}
-                        >
-                            Last 1 day
-                        </FilterButton>
-                        <FilterButton
-                            updates={{ start: "-7d", step: "1h" }}
-                            URLParams={props.urlParams}
-                        >
-                            Last 7 days
-                        </FilterButton>
-                        <FilterButton
-                            updates={{ start: "-30d", step: "6h" }}
-                            URLParams={props.urlParams}
-                        >
-                            Last 30 days
-                        </FilterButton>
-                        <FilterButton
-                            updates={{ start: "-1y", step: "1d" }}
-                            URLParams={props.urlParams}
-                        >
-                            Last 1 year
-                        </FilterButton>
-                    </FilterSection>
-                </div>
+                <FilterSection filter="View" icon="view">
+                    <FilterButton
+                        updates={{ view: "default" }}
+                        URLParams={props.urlParams}
+                        text="Default"
+                    />
+                    <FilterButton
+                        updates={{ view: "compact" }}
+                        URLParams={props.urlParams}
+                        text="Compact"
+                    />
+                </FilterSection>
+                <FilterSection filter="Data range" icon="calendar">
+                    <FilterButton
+                        updates={{ start: "-1h", step: "30s" }}
+                        URLParams={props.urlParams}
+                        text="Last 1 hour"
+                    />
+                    <FilterButton
+                        updates={{ start: "-6h", step: "1m" }}
+                        URLParams={props.urlParams}
+                        text="Last 6 hours"
+                    />
+                    <FilterButton
+                        updates={{ start: "-1d", step: "4m" }}
+                        URLParams={props.urlParams}
+                        text="Last 1 day"
+                    />
+                    <FilterButton
+                        updates={{ start: "-7d", step: "1h" }}
+                        URLParams={props.urlParams}
+                        text="Last 7 days"
+                    />
+                    <FilterButton
+                        updates={{ start: "-30d", step: "6h" }}
+                        URLParams={props.urlParams}
+                        text="Last 30 days"
+                    />
+                    <FilterButton
+                        updates={{ start: "-1y", step: "1d" }}
+                        URLParams={props.urlParams}
+                        text="Last 1 year"
+                    />
+                </FilterSection>
             </div>
         </div>
     )

@@ -14,7 +14,6 @@ export interface URLParams {
     step: QueryStep
     view: string
     servers: string[]
-    showServers: number
 }
 
 /** Returns the URL Params for the given internally stored data. */
@@ -36,7 +35,6 @@ export function getURLParams(searchParams?: {
         step: getRangeOrDefault<QueryStep>(step, "4m"),
         view: view ?? "default",
         servers: urlServers ?? [],
-        showServers: validShowServers,
     }
 }
 

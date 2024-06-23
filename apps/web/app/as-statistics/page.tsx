@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout"
 import { Suspense } from "react"
 import { getURLParams } from "@/utils/urlBuilder"
 import { PageParams } from "@/utils/next"
+import { ASStatisticsHeader } from "@/components/page/as-statistics/asStatisticsHeader"
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
@@ -28,9 +29,10 @@ const Server = async ({ searchParams }: PageParams) => {
         <Suspense>
             <Layout
                 page="as-statistics"
-                className="w-full h-full"
+                className="h-full"
                 urlParams={urlParams}
             >
+                <ASStatisticsHeader />
                 <iframe
                     className="w-full h-full"
                     src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk"

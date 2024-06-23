@@ -3,12 +3,14 @@ import type { ComputedServerData } from "./parsedData"
 
 /** Available colours on the graph. */
 export const GRAPH_COLORS = [
-    "#2dcf35",
-    "#9b7af3",
-    "#ffcd4c",
+    "#4ed51e",
+    "#835af3",
+    "#ffc42f",
     "#ee3232",
-    "#ee6ae0",
-    "#6ae9ee",
+    "#ee57de",
+    "#55e8ee",
+    "#1e4ad5",
+    "#ff6918",
 ]
 
 export const COLOR_MAX = "#ea501d"
@@ -22,18 +24,18 @@ export interface TickResult {
 }
 
 /** Available colours for a green graph. */
-export const greenGraph = ["#09c050"]
+export const greenGraph = ["#00e13f"]
 
 /** Available colours for a red graph. */
 export const redGraph = ["#d12b2b"]
 
 /** The nivo graph theme. */
 export const theme: Theme = {
-    background: "#0f0f10",
+    background: "#0e0e10",
     grid: {
         line: {
             stroke: "#262629",
-            strokeDasharray: "15, 10",
+            strokeDasharray: "4, 4",
             strokeWidth: 1,
         },
     },

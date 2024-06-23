@@ -9,16 +9,14 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                bg: "#d3d3d3",
-                bgfill: "#e0e0e0",
                 dark: "#0b0b0c",
-                darkFill: "#0f0f10",
-                darkSelected: "#171719",
-                darkOverlay: "#1f1f21",
-                mainColor: "#4ed51e",
+                darkFill: "#0e0e10",
+                darkSelected: "#161619",
+                darkOverlay: "#1c1e23",
+                mainColor: "#00e13f",
                 secondColor: "#16a752",
-                mainText: "#d3d6da",
-                secondText: "#737373",
+                mainText: "#fafbff",
+                secondText: "#787a7f",
             },
             maxWidth: {
                 header: "1100px",
@@ -27,6 +25,9 @@ const config: Config = {
             fontFamily: {
                 manrope: ['"Manrope"'],
                 "bebas-neue": ['"Bebas Neue"'],
+            },
+            boxShadow: {
+                dropdown: "0 35px 60px -15px rgba(0, 0, 0, 0.6)",
             },
             screens: {
                 phone: "700px",

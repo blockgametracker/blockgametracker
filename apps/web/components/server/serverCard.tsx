@@ -1,4 +1,4 @@
-import { Container } from "@/components/layout/container"
+import { Container } from "@/components/layout/container/container"
 import { Graph } from "@/components/graphs/graph"
 import { getTicks, greenGraph } from "@/utils/graphUtils"
 import { ServerButton } from "./serverButton"
@@ -40,7 +40,7 @@ export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
                     />
                     <ServerButton
                         ariaLabel="Open server"
-                        href={`/server/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams)}`}
+                        href={`/servers/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams)}`}
                         iconName="fullscreen"
                     />
                 </div>
