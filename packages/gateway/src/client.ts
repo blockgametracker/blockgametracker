@@ -1,4 +1,6 @@
 import type {
+    ApiASQueryRangeResponse,
+    ApiASQueryResponse,
     ApiQueryRangeResponse,
     ApiQueryResponse,
     ApiServerQueryRangeResponse,
@@ -64,3 +66,17 @@ export const getServerBySlug = async (
     edition: MinecraftEdition,
     slug: string,
 ) => await request<Server>(`servers/${edition}/${slug}`)
+
+/** Returns the number of players using each AS for the given edition. */
+export const getASBreakdown = async (edition: MinecraftEdition) =>
+    await request<ApiASQueryResponse>(`as/breakdown/${edition}`)
+
+/** Returns the number of players using each AS for the given edition over the given timeframe. */
+export const getASBreakdownInRange = async (
+    edition: MinecraftEdition,
+    start: QueryStart,
+    step: QueryStep,
+) =>
+    await request<ApiASQueryRangeResponse>(
+        `as/breakdown/${edition}/${start}/${step}`,
+    )

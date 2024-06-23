@@ -5,7 +5,7 @@ import { linearGradientDef } from "@nivo/core"
 import { COLOR_MAX, theme } from "@/utils/graphUtils"
 import type { ServerData } from "@/utils/parsedData"
 import { Loading } from "./loading"
-import { Container } from "../layout/container"
+import { Container } from "../layout/container/container"
 import { QueryStart } from "@repo/gateway"
 
 interface Props {
@@ -42,7 +42,7 @@ export const Graph = ({
                     theme={theme}
                     data={data.map((data) => {
                         return {
-                            id: data.server_slug,
+                            id: data.server_name,
                             data: data.data,
                         }
                     })}
@@ -101,7 +101,7 @@ export const Graph = ({
                     }}
                     defs={[
                         linearGradientDef("gradientA", [
-                            { offset: 0, color: "inherit", opacity: 0.8 },
+                            { offset: 0, color: "inherit", opacity: 0.4 },
                             { offset: 100, color: "inherit", opacity: 0.1 },
                         ]),
                     ]}

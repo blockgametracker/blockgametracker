@@ -21,13 +21,13 @@ export const ServerStatistics = ({ serverData }: Props) => {
         <div
             className={`w-full flex flex-row gap-4 justify-between rounded-md divide-y-0 divide-x-2 px-0 divide-darkOverlay`}
         >
-            <Tag text="Current" color={COLOR_CURRENT}>
+            <Tag text="Current" color={COLOR_CURRENT} className="w-full p-4">
                 {online.toLocaleString()}
             </Tag>
-            <Tag text="Mean" color={COLOR_MEAN}>
+            <Tag text="Mean" color={COLOR_MEAN} className="w-full p-4">
                 {players_avarage.toLocaleString()}
             </Tag>
-            <Tag text="Max" color={COLOR_MAX}>
+            <Tag text="Max" color={COLOR_MAX} className="w-full p-4">
                 {players_peak.toLocaleString()}
             </Tag>
         </div>

@@ -1,0 +1,58 @@
+[
+    {
+        "id": "1.1.0",
+        "title": "Update 1.1.0",
+        "date": "23/06/2024",
+        "author": "Jelle",
+        "sections": [
+            {
+                "title": "Reworked UI",
+                "changes": [
+                    "Complete overhaul of the user interface: Enjoy a fresh, modern, and intuitive design that enhances user experience and navigation.",
+                    "Responsive design: Improved compatibility across various devices and screen sizes.",
+                    "Enhanced visual elements: New icons, animations, and color schemes for a more engaging look."
+                ]
+            },
+            {
+                "title": "Improved Comparing Servers",
+                "changes": [
+                    "Detailed metrics: Added more server metrics for a comprehensive comparison.",
+                    "User-friendly layout: Redesigned layout to make comparing servers more intuitive and visually appealing.",
+                    "Fixed UI glitches: Addressed visual and functional glitches in the comparison interface."
+                ]
+            },
+            {
+                "title": "Improved Server Page",
+                "changes": [
+                    "Detailed server statistics: More in-depth information."
+                ]
+            },
+            {
+                "title": "Added Search Function",
+                "changes": [
+                    "Powerful search capabilities: Easily find servers with a new, robust search function.",
+                    "Advanced filters: Narrow down search results using various filters and criteria."
+                ]
+            },
+            {
+                "title": "Added Updates Page",
+                "changes": [
+                    "Stay informed: A new updates page to keep you informed about the latest changes and features.",
+                    "Detailed changelogs: Access comprehensive patch notes and update history."
+                ]
+            }
+        ]
+    },
+    {
+        "id": "1.0.3",
+        "title": "Update 1.0.3",
+        "date": "23/06/2024",
+        "author": "Jelle",
+        "sections": [
+            {
+                "title": "-",
+                "changes": ["-"]
+            }
+        ]
+    }
+]

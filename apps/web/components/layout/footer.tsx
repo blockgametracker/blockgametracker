@@ -1,8 +1,8 @@
 import Link from "next/link"
 
 export const Footer = () => (
-    <div className="tablet:sticky bottom-0 flex flex-col tablet:flex-row w-full items-center gap-2 px-8 py-2 border-t-2 bg-darkFill border-darkOverlay mt-auto">
-        <p>© {new Date().getFullYear()} blockgametracker by</p>
+    <div className="tablet:sticky bottom-0 flex flex-col w-full items-center gap-2 px-8 py-2 bg-darkFill mt-auto">
+        <p>blockgametracker by</p>
         <div className="inline-flex gap-2">
             <Link
                 href="https://github.com/MagicA550"

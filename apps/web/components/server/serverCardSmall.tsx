@@ -1,4 +1,4 @@
-import { Container } from "@/components/layout/container"
+import { Container } from "@/components/layout/container/container"
 import { ServerButton } from "./serverButton"
 import { ServerInfo } from "./serverInfo"
 import { URLParams, buildURL } from "@/utils/urlBuilder"

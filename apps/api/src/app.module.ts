@@ -6,6 +6,7 @@ import { AppController } from "./controllers/app.controller"
 import { ServersController } from "./controllers/servers.controller"
 import { EnsembleController } from "./controllers/ensemble.controller"
 import { DataSourceService } from "./services/ds.service"
+import { ASController } from "./controllers/as.controller"
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { DataSourceService } from "./services/ds.service"
     ],
     controllers: [
         AppController,
+        ASController,
         EnsembleController,
         OnlineController,
         ServersController,

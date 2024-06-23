@@ -1,31 +1,25 @@
 import Link from "next/link"
-import { Icon } from "../icon"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
-import { PropsWithChildren } from "react"
 
-export interface Props extends PropsWithChildren {
+export interface Props {
     updates: Partial<URLParams>
     URLParams: URLParams
+    text: string
 }
 
-export const FilterButton = (props: Props) => {
-    // Determine if the button is active based on the provided updates
-    const isActive = Object.entries(props.updates).every(
-        ([key, value]) => props.URLParams[key as keyof URLParams] === value,
-    )
+export const FilterButton = ({ text, updates, URLParams }: Props) => {
+    const firstUpdate = Object.entries(updates)[0]
+    const isActive =
+        firstUpdate &&
+        URLParams[firstUpdate[0] as keyof URLParams] === firstUpdate[1]
 
     return (
         <Link
             rel="nofollow"
-            href={buildURL(props.URLParams, props.updates)}
-            className={`inline-flex gap-4 w-full items-center px-8 py-1 ${isActive ? "bg-darkSelected text-mainText" : ""}`}
+            href={buildURL(URLParams, updates)}
+            className={`fade inline-flex w-full items-center p-4 ${isActive ? "bg-darkSelected text-mainText" : "hover:bg-darkSelected "}`}
         >
-            <div
-                className={`w-4 h-4 rounded-md border-2 ${isActive ? "border-mainText bg-mainText" : "border-darkOverlay"}`}
-            >
-                <Icon iconName="check" className="fill-dark w-3 h-3" />
-            </div>
-            {props.children}
+            {text}
         </Link>
     )
 }

@@ -40,6 +40,7 @@ export const getTotalEnsembled = async (
             )
 
             return {
+                server_edition: edition,
                 server_slug: server.server_slug,
                 server_name: serverData?.name ?? "Unknown",
                 hostname: serverData?.hostname ?? "Unknown",
@@ -65,6 +66,7 @@ export const getOnline = async (
     )
 
     return {
+        server_edition: edition,
         server_slug: server.slug,
         server_name: server.name,
         hostname: server.hostname,
