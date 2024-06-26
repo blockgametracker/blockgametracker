@@ -37,12 +37,14 @@ export class PrometheusService {
         query: string,
         start: string,
         step: string,
+        end: string,
     ): Promise<QueryRangeResponse<Metric, number, string>> {
         const res: QueryRangeResponse<Metric, number, string> =
             await this.request("query_range", {
                 query: query,
                 start: start,
                 step: step,
+                end: end,
             })
 
         if (res.data.result.length === 0) throw new NotFoundException()

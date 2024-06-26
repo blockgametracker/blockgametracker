@@ -1,7 +1,6 @@
 import {
     MinecraftEdition,
-    QueryStart,
-    QueryStep,
+    QueryTimeFrame,
     getEditionOrDefault,
     getRangeOrDefault,
 } from "@repo/gateway"
@@ -10,8 +9,8 @@ import { ServerData } from "./parsedData"
 /** The URL parameters provided to the page. */
 export interface URLParams {
     edition: MinecraftEdition
-    start: QueryStart
-    step: QueryStep
+    start: QueryTimeFrame
+    step: QueryTimeFrame
     view: string
     servers: string[]
 }
@@ -31,8 +30,8 @@ export function getURLParams(searchParams?: {
 
     return {
         edition: validatedEdition,
-        start: getRangeOrDefault<QueryStart>(start, "-1d"),
-        step: getRangeOrDefault<QueryStep>(step, "4m"),
+        start: getRangeOrDefault<QueryTimeFrame>(start, "-1d"),
+        step: getRangeOrDefault<QueryTimeFrame>(step, "4m"),
         view: view ?? "default",
         servers: urlServers ?? [],
     }

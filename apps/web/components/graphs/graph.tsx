@@ -6,7 +6,7 @@ import { COLOR_MAX, theme } from "@/utils/graphUtils"
 import type { ServerData } from "@/utils/parsedData"
 import { Loading } from "./loading"
 import { Container } from "../layout/container/container"
-import { QueryStart } from "@repo/gateway"
+import { QueryTimeFrame } from "@repo/gateway"
 
 interface Props {
     data: ServerData[]
@@ -16,7 +16,7 @@ interface Props {
     ticksX?: string[]
     ticksY?: number[]
     peak?: string
-    start?: QueryStart
+    start?: QueryTimeFrame
     loaded?: boolean
 }
 

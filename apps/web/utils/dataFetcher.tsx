@@ -1,7 +1,6 @@
 import {
     MinecraftEdition,
-    QueryStart,
-    QueryStep,
+    QueryTimeFrame,
     Server,
     getEnsembledBreakdownInRange,
     getOnlineInRange,
@@ -14,8 +13,8 @@ import { convertTime } from "./dataUtils"
 /** Returns the total number of players, ensembled by versoin, based on start and step times. */
 export const getTotalEnsembled = async (
     edition: MinecraftEdition,
-    start: QueryStart,
-    step: QueryStep,
+    start: QueryTimeFrame,
+    step: QueryTimeFrame,
 ): Promise<ServerData[]> => {
     const onlineInRange = await getEnsembledBreakdownInRange(
         edition,
@@ -55,8 +54,8 @@ export const getTotalEnsembled = async (
 export const getOnline = async (
     server: Server,
     edition: MinecraftEdition,
-    start: QueryStart,
-    step: QueryStep,
+    start: QueryTimeFrame,
+    step: QueryTimeFrame,
 ): Promise<ServerData> => {
     const onlineInRange = await getOnlineInRange(
         server.slug,

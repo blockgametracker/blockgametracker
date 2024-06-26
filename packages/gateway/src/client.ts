@@ -6,8 +6,7 @@ import type {
     ApiServerQueryRangeResponse,
     ApiServerQueryResponse,
     MinecraftEdition,
-    QueryStart,
-    QueryStep,
+    QueryTimeFrame,
     Server,
 } from "./types/api"
 
@@ -32,11 +31,12 @@ export const getEnsembledBreakdown = async (edition: MinecraftEdition) =>
 /** Returns a breakdown of the number of players on each registered server for a given edition within a timeframe. */
 export const getEnsembledBreakdownInRange = async (
     edition: MinecraftEdition,
-    start: QueryStart,
-    step: QueryStep,
+    start: QueryTimeFrame,
+    step: QueryTimeFrame,
+    end: QueryTimeFrame,
 ) =>
     await request<ApiServerQueryRangeResponse>(
-        `ensemble/${edition}/breakdown/${start}/${step}`,
+        `ensemble/${edition}/breakdown/${start}/${step}/${end}`,
     )
 
 /** Returns the number of players on a given server-edition pair right now. */
@@ -47,11 +47,12 @@ export const getOnline = async (server: string, edition: MinecraftEdition) =>
 export const getOnlineInRange = async (
     server: string,
     edition: MinecraftEdition,
-    start: QueryStart,
-    step: QueryStep,
+    start: QueryTimeFrame,
+    step: QueryTimeFrame,
+    end: QueryTimeFrame,
 ) =>
     await request<ApiQueryRangeResponse>(
-        `online/${server}/${edition}/${start}/${step}`,
+        `online/${server}/${edition}/${start}/${step}/${end}`,
     )
 
 /** Returns the servers we collect data on. */
@@ -74,9 +75,10 @@ export const getASBreakdown = async (edition: MinecraftEdition) =>
 /** Returns the number of players using each AS for the given edition over the given timeframe. */
 export const getASBreakdownInRange = async (
     edition: MinecraftEdition,
-    start: QueryStart,
-    step: QueryStep,
+    start: QueryTimeFrame,
+    step: QueryTimeFrame,
+    end: QueryTimeFrame,
 ) =>
     await request<ApiASQueryRangeResponse>(
-        `as/breakdown/${edition}/${start}/${step}`,
+        `as/breakdown/${edition}/${start}/${step}/${end}`,
     )

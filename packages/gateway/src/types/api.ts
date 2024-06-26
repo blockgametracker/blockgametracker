@@ -92,11 +92,8 @@ type TimeUnit = "s" | "m" | "h" | "d" | "m" | "y"
 /** A plus, minus, or nothing at all. */
 type PN = "+" | "-" | ""
 
-/** The `start` attribute of a Prometheus query. */
-export type QueryStart = `${PN}${number}${TimeUnit}`
-
-/** The `step` attribute of a Prometheus query. */
-export type QueryStep = `${PN}${number}${TimeUnit}`
+/** The timeframe of a Prometheus query. */
+export type QueryTimeFrame = `${PN}${number}${TimeUnit}`
 
 /** The server object. */
 export interface Server {

@@ -34,17 +34,19 @@ export class ASController {
     }
 
     /** Returns the number of players using each AS for the given edition over the given timeframe. */
-    @Get("breakdown/:edition/:start/:step")
+    @Get("breakdown/:edition/:start/:step/:end")
     async getBreakdownRange(
         @Param("edition") edition: string,
         @Param("start") start: string,
         @Param("step") step: string,
+        @Param("end") end: string,
     ): Promise<ApiASQueryRangeResponse> {
         const query = `max by(as_name, as_number, server_edition) (sum by(as_name, as_number, pod) (minecraft_status_players_online_count{server_edition="${edition}"}))`
         const res = await this.prometheusService.queryRange<AS>(
             query,
             start,
             step,
+            end,
         )
 
         return {
