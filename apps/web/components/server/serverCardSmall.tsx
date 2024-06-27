@@ -24,7 +24,7 @@ export const ServerCardSmall = async ({ urlParams, serverData }: Props) => {
                 <div className="inline-flex tablet:hidden gap-2 p-4 ml-auto">
                     <ServerButton
                         ariaLabel="Compare server"
-                        href={`/compare/${buildURL(urlParams, { servers: [serverData.server_slug.toLowerCase()] })}`}
+                        href={`/compare/${buildURL(urlParams)}`}
                         iconName="compare"
                         className="hidden phone:flex"
                     />
@@ -41,7 +41,7 @@ export const ServerCardSmall = async ({ urlParams, serverData }: Props) => {
             <div className="hidden tablet:inline-flex gap-2 p-4">
                 <ServerButton
                     ariaLabel="Compare server"
-                    href={`/compare/${buildURL(urlParams, { servers: [serverData.server_slug.toLowerCase()] })}`}
+                    href={`/compare/${buildURL(urlParams)}`}
                     iconName="compare"
                     className="hidden phone:flex"
                 />

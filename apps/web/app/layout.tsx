@@ -65,7 +65,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`text-secondText ${manrope.className}`}>
-            <body className="flex flex-col tablet:flex-row overflow-y-auto tablet:overflow-hidden w-screen h-screen overflow-x-hidden">
+            <body className="flex flex-col overflow-y-auto tablet:overflow-hidden w-screen h-screen overflow-x-hidden">
                 {children}
             </body>
             <GoogleAnalytics gaId="G-5NNJV9KCDP" />

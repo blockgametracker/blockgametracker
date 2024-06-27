@@ -463,6 +463,25 @@
     d3-format "^1.4.4"
     d3-time-format "^3.0.0"
 
+"@nivo/bar@^0.87.0":
+  version "0.87.0"
+  resolved "https://registry.yarnpkg.com/@nivo/bar/-/bar-0.87.0.tgz#c5342fa1ab6a43d0a8db6bffb43a758902017744"
+  integrity sha512-r/MEVCNAHKfmsy1Fb+JztVczOhIEtAx4VFs2XUbn9YpEDgxydavUJyfoy5/nGq6h5jG1/t47cfB4nZle7c0fyQ==
+  dependencies:
+    "@nivo/annotations" "0.87.0"
+    "@nivo/axes" "0.87.0"
+    "@nivo/colors" "0.87.0"
+    "@nivo/core" "0.87.0"
+    "@nivo/legends" "0.87.0"
+    "@nivo/scales" "0.87.0"
+    "@nivo/tooltip" "0.87.0"
+    "@react-spring/web" "9.4.5 || ^9.7.2"
+    "@types/d3-scale" "^4.0.8"
+    "@types/d3-shape" "^3.1.6"
+    d3-scale "^4.0.2"
+    d3-shape "^3.2.0"
+    lodash "^4.17.21"
+
 "@nivo/colors@0.87.0":
   version "0.87.0"
   resolved "https://registry.yarnpkg.com/@nivo/colors/-/colors-0.87.0.tgz#a9e64ea0fac86b168f091b82d8375ff379a4100b"
@@ -3298,16 +3317,7 @@ streamsearch@^1.1.0:
   resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-1.1.0.tgz#404dd1e2247ca94af554e841a8ef0eaa238da764"
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
-"string-width-cjs@npm:string-width@^4.2.0":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
-
-string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
+"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -3339,14 +3349,7 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
-
-strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==

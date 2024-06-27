@@ -7,7 +7,7 @@ export const NavUpdate = () => {
     const [active, setActive] = useState(true)
 
     return (
-        <Container className={`flex flex-col gap-4 p-4 ${!active && "hidden"}`}>
+        <Container className={`mt-auto flex flex-col gap-4 p-4 ${!active && "hidden"}`}>
             <div className="relative flex flex-row gap-4 items-center">
                 <span className="rounded-full size-4 bg-mainColor" />
                 <span className="absolute left-0 rounded-full size-4 bg-mainColor animate-ping" />

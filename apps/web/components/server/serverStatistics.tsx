@@ -3,7 +3,6 @@ import {
     COLOR_CURRENT,
     COLOR_MAX,
     COLOR_MEAN,
-    greenGraph,
 } from "@/utils/graphUtils"
 import { ServerData } from "@/utils/parsedData"
 import { Tag } from "@/components/tag"

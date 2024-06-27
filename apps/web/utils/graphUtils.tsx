@@ -1,17 +1,5 @@
 import { Theme } from "@nivo/core"
-import type { ComputedServerData } from "./parsedData"
-
-/** Available colours on the graph. */
-export const GRAPH_COLORS = [
-    "#4ed51e",
-    "#835af3",
-    "#ffc42f",
-    "#ee3232",
-    "#ee57de",
-    "#55e8ee",
-    "#1e4ad5",
-    "#ff6918",
-]
+import type { ASData, ComputedServerData, ServerData } from "./parsedData"
 
 export const COLOR_MAX = "#ea501d"
 export const COLOR_MEAN = "#2565ee"
@@ -22,12 +10,6 @@ export interface TickResult {
     ticksX: string[]
     ticksY: number[]
 }
-
-/** Available colours for a green graph. */
-export const greenGraph = ["#00e13f"]
-
-/** Available colours for a red graph. */
-export const redGraph = ["#d12b2b"]
 
 /** The nivo graph theme. */
 export const theme: Theme = {
@@ -55,6 +37,18 @@ export const theme: Theme = {
             strokeWidth: 1,
         },
     },
+}
+
+/** The nivo graph theme. */
+export const barChartTheme: Theme = {
+    background: "#0e0e10",
+    grid: {
+        line: {
+            stroke: "#262629",
+            strokeDasharray: "4, 4",
+            strokeWidth: 1,
+        },
+    }
 }
 
 /** Calculates Y ticks for a chart. */
@@ -99,4 +93,12 @@ export function getTicks(
     }
 
     return { ticksX, ticksY }
+}
+
+// Function to compute server data
+export function computeServerData(data: (ServerData | ASData)[]): ComputedServerData {
+    return data.reduce((acc, curr) => {
+        acc.data.push(...curr.data.map(serverData => ({ x: serverData.x, y: serverData.y })));
+        return acc;
+    }, { data: [] } as ComputedServerData);
 }

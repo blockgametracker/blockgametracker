@@ -7,6 +7,7 @@ interface Props extends PropsWithChildren {
     iconName: keyof typeof ICONS_DATA
     currentPage: string
     target?: string
+    page?: string
 }
 
 export const NavButton = ({
@@ -14,21 +15,23 @@ export const NavButton = ({
     iconName,
     children,
     currentPage,
+    page,
     target,
 }: Props) => {
-    const isActive = currentPage.toLowerCase() === (target ?? "").toLowerCase()
+    const isActive = currentPage.toLowerCase() === (page ?? "").toLowerCase()
     return (
         <li>
             <Link
                 href={href}
-                className={`flex flex-row items-center gap-8 w-full fade p-4 whitespace-nowrap hover:text-mainText ${
+                className={`fade flex group flex-row items-center gap-8 w-full fade p-4 whitespace-nowrap hover:text-mainText ${
                     isActive &&
                     "rounded-md text-mainText font-medium bg-darkSelected"
                 }`}
+                target={target}
             >
                 <Icon
                     iconName={iconName}
-                    className={`w-4 h-4 ${isActive ? "fill-mainColor" : "fill-secondText"}`}
+                    className={`fade w-4 h-4 ${isActive ? "fill-mainColor" : "fill-secondText group-hover:fill-mainText"}`}
                 />
                 {children}
             </Link>

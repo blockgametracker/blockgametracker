@@ -3,36 +3,36 @@
 import { ResponsiveLine } from "@nivo/line"
 import { linearGradientDef } from "@nivo/core"
 import { COLOR_MAX, theme } from "@/utils/graphUtils"
-import type { ServerData } from "@/utils/parsedData"
+import type { GraphData, ServerData } from "@/utils/parsedData"
 import { Loading } from "./loading"
 import { Container } from "../layout/container/container"
 import { QueryTimeFrame } from "@repo/gateway"
 
 interface Props {
-    data: ServerData[]
-    colors: string[]
-    fill: boolean
+    data: GraphData[]
+    fill?: boolean
     areaBaselineValue?: number
     ticksX?: string[]
     ticksY?: number[]
     peak?: string
     start?: QueryTimeFrame
+    className?: string
     loaded?: boolean
 }
 
 export const Graph = ({
     data,
-    colors,
     fill,
     areaBaselineValue,
     ticksX,
     ticksY,
     peak,
     start,
+    className,
     loaded,
 }: Props) => {
     return (
-        <div className="relative w-full h-full">
+        <div className={`relative w-full h-full ${className}`}>
             <Loading />
 
             {!loaded ? (
@@ -40,28 +40,23 @@ export const Graph = ({
             ) : (
                 <ResponsiveLine
                     theme={theme}
-                    data={data.map((data) => {
-                        return {
-                            id: data.server_name,
-                            data: data.data,
-                        }
-                    })}
+                    data={data}
+                    colors={{ datum: 'color' }}
                     margin={{
                         top: 3,
                         right: 0,
                         bottom: ticksX ? 20 : 0,
                         left: ticksY ? 40 : 0,
                     }}
-                    enableArea={fill}
+                    enableArea={fill ?? false}
                     areaOpacity={0.3}
                     areaBaselineValue={
                         areaBaselineValue ? areaBaselineValue : 0
                     }
-                    colors={colors}
                     enableSlices="x"
                     enablePoints={false}
-                    gridXValues={ticksX ? ticksX : []}
-                    gridYValues={ticksY ? ticksY : []}
+                    gridXValues={ticksX ?? []}
+                    gridYValues={ticksY ?? []}
                     axisTop={null}
                     axisRight={null}
                     axisLeft={{ tickValues: ticksY }}
@@ -135,7 +130,7 @@ export const Graph = ({
                                 >
                                     <div className="inline-flex gap-2 text-secondText items-center">
                                         <div
-                                            className={`w-2 h-2`}
+                                            className={`size-2 rounded-full`}
                                             style={{
                                                 backgroundColor:
                                                     point.serieColor,

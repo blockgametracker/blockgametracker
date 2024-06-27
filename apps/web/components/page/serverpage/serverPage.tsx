@@ -1,4 +1,4 @@
-import { getTicks, greenGraph } from "@/utils/graphUtils"
+import { getTicks } from "@/utils/graphUtils"
 import { Graph } from "@/components/graphs/graph"
 import { Container } from "../../layout/container/container"
 import { ServerStatistics } from "../../server/serverStatistics"
@@ -14,22 +14,26 @@ interface Props {
 
 export const ServerPage = async ({ serverData, urlParams }: Props) => {
     const ticks = getTicks(serverData, 8)
-    const dataMapped = [serverData]
     const peak = getPeakDate(serverData.data)
     const minY = Math.min(...serverData.data.map((item) => item.y))
 
+    const graphData = [{
+        id: serverData.server_slug,
+        color: serverData.color,
+        data: serverData.data,
+    }]
+
     return (
-        <Container className="flex flex-col w-full h-96 tablet:w-full tablet:h-full">
+        <Container className="flex flex-col w-full h-96 tablet:w-full tablet:h-3/5">
             <ContainerTitle>
                 <p>{serverData.server_name} overview</p>
             </ContainerTitle>
             <div className="flex w-full h-96 tablet:h-full p-4 border-b-2 border-darkOverlay">
                 <Graph
-                    data={dataMapped}
+                    data={graphData}
                     fill={true}
                     ticksX={ticks.ticksX}
                     ticksY={ticks.ticksY}
-                    colors={greenGraph}
                     areaBaselineValue={minY}
                     peak={peak.x}
                     start={urlParams.start}

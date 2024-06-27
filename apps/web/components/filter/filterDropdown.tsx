@@ -7,7 +7,7 @@ export interface Props extends PropsWithChildren {
     filter: string
 }
 
-export const FilterSection = (props: Props) => {
+export const FilterDropdown = (props: Props) => {
     const [active, setActive] = useState(false)
 
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -31,11 +31,11 @@ export const FilterSection = (props: Props) => {
     return (
         <div
             ref={dropdownRef}
-            className="fade relative flex flex-row w-full rounded-md border-2 hover:bg-darkSelected bg-darkFill border-darkOverlay"
+            className="fade relative flex flex-row w-full rounded-md border-2 hover:bg-darkSelected bg-dark border-darkOverlay"
         >
             <button
                 onClick={() => setActive(!active)}
-                className="inline-flex gap-4 items-center p-4"
+                className="inline-flex gap-4 items-center px-4 py-2"
             >
                 <Icon
                     iconName={props.icon}
@@ -48,7 +48,7 @@ export const FilterSection = (props: Props) => {
                 />
             </button>
             <Container
-                className={`z-20 absolute top-0 left-0 mt-16 w-full shadow-dropdown ${active ? "flex flex-col" : "hidden"}`}
+                className={`z-20 absolute top-0 left-0 mt-12 w-full shadow-dropdown ${active ? "flex flex-col" : "hidden"}`}
             >
                 {props.children}
             </Container>

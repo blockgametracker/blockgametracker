@@ -2,71 +2,49 @@ import { PropsWithChildren } from "react"
 import { ContainerTitle } from "@/components/layout/container/containerTitle"
 import { PieChart } from "../../graphs/pieChart"
 import { Container } from "@/components/layout/container/container"
-import { GRAPH_COLORS } from "@/utils/graphUtils"
 import { PieChartData, ServerData } from "@/utils/parsedData"
-import { MinecraftEdition, getEnsembledTotal } from "@repo/gateway"
-import { getPlayerCountFromList } from "@/utils/dataUtils"
 import { PieChartEdition } from "@/components/graphs/pieChartEdition"
+import { URLParams } from "@/utils/urlBuilder"
+import { MinecraftEdition } from "@repo/gateway"
 
 interface Props extends PropsWithChildren {
+    urlParams: URLParams,
     data: ServerData[]
-    urlServers: string[]
+    playersJava: number
+    playersBedrock: number
 }
 
-export const CompareCharts = async ({ data, urlServers }: Props) => {
-    const selectedPlayerCount = getPlayerCountFromList(data)
-    const [playersJava, playersBedrock] = (
-        await Promise.all([
-            getEnsembledTotal(MinecraftEdition.JAVA),
-            getEnsembledTotal(MinecraftEdition.BEDROCK),
-        ])
-    ).map((total) => total?.data.y ?? 0)
-
+export const CompareCharts = ({ urlParams, data, playersJava, playersBedrock }: Props) => {
     const pieChartData: PieChartData[] = data.map((server) => ({
         id: server.server_slug,
+        color: server.color,
         label: server.server_name,
         value: server.data[server.data.length - 1].y,
     }))
 
     const globalData = [...pieChartData]
-    const javaData = [...pieChartData]
-    const colors = [...GRAPH_COLORS]
+    const editionData = [...pieChartData]
 
-    if (data.length !== 0) {
-        globalData.unshift({
-            id: "other",
-            label: "Global servers",
-            value: playersJava + playersBedrock - selectedPlayerCount,
-        })
-        javaData.unshift({
-            id: "other",
-            label: "Java servers",
-            value: playersJava - selectedPlayerCount,
-        })
-        colors.unshift("#1f1f21")
-    }
+    const isJava = urlParams.edition === MinecraftEdition.JAVA
 
     return (
-        <div className="flex flex-row gap-8 overflow-hidden h-2/5">
+        <div className="flex flex-row gap-8 overflow-hidden tablet:h-[12vw] shrink-0">
             <PieChartEdition
-                data={data}
+                data={globalData}
                 label="Global players"
-                minecraftEditions={[
-                    MinecraftEdition.JAVA,
-                    MinecraftEdition.BEDROCK,
-                ]}
+                editionsPlayerCount={playersJava + playersBedrock}
             />
             <PieChartEdition
-                data={data}
-                label="Java players"
-                minecraftEditions={[MinecraftEdition.JAVA]}
+                data={editionData}
+                label={isJava ? "Java players":"Bedrock players"}
+                editionsPlayerCount={isJava? playersJava:playersBedrock}
             />
 
             <Container className="flex flex-col w-full h-full overflow-hidden">
                 <ContainerTitle>
                     <p>Selected servers overview</p>
                 </ContainerTitle>
-                <PieChart data={pieChartData} colors={GRAPH_COLORS} />
+                <PieChart data={pieChartData} />
             </Container>
         </div>
     )

@@ -14,13 +14,13 @@ export const HeaderServers = async () => {
         <header className="header flex flex-col gap-2 justify-center max-tablet:text-center w-full py-16 rounded-md shrink-0 border-2 border-darkOverlay p-8">
             <div className="inline-flex gap-2 items-center max-tablet:justify-center">
                 <Icon iconName="icon" className="fill-mainColor w-4 h-4" />
-                <span className="text-mainText">blockgametracker</span>
+                <span>blockgametracker</span>
             </div>
-            <h1 className={`text-6xl text-mainColor ${Expose.className}`}>
+            <h1 className={`text-6xl text-gray-200 ${Expose.className}`}>
                 TRACKING {servers?.length.toLocaleString() || 0} MINECRAFT
                 SERVERS
             </h1>
-            <span className="text-lg text-mainText">
+            <span className="text-lg">
                 Historical Minecraft server playercounts, saved for as long as
                 possible.
             </span>

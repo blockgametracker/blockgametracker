@@ -1,12 +1,13 @@
 import { Container } from "@/components/layout/container/container"
 import { Graph } from "@/components/graphs/graph"
-import { getTicks, greenGraph } from "@/utils/graphUtils"
+import { getTicks } from "@/utils/graphUtils"
 import { ServerButton } from "./serverButton"
 import { ServerInfo } from "./serverInfo"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { ServerData } from "@/utils/parsedData"
 import { ServerStatistics } from "./serverStatistics"
 import { getPeakDate } from "@/utils/dataUtils"
+import { getColor } from "@/utils/colorUtils"
 
 interface Props {
     urlParams: URLParams
@@ -16,9 +17,14 @@ interface Props {
 
 export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
     const ticks = getTicks(serverData, 6)
-    const dataMapped = [serverData]
     const peak = getPeakDate(serverData.data)
     const minY = Math.min(...serverData.data.map((item) => item.y))
+
+    const graphData = [{
+        id: serverData.server_slug,
+        data: serverData.data,
+        color: getColor(0)
+    }]
 
     return (
         <Container
@@ -34,7 +40,7 @@ export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
                     <ServerButton
                         rel="nofollow"
                         ariaLabel="Compare server"
-                        href={`/compare/${buildURL(urlParams, { servers: [serverData.server_slug.toLowerCase()] })}`}
+                        href={`/compare/${buildURL(urlParams)}`}
                         iconName="compare"
                         className="hidden phone:flex"
                     />
@@ -48,12 +54,11 @@ export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
 
             <div className="w-full h-48 p-4">
                 <Graph
-                    data={dataMapped}
+                    data={graphData}
                     fill={true}
                     areaBaselineValue={minY}
                     ticksX={ticks.ticksX}
                     ticksY={ticks.ticksY}
-                    colors={greenGraph}
                     peak={peak.x}
                     start={urlParams.start}
                     loaded={loaded}

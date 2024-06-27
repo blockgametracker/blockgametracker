@@ -7,7 +7,7 @@ export interface Props {
     text: string
 }
 
-export const FilterButton = ({ text, updates, URLParams }: Props) => {
+export const FilterOption = ({ text, updates, URLParams }: Props) => {
     const firstUpdate = Object.entries(updates)[0]
     const isActive =
         firstUpdate &&
@@ -17,7 +17,7 @@ export const FilterButton = ({ text, updates, URLParams }: Props) => {
         <Link
             rel="nofollow"
             href={buildURL(URLParams, updates)}
-            className={`fade inline-flex w-full items-center p-4 ${isActive ? "bg-darkSelected text-mainText" : "hover:bg-darkSelected "}`}
+            className={`fade inline-flex w-full items-center px-4 py-2 ${isActive ? "bg-darkSelected text-mainText" : "hover:bg-darkSelected "}`}
         >
             {text}
         </Link>

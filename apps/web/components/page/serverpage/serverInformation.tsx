@@ -14,7 +14,7 @@ export const ServerInformation = async ({ serverData, urlParams }: Props) => {
         serverData.data[serverData.data.length - 1].y.toLocaleString()
 
     return (
-        <Container className="w-full tablet:w-[12vw] flex flex-col shrink-0">
+        <Container className="w-full tablet:w-[15vw] flex flex-col shrink-0">
             <ContainerTitle>
                 <p>Server information</p>
             </ContainerTitle>

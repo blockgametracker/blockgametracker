@@ -14,7 +14,6 @@ const config: Config = {
                 darkSelected: "#161619",
                 darkOverlay: "#1c1e23",
                 mainColor: "#00e13f",
-                secondColor: "#16a752",
                 mainText: "#fafbff",
                 secondText: "#787a7f",
             },

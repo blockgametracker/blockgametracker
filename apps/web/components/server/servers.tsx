@@ -3,7 +3,12 @@ import { getTotalEnsembled } from "@/utils/dataFetcher"
 import { URLParams } from "@/utils/urlBuilder"
 import { ServerCardSmall } from "./serverCardSmall"
 
-export const Servers = async (urlParams: URLParams) => {
+interface Props {
+    search?: string
+    urlParams: URLParams
+}
+
+export const Servers = async ({ urlParams, search }: Props) => {
     const serverList = await getTotalEnsembled(
         urlParams.edition,
         urlParams.start,
@@ -11,11 +16,18 @@ export const Servers = async (urlParams: URLParams) => {
     )
     const compact = urlParams.view === "compact"
 
+    // Filter the serverList based on the search term
+    const filteredServerList = search
+        ? serverList.filter(serverData =>
+            serverData.server_name.toLowerCase().includes(search.toLowerCase())
+        )
+        : serverList
+
     return (
         <ul
             className={`w-full grid gap-4 grid-cols-1 ${compact ? "normal:grid-cols-2" : "tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
         >
-            {serverList.map((serverData, index) => (
+            {filteredServerList.map((serverData, index) => (
                 <li id={`server-${serverData.server_slug}`} key={index}>
                     {compact ? (
                         <ServerCardSmall

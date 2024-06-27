@@ -2,14 +2,9 @@ import { Layout } from "@/components/layout"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
 import type { PageParams } from "@/utils/next"
 import type { Metadata } from "next"
-import { MinecraftEdition } from "@repo/gateway"
-import { PieChartData, ServerData } from "@/utils/parsedData"
-import { CompareServers } from "@/components/page/comparepage/compareServers"
-import { Filters } from "@/components/filter/filters"
+import { MinecraftEdition, getEnsembledTotal } from "@repo/gateway"
 import { getURLParams } from "@/utils/urlBuilder"
-import { CompareCharts } from "@/components/page/comparepage/compareCharts"
-import { CompareGraph } from "@/components/page/comparepage/compareGraph"
-import { getPlayerCountFromList } from "@/utils/dataUtils"
+import { ComparePage } from "@/components/page/comparepage/comparePage"
 
 export const metadata: Metadata = {
     title: "Compare | blockgametracker",
@@ -27,10 +22,14 @@ export const metadata: Metadata = {
     ],
 }
 
-const Compare = async ({ searchParams }: PageParams) => {
+const Page = async ({ searchParams }: PageParams) => {
     const urlParams = getURLParams(searchParams)
-    const urlServers: string[] =
-        searchParams?.servers?.split(",").map((server) => server.trim()) || []
+    const [playersJava, playersBedrock] = (
+        await Promise.all([
+            getEnsembledTotal(MinecraftEdition.JAVA),
+            getEnsembledTotal(MinecraftEdition.BEDROCK),
+        ])
+    ).map((total) => total?.data.y ?? 0)
 
     const servers = await getTotalEnsembled(
         urlParams.edition as MinecraftEdition,
@@ -38,42 +37,15 @@ const Compare = async ({ searchParams }: PageParams) => {
         urlParams.step,
     )
 
-    const lineGraphData: ServerData[] = servers
-        .filter(
-            (server): server is ServerData =>
-                server !== null && urlServers.includes(server.server_slug),
-        )
-        .map((server) => ({
-            server_edition: server.server_edition,
-            server_name: server.server_name,
-            server_slug: server.server_slug,
-            hostname: server.hostname,
-            data: server.data,
-            icon: server.icon,
-        }))
-
     return (
         <Layout
             page="Compare"
             className="flex flex-col gap-8 overflow-hidden"
             urlParams={urlParams}
         >
-            <div className="w-full h-full flex flex-row gap-8 overflow-hidden">
-                <div className="w-full h-full flex flex-col gap-8 overflow-hidden">
-                    <CompareGraph data={lineGraphData} urlParams={urlParams} />
-                    <CompareCharts
-                        data={lineGraphData}
-                        urlServers={urlServers}
-                    />
-                </div>
-                <CompareServers
-                    urlParams={urlParams}
-                    servers={servers}
-                    urlServers={urlServers}
-                />
-            </div>
+            <ComparePage servers={servers} urlParams={urlParams} playersJava={playersJava} playersBedrock={playersBedrock} />
         </Layout>
     )
 }
 
-export default Compare
+export default Page

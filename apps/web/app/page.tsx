@@ -17,23 +17,10 @@ const Page = ({ searchParams }: PageParams) => {
             className="flex flex-col gap-8 tablet:overflow-y-auto"
             urlParams={urlParams}
         >
-            {dataPoints < 400 ? (
-                <>
-                    <HeaderServers />
-                    <Servers {...urlParams} />
-                </>
-            ) : (
-                <Container className="w-full h-full">
-                    <div className="w-full h-full flex flex-col gap-4 items-center justify-center">
-                        <Icon
-                            iconName="icon"
-                            className="w-6 h-6 fill-mainColor"
-                        />
-                        <h2>ERROR</h2>
-                        <p>Data range too large.</p>
-                    </div>
-                </Container>
-            )}
+            <>
+                <HeaderServers />
+                <Servers urlParams={urlParams} search={urlParams.search} />
+            </>
         </Layout>
     )
 }
