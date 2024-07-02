@@ -3,21 +3,20 @@
 import { useEffect } from "react";
 import { CompareItem } from "@/utils/parsedData";
 import { Container } from "../layout/container/container";
-import { Icon } from "@/components/icon";
 import { ServerIcon } from "@/components/server/serverIcon";
 
 interface Props {
     sessionStorageID: string,
     compareItems: CompareItem[];
-    selectedServers: string[]
-    setSelectedServers: any
+    selectedItems: string[]
+    setSelectedItems: any
 }
 
-export const CompareItems = ({ sessionStorageID, compareItems, selectedServers, setSelectedServers }: Props) => {
+export const CompareItems = ({ sessionStorageID, compareItems, selectedItems, setSelectedItems }: Props) => {
     useEffect(() => {
         const storedString = sessionStorage.getItem(sessionStorageID);
         if (storedString) {
-            setSelectedServers(storedString.split(','));
+            setSelectedItems(storedString.split(','));
         }
     }, []);
 
@@ -25,43 +24,44 @@ export const CompareItems = ({ sessionStorageID, compareItems, selectedServers, 
         let updatedSelectedServerIds;
 
         if (active) {
-            updatedSelectedServerIds = selectedServers.filter(id => id !== server.slug);
+            updatedSelectedServerIds = selectedItems.filter(id => id !== server.slug);
         } else {
-            updatedSelectedServerIds = [...selectedServers, server.slug];
+            updatedSelectedServerIds = [...selectedItems, server.slug];
         }
 
-        setSelectedServers(updatedSelectedServerIds);
+        setSelectedItems(updatedSelectedServerIds);
         sessionStorage.setItem(sessionStorageID, updatedSelectedServerIds.join(','));
     };
 
     return (
-        <Container className="w-full tablet:w-[20vw] flex flex-col tablet:overflow-auto shrink-0 select-none">
-            <table className="w-full table-auto divide-y-2 divide-darkOverlay">
+        <Container className="w-full tablet:w-fit flex flex-col tablet:overflow-auto shrink-0 select-none shadow-md dark:shadow-none overflow-x-hidden">
+            <table className="w-full table-auto divide-y-2 divide-whiteBorder dark:divide-darkBorder">
                 <thead>
-                    <tr className="text-mainText divide-darkOverlay">
+                    <tr className="text-dark font-semibold dark:text-mainText dark:font-medium divide-whiteBorder">
                         <th />
-                        <th className="p-4 text-start font-medium">Servers</th>
-                        <th className="text-start font-medium p-4">Current</th>
-                        <th className="text-start font-medium p-4">Mean</th>
-                        <th className="text-start font-medium p-4">Max</th>
+                        <th className="p-4 text-start">Servers</th>
+                        <th className="text-start p-4">Current</th>
+                        <th className="text-start p-4">Mean</th>
+                        <th className="text-start p-4">Max</th>
                     </tr>
                 </thead>
-                <tbody className="divide-y-2 divide-darkOverlay">
+                <tbody className="divide-y-2 divide-whiteBorder dark:divide-darkBorder">
                     {compareItems.map((compareItem, index) => {
-                        const active = selectedServers.includes(compareItem.slug);
+                        const active = selectedItems.includes(compareItem.slug);
 
                         return (
                             <tr 
                                 onClick={() => setServer(active, compareItem)}
                                 key={index} 
-                                className={`fade hover:bg-darkSelected hover:text-mainText cursor-pointer ${active && "bg-darkSelected text-mainText"}`}
+                                className={`fade hover:bg-whiteSelected hover:text-whiteMT dark:hover:bg-darkSelected dark:hover:text-mainText cursor-pointer ${active ?
+                                    "bg-whiteSelected text-whiteMT font-semibold dark:font-normal dark:bg-darkSelected dark:text-mainText":
+                                    "text-whiteST"
+                                }`}
                             >
-                                <td className="px-4">
-                                    <div className={`flex items-center justify-center size-4 rounded-md ${!active && "border-2 border-darkOverlay"}`} style={{ backgroundColor: `${active ? compareItem.color:""}` }}>
-                                        {active && <Icon iconName="check" className="fill-dark size-3" />}
-                                    </div>
+                                <td>
+                                    <div className={`flex items-center justify-center w-2 h-14`} style={{ backgroundColor: `${active ? compareItem.color:""}` }} />
                                 </td>
-                                <td className="items-center inline-flex gap-4 p-4">
+                                <td className="items-center inline-flex gap-4 px-4 h-14">
                                     {compareItem.icon &&
                                         <ServerIcon icon={compareItem.icon} className={"size-8"} />
                                     }

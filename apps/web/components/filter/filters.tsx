@@ -2,24 +2,28 @@
 
 import { FilterOption } from "./filterOption"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
-import { FilterDropdown } from "./filterDropdown"
+import { Dropdown } from "../layout/dropdown/dropdown"
 import { MinecraftEdition } from "@repo/gateway"
 import { Icon } from "../icon"
 import Link from "next/link"
 import { FilterSearch } from "./filterSearch"
+import { useTheme } from "next-themes"
+import { DropdownButton } from "../layout/dropdown/dropdownButton"
 
 export interface Props {
     urlParams: URLParams
 }
 
 export const Filters = ({ urlParams }: Props) => {
+    const { setTheme, resolvedTheme } = useTheme()
+    
     return (
-        <div className="flex flex-col tablet:flex-row items-center gap-4 w-full h-fit shrink-0 px-2 tablet:px-8 py-4 border-b-2 bg-darkFill border-darkOverlay">
+        <div className="flex flex-col tablet:flex-row items-center gap-4 w-full h-fit shrink-0 px-2 tablet:px-8 py-4 border-b-2 bg-whiteFill dark:bg-darkFill border-whiteBorder dark:border-darkBorder">
             <Link
                 href={`/${buildURL(urlParams)}`}
                 className="inline-flex items-center max-w-content gap-4 tablet:mr-4"
             >
-                <Icon iconName="icon" className="size-6 fill-mainColor" />
+                <Icon iconName="icon" className="size-6 fill-whiteMT dark:fill-mainColor" />
             </Link>
 
             <FilterSearch urlParams={urlParams} />
@@ -27,7 +31,20 @@ export const Filters = ({ urlParams }: Props) => {
             <div
                 className={`ml-auto flex flex-col tablet:flex-row max-tablet:w-full gap-4`}
             >
-                <FilterDropdown filter="Edition" icon="cube">
+                <Dropdown title="Theme" icon="lightbulb">
+                    <DropdownButton
+                        onClick={() => setTheme("dark")}
+                    >
+                        Dark theme
+                    </DropdownButton>
+                    <DropdownButton
+                        onClick={() => setTheme("light")}
+                    >
+                        Light theme
+                    </DropdownButton>
+                </Dropdown>
+
+                <Dropdown title="Edition" icon="cube">
                     <FilterOption
                         updates={{
                             edition: MinecraftEdition.JAVA,
@@ -42,9 +59,9 @@ export const Filters = ({ urlParams }: Props) => {
                         URLParams={urlParams}
                         text="Bedrock"
                     />
-                </FilterDropdown>
+                </Dropdown>
 
-                <FilterDropdown filter="View" icon="view">
+                <Dropdown title="View" icon="view">
                     <FilterOption
                         updates={{ view: "default" }}
                         URLParams={urlParams}
@@ -55,8 +72,8 @@ export const Filters = ({ urlParams }: Props) => {
                         URLParams={urlParams}
                         text="Compact"
                     />
-                </FilterDropdown>
-                <FilterDropdown filter="Data range" icon="calendar">
+                </Dropdown>
+                <Dropdown title="Data range" icon="calendar">
                     <FilterOption
                         updates={{ start: "-1h", step: "10s" }}
                         URLParams={urlParams}
@@ -87,7 +104,7 @@ export const Filters = ({ urlParams }: Props) => {
                         URLParams={urlParams}
                         text="Last 1 year"
                     />
-                </FilterDropdown>
+                </Dropdown>
             </div>
         </div>
     )

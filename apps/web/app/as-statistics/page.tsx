@@ -34,7 +34,7 @@ const Page = async ({ searchParams }: PageParams) => {
     return (
         <Layout
             page="as-statistics"
-            className="w-full h-full flex flex-col gap-8 tablet:overflow-hidden"
+            className="w-full h-full flex flex-col tablet:flex-row gap-8 tablet:overflow-hidden"
             urlParams={urlParams}
         >
             {data &&

@@ -1,11 +1,12 @@
 "use client"
 
 import { NavButton } from "./navButton"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
 import { NavSection } from "./navSection"
 import { NavUpdate } from "./navUpdate"
 import { Icon } from "@/components/icon"
+import { useTheme } from "next-themes"
 
 interface Props {
     page: string
@@ -16,14 +17,14 @@ export const Navigation = ({ urlParams, page }: Props) => {
     const [active, setActive] = useState(false)
 
     return (
-        <div className="shrink-0 w-full tablet:w-[15vw] h-fit tablet:h-full p-4 tablet:flex flex-col gap-8 border-r-2 border-darkOverlay bg-darkFill z-10">
+        <div className="shrink-0 w-full tablet:w-[15vw] h-fit tablet:h-full p-4 tablet:flex flex-col gap-8 border-r-2 border-whiteBorder dark:border-darkBorder bg-whiteFill dark:bg-darkFill z-10">
             <ul className="`w-full h-full flex flex-col gap-8 bg-opacity-60">
                 <NavSection>
                     <NavButton
                         iconName="home"
                         page="home"
                         currentPage={page}
-                        href={`/${buildURL(urlParams, {search: undefined})}`}
+                        href={`/${buildURL(urlParams, { search: undefined })}`}
                     >
                         Home
                     </NavButton>
@@ -31,7 +32,7 @@ export const Navigation = ({ urlParams, page }: Props) => {
                         iconName="compare"
                         page="compare"
                         currentPage={page}
-                        href={`/compare${buildURL(urlParams, {search: undefined})}`}
+                        href={`/compare${buildURL(urlParams, { search: undefined })}`}
                     >
                         Compare Servers
                     </NavButton>
@@ -39,7 +40,7 @@ export const Navigation = ({ urlParams, page }: Props) => {
                         iconName="chartpie"
                         page="as-statistics"
                         currentPage={page}
-                        href={`/as-statistics${buildURL(urlParams, {search: undefined})}`}
+                        href={`/as-statistics${buildURL(urlParams, { search: undefined })}`}
                     >
                         AS Statistics
                     </NavButton>
@@ -73,10 +74,7 @@ export const Navigation = ({ urlParams, page }: Props) => {
                         <Icon iconName="link" className="fade group-hover:fill-mainText ml-auto fill-secondText size-4" />
                     </NavButton>
                 </NavSection>
-
                 <NavUpdate />
-
-                {/* <Footer /> */}
             </ul>
         </div>
     )

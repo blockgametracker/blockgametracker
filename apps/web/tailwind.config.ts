@@ -6,13 +6,22 @@ const config: Config = {
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
-                dark: "#0b0b0c",
+                darkBG: "#0b0b0c",
                 darkFill: "#0e0e10",
                 darkSelected: "#161619",
-                darkOverlay: "#1c1e23",
+                darkBorder: "#1c1e23",
+
+                whiteBG: "#f5f7fa",
+                whiteFill: "#ffffff",
+                whiteSelected: "#e7eaed",
+                whiteBorder: "#eaebec",
+                whiteMT: "#2b333c",
+                whiteST: "#6a6a6b",
+
                 mainColor: "#00e13f",
                 mainText: "#fafbff",
                 secondText: "#787a7f",
@@ -27,6 +36,7 @@ const config: Config = {
             },
             boxShadow: {
                 dropdown: "0 35px 60px -15px rgba(0, 0, 0, 0.6)",
+                lightShadow: "0 35px 60px -15px rgba(0, 0, 0, 0.1)",
             },
             screens: {
                 phone: "700px",

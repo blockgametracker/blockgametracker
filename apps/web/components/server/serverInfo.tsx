@@ -15,13 +15,13 @@ export const ServerInfo = ({serverData, className, children}: Props) => {
             className={`w-full inline-flex gap-4 items-center ${className}`}
         >
             <div className="inline-flex gap-4 items-center">
-                <ServerIcon className="w-12 h-12" icon={serverData.icon} />
+                <ServerIcon className="size-10" icon={serverData.icon} />
 
                 <div className="flex flex-col">
-                    <h2 className="text-lg whitespace-nowrap text-mainText font-medium leading-4">
+                    <h2 className="text-lg whitespace-nowrap text-whiteMT dark:text-mainText font-semibold dark:font-medium leading-4">
                         {serverData.server_name}
                     </h2>
-                    <p className="whitespace-nowrap text-secondText">
+                    <p className="whitespace-nowrap text-whiteST dark:text-secondText">
                         {serverData.hostname}
                     </p>
                 </div>

@@ -18,7 +18,7 @@ export const ServerInformation = async ({ serverData, urlParams }: Props) => {
             <ContainerTitle>
                 <p>Server information</p>
             </ContainerTitle>
-            <div className="flex flex-col divide-y-2 divide-darkOverlay">
+            <div className="flex flex-col divide-y-2 divide-darkBorder">
                 <ListItem title="Players" value={online} />
                 <ListItem title="Host" value={serverData.hostname} />
                 <ListItem

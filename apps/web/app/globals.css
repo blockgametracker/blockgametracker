@@ -4,21 +4,21 @@
 
 @layer components {
     h1 {
-        @apply text-mainText font-bold text-lg;
+        @apply text-whiteMT dark:text-mainText font-semibold text-lg;
     }
     h2 {
-        @apply text-mainText font-bold text-lg;
+        @apply text-whiteMT dark:text-mainText font-semibold text-lg;
     }
     h3 {
-        @apply text-mainText;
+        @apply text-whiteMT dark:text-mainText;
     }
     h4 {
-        @apply text-mainText;
+        @apply text-whiteMT dark:text-mainText;
     }
 }
 
 body {
-    @apply bg-dark;
+    @apply bg-whiteBG dark:bg-darkBG;
 }
 
 /* General styles */

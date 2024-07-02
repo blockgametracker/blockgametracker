@@ -18,7 +18,7 @@ export const ServerStatistics = ({ serverData }: Props) => {
 
     return (
         <div
-            className={`w-full flex flex-row gap-4 justify-between rounded-md divide-y-0 divide-x-2 px-0 divide-darkOverlay`}
+            className={`w-full flex flex-row gap-4 justify-between divide-y-0 divide-x-2 px-0 divide-whiteBorder dark:divide-darkBorder`}
         >
             <Tag text="Current" color={COLOR_CURRENT} className="w-full p-4">
                 {online.toLocaleString()}

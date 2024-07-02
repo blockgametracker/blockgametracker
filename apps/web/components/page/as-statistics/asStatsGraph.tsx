@@ -26,8 +26,8 @@ export const ASStatsGraph = ({ data, urlParams }: Props) => {
     }
 
     return (
-        <Container className="flex flex-col w-full h-[88vw] overflow-hidden">
-            <ContainerTitle>
+        <Container className="flex flex-col w-full tablet:h-[88vw] overflow-hidden">
+            <ContainerTitle icon="graph">
                 <p>Playercount (global, per AS, per edition)</p>
             </ContainerTitle>
             <Graph
@@ -36,6 +36,7 @@ export const ASStatsGraph = ({ data, urlParams }: Props) => {
                 ticksY={ticks.ticksY}
                 start={urlParams.start}
                 className="p-4"
+                fill={true}
                 loaded
             />
         </Container>

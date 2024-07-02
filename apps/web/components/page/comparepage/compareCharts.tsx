@@ -28,7 +28,7 @@ export const CompareCharts = ({ urlParams, data, playersJava, playersBedrock }: 
     const isJava = urlParams.edition === MinecraftEdition.JAVA
 
     return (
-        <div className="flex flex-row gap-8 overflow-hidden tablet:h-[12vw] shrink-0">
+        <div className="flex flex-col tablet:flex-row gap-8 tablet:overflow-hidden tablet:h-[12vw] shrink-0">
             <PieChartEdition
                 data={globalData}
                 label="Global players"
@@ -40,8 +40,8 @@ export const CompareCharts = ({ urlParams, data, playersJava, playersBedrock }: 
                 editionsPlayerCount={isJava? playersJava:playersBedrock}
             />
 
-            <Container className="flex flex-col w-full h-full overflow-hidden">
-                <ContainerTitle>
+            <Container className="flex flex-col w-full h-full overflow-hidden shadow-md dark:shadow-none">
+                <ContainerTitle icon="chartpie">
                     <p>Selected servers overview</p>
                 </ContainerTitle>
                 <PieChart data={pieChartData} />

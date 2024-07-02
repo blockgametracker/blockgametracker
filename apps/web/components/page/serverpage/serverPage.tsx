@@ -28,7 +28,7 @@ export const ServerPage = async ({ serverData, urlParams }: Props) => {
             <ContainerTitle>
                 <p>{serverData.server_name} overview</p>
             </ContainerTitle>
-            <div className="flex w-full h-96 tablet:h-full p-4 border-b-2 border-darkOverlay">
+            <div className="flex w-full h-96 tablet:h-full p-4 border-b-2 border-darkBorder">
                 <Graph
                     data={graphData}
                     fill={true}

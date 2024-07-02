@@ -40,7 +40,7 @@ const Page = async ({ searchParams }: PageParams) => {
     return (
         <Layout
             page="Compare"
-            className="flex flex-col gap-8 overflow-hidden"
+            className="w-full h-full flex flex-col tablet:flex-row gap-8 tablet:overflow-hidden"
             urlParams={urlParams}
         >
             <ComparePage servers={servers} urlParams={urlParams} playersJava={playersJava} playersBedrock={playersBedrock} />

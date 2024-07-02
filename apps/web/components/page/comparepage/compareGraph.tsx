@@ -28,7 +28,7 @@ export const CompareGraph = ({ data, urlParams }: Props) => {
 
     return (
         <Container className="flex flex-col w-full tablet:h-[88vw]">
-            <ContainerTitle>
+            <ContainerTitle icon="graph">
                 <p>Selected servers overview</p>
             </ContainerTitle>
             <div className="w-full h-full p-4">
@@ -38,6 +38,7 @@ export const CompareGraph = ({ data, urlParams }: Props) => {
                         ticksX={ticks.ticksX}
                         ticksY={ticks.ticksY}
                         start={urlParams.start}
+                        fill={true}
                         loaded
                     />
                 ) : (

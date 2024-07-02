@@ -1,10 +1,10 @@
 import { ServerData } from "@/utils/parsedData"
 import localFont from "next/font/local"
-import { ServerButton } from "@/components/server/serverButton"
 import { Icon } from "@/components/icon"
 import { ServerIcon } from "@/components/server/serverIcon"
 import Link from "next/link"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
+import { Container } from "@/components/layout/container/container"
 
 const Expose = localFont({
     src: "../../../public/fonts/Expose-Bold.otf",
@@ -18,7 +18,7 @@ interface Props {
 
 export const ServerHeader = async ({ serverData, urlParams }: Props) => {
     return (
-        <div className="header w-full py-8 rounded-md shrink-0 flex flex-row gap-4 px-8 border-2 border-darkOverlay">
+        <Container className="w-full p-4 rounded-md shrink-0 flex flex-row gap-4">
             <div className="flex flex-row gap-4">
                 <ServerIcon icon={serverData.icon} className="size-16" />
 
@@ -33,7 +33,7 @@ export const ServerHeader = async ({ serverData, urlParams }: Props) => {
                 <Link
                     aria-label="Compare server"
                     href={`/compare/${buildURL(urlParams)}`}
-                    className="items-center inline-flex gap-2 px-4 py-2 rounded-md border-2 bg-darkFill border-darkOverlay font-medium"
+                    className="items-center inline-flex gap-2 px-4 py-2 rounded-md border-2 bg-darkFill border-darkBorder font-medium"
                 >
                     <Icon
                         iconName="compare"
@@ -44,7 +44,7 @@ export const ServerHeader = async ({ serverData, urlParams }: Props) => {
                 <Link
                     aria-label="Compare server"
                     href={`/compare/${buildURL(urlParams)}`}
-                    className="items-center inline-flex gap-2 px-4 py-2 rounded-md border-2 bg-darkFill border-darkOverlay font-medium"
+                    className="items-center inline-flex gap-2 px-4 py-2 rounded-md border-2 bg-darkFill border-darkBorder font-medium"
                 >
                     <Icon
                         iconName="share"
@@ -53,6 +53,6 @@ export const ServerHeader = async ({ serverData, urlParams }: Props) => {
                     Share
                 </Link>
             </div>
-        </div>
+        </Container>
     )
 }

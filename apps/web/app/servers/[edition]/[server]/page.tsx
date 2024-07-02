@@ -93,6 +93,7 @@ const Page = async ({ params, searchParams }: PageParams<Params>) => {
             urlParams={urlParams}
         >
             <ServerHeader serverData={serverData} urlParams={urlParams} />
+            
             <div className="flex flex-col tablet:flex-row gap-8 w-full h-full">
                 <div className="flex flex-col gap-8 w-full">
                     <ServerPage serverData={serverData} urlParams={urlParams} />

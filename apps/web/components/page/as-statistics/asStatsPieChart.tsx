@@ -17,8 +17,8 @@ export const ASStatsPieChart = ({ data }: Props) => {
     })) ?? []
 
     return (
-        <Container className="flex flex-col w-1/2">
-            <ContainerTitle>
+        <Container className="flex flex-col w-full tablet:w-1/2">
+            <ContainerTitle icon="chartpie">
                 <p>Playercount (global, per AS, per edition)</p>
             </ContainerTitle>
             <PieChart data={pieChartData} />

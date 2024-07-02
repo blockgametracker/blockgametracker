@@ -21,7 +21,7 @@ export const FilterSearch = ({ urlParams }: Props) => {
     }
 
     return (
-        <div className="flex flex-row items-center w-full max-w-96 rounded-md border-2 bg-dark border-darkOverlay">
+        <div className="flex flex-row items-center w-full max-w-96 rounded-md border-2 bg-whiteBG dark:bg-darkBG border-whiteBorder dark:border-darkBorder">
         <Icon
             iconName="search"
             className="ml-4 size-4 fill-secondText"

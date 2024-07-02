@@ -41,12 +41,12 @@ export const ASStatsPage = ({ data, urlParams }: Props) => {
         })) ?? []
 
     return (
-        <div className="w-full h-full flex flex-row gap-8 tablet:overflow-hidden">
+        <>
             <div className="tablet:w-[85vw] h-full flex flex-col gap-8">
                 <ASStatsGraph data={graphData} urlParams={urlParams} />
-                <div className="flex flex-row gap-8 w-full h-[12vw] shrink-0">
-                    <Container className="flex flex-col w-1/2">
-                        <ContainerTitle>
+                <div className="flex flex-col tablet:flex-row gap-8 w-full tablet:h-[12vw] shrink-0">
+                    <Container className="flex flex-col w-full tablet:w-1/2">
+                        <ContainerTitle icon="information">
                             <p>blockgametracker servers per AS</p>
                         </ContainerTitle>
                         <p className="p-4">Certain hosts may fluctuate in playercounts if there is a large server switching between multiple providers. One example is GommeHD which switches between OVH, Hetzner & SYNLINQ</p>
@@ -57,9 +57,9 @@ export const ASStatsPage = ({ data, urlParams }: Props) => {
             <CompareItems
                 sessionStorageID="ASSelected"
                 compareItems={compareItems}
-                selectedServers={selectedItems}
-                setSelectedServers={setSelectedItems}
+                selectedItems={selectedItems}
+                setSelectedItems={setSelectedItems}
             />
-        </div>
+        </>
     )
 }

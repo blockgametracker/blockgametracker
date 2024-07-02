@@ -11,46 +11,6 @@ export interface TickResult {
     ticksY: number[]
 }
 
-/** The nivo graph theme. */
-export const theme: Theme = {
-    background: "#0e0e10",
-    grid: {
-        line: {
-            stroke: "#262629",
-            strokeDasharray: "4, 4",
-            strokeWidth: 1,
-        },
-    },
-    axis: {
-        ticks: {
-            line: {
-                stroke: "#262629",
-            },
-            text: {
-                fill: "#7e7e7e",
-            },
-        },
-    },
-    crosshair: {
-        line: {
-            stroke: "#dadada",
-            strokeWidth: 1,
-        },
-    },
-}
-
-/** The nivo graph theme. */
-export const barChartTheme: Theme = {
-    background: "#0e0e10",
-    grid: {
-        line: {
-            stroke: "#262629",
-            strokeDasharray: "4, 4",
-            strokeWidth: 1,
-        },
-    }
-}
-
 /** Calculates Y ticks for a chart. */
 function getTicksY(minY: number, maxY: number) {
     var range = maxY - minY

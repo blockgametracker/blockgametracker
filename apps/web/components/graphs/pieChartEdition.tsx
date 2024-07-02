@@ -3,7 +3,6 @@ import { ContainerTitle } from "@/components/layout/container/containerTitle"
 import { Container } from "@/components/layout/container/container"
 import { PieChartData } from "@/utils/parsedData"
 import { PieChart } from "./pieChart"
-import { hexToHslString } from "@/utils/colorUtils"
 
 interface Props extends PropsWithChildren {
     data: PieChartData[]
@@ -32,8 +31,8 @@ export const PieChartEdition = ({
     }
 
     return (
-        <Container className="flex flex-col w-full h-full overflow-hidden">
-            <ContainerTitle>
+        <Container className="flex flex-col w-full h-full overflow-hidden shadow-md dark:shadow-none">
+            <ContainerTitle icon="chartpie">
                 <p>{label} overview</p>
             </ContainerTitle>
             <PieChart data={editionsData} />

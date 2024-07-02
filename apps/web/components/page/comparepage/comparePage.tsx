@@ -53,8 +53,8 @@ export const ComparePage = ({
         })) ?? []
 
     return (
-        <div className="w-full h-full flex flex-row gap-8 overflow-hidden">
-            <div className="w-full h-full flex flex-col gap-8 overflow-hidden">
+        <>
+            <div className="w-full h-full flex flex-col gap-8 tablet:overflow-hidden">
                 <CompareGraph
                     data={data}
                     urlParams={urlParams}
@@ -69,9 +69,9 @@ export const ComparePage = ({
             <CompareItems
                 sessionStorageID={`${urlParams.edition}SelectedServers`}
                 compareItems={compareItems}
-                selectedServers={selectedServers}
-                setSelectedServers={setSelectedServers}
+                selectedItems={selectedServers}
+                setSelectedItems={setSelectedServers}
             />
-        </div>
+        </>
     )
 }
