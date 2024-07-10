@@ -18,8 +18,9 @@ export const Filters = ({ urlParams }: Props) => {
     const { setTheme, resolvedTheme } = useTheme()
     
     return (
-        <div className="flex flex-col tablet:flex-row items-center gap-4 w-full h-fit shrink-0 px-2 tablet:px-8 py-4 border-b-2 bg-whiteFill dark:bg-darkFill border-whiteBorder dark:border-darkBorder">
+        <div id="options" className="flex flex-col tablet:flex-row items-center gap-4 w-full h-fit shrink-0 px-2 tablet:px-8 py-4 border-b-2 bg-whiteFill dark:bg-darkFill border-whiteBorder dark:border-darkBorder">
             <Link
+                id="homepage-icon"
                 href={`/${buildURL(urlParams)}`}
                 className="inline-flex items-center max-w-content gap-4 tablet:mr-4"
             >
@@ -28,10 +29,11 @@ export const Filters = ({ urlParams }: Props) => {
 
             <FilterSearch urlParams={urlParams} />
 
-            <div
+            <ul
+                id="option-dropdowns"
                 className={`ml-auto flex flex-col tablet:flex-row max-tablet:w-full gap-4`}
             >
-                <Dropdown title="Theme" icon="lightbulb">
+                <Dropdown id={`dropdown-theme`} title="Theme" icon="lightbulb">
                     <DropdownButton
                         onClick={() => setTheme("dark")}
                     >
@@ -44,7 +46,7 @@ export const Filters = ({ urlParams }: Props) => {
                     </DropdownButton>
                 </Dropdown>
 
-                <Dropdown title="Edition" icon="cube">
+                <Dropdown id={`dropdown-edition`} title="Edition" icon="cube">
                     <FilterOption
                         updates={{
                             edition: MinecraftEdition.JAVA,
@@ -61,7 +63,7 @@ export const Filters = ({ urlParams }: Props) => {
                     />
                 </Dropdown>
 
-                <Dropdown title="View" icon="view">
+                <Dropdown id={`dropdown-view`} title="View" icon="view">
                     <FilterOption
                         updates={{ view: "default" }}
                         URLParams={urlParams}
@@ -73,7 +75,7 @@ export const Filters = ({ urlParams }: Props) => {
                         text="Compact"
                     />
                 </Dropdown>
-                <Dropdown title="Data range" icon="calendar">
+                <Dropdown id={`dropdown-datarange`} title="Data range" icon="calendar">
                     <FilterOption
                         updates={{ start: "-1h", step: "10s" }}
                         URLParams={urlParams}
@@ -105,7 +107,7 @@ export const Filters = ({ urlParams }: Props) => {
                         text="Last 1 year"
                     />
                 </Dropdown>
-            </div>
+            </ul>
         </div>
     )
 }

@@ -12,6 +12,7 @@ interface Props extends PropsWithChildren {
 export const ServerInfo = ({serverData, className, children}: Props) => {
     return (
         <div
+            id={`server-${serverData.server_slug}-information`}
             className={`w-full inline-flex gap-4 items-center ${className}`}
         >
             <div className="inline-flex gap-4 items-center">

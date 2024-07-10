@@ -108,14 +108,14 @@ const Page = async ({ params, searchParams }: PageParams<Params>) => {
                             label="Java players"
                             editionsPlayerCount={playersJava}
                         />
-                        <Container className="flex flex-col w-3/5 h-full overflow-hidden shrink-0">
+                        {/* <Container className="flex flex-col w-3/5 h-full overflow-hidden shrink-0">
                             <ContainerTitle>
                                 <p>(7d)</p>
                             </ContainerTitle>
                             <div className="w-full h-full p-4">
                                 <BarChart data={barChartData} />
                             </div>
-                        </Container>
+                        </Container> */}
                     </div>
                 </div>
                 <ServerInformation

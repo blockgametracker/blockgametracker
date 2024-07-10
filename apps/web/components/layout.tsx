@@ -20,9 +20,9 @@ export const Layout = ({ children, className, page, urlParams }: Props) => {
             {dataPoints < 400 ? (
                 <>
                     <Filters urlParams={urlParams} />
-                    <div className="flex flex-col tablet:flex-row w-full h-full tablet:overflow-hidden font-medium dark:font-normal text-whiteMT dark:text-secondText">
+                    <div id="content" className="flex flex-col tablet:flex-row w-full h-full tablet:overflow-hidden font-medium dark:font-normal text-whiteMT dark:text-secondText">
                         <Navigation urlParams={urlParams} page={page} />
-                        <main className={`w-full tablet:w-[85vw] h-full p-2 tablet:p-8 ${className}`}>
+                        <main id="content-main" className={`w-full tablet:w-[85vw] h-full p-2 tablet:p-8 ${className}`}>
                             {children}
                         </main>
                     </div>

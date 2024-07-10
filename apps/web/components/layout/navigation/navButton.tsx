@@ -20,8 +20,10 @@ export const NavButton = ({
 }: Props) => {
     const isActive = currentPage.toLowerCase() === (page ?? "").toLowerCase()
     return (
-        <li>
+        <li id={page}>
             <Link
+                id={`button-${page?.toLowerCase()}`}
+                aria-label={page}
                 href={href}
                 className={`fade flex group flex-row items-center gap-4 w-full fade p-4 whitespace-nowrap hover:text-whiteMT hover:font-semibold dark:hover:font-normal ${isActive ?
                     "rounded-md text-whiteMT font-semibold bg-whiteBG dark:font-normal dark:bg-darkSelected dark:text-mainText" :

@@ -2,7 +2,7 @@ import { Servers } from "@/components/server/servers"
 import { Layout } from "@/components/layout"
 import type { PageParams } from "@/utils/next"
 import { getURLParams } from "@/utils/urlBuilder"
-import { HeaderServers } from "@/components/layout/headerServers"
+import { HomeHeader } from "@/components/page/homepage/homeHeader"
 
 const Page = ({ searchParams }: PageParams) => {
     const urlParams = getURLParams(searchParams)
@@ -14,7 +14,7 @@ const Page = ({ searchParams }: PageParams) => {
             urlParams={urlParams}
         >
             <>
-                <HeaderServers />
+                <HomeHeader />
                 <Servers urlParams={urlParams} search={urlParams.search} />
             </>
         </Layout>

@@ -8,7 +8,7 @@ export const NavUpdate = () => {
 
     return (
         <>
-            <div className={`mt-auto flex flex-col gap-4 p-4 rounded-md bg-whiteBG dark:bg-darkBG dark:border-2 dark:border-darkBorder ${!active && "hidden"}`}>
+            <li id="section-update" className={`mt-auto flex flex-col gap-4 p-4 rounded-md bg-whiteBG dark:bg-darkBG dark:border-2 dark:border-darkBorder ${!active && "hidden"}`}>
                 <div className="relative flex flex-row gap-4 items-center">
                     <span className="rounded-full size-4 bg-mainColor" />
                     <span className="absolute left-0 rounded-full size-4 bg-mainColor animate-ping" />
@@ -35,8 +35,8 @@ export const NavUpdate = () => {
                 >
                     Read more
                 </button>
-            </div>
-            <div onClick={() => setPopupActive(!popupActive)} className={`absolute top-0 left-0 w-screen h-screen items-center justify-center overflow-hidden bg-whiteSelected dark:bg-darkBG backdrop-blur-sm z-50 bg-opacity-80 dark:bg-opacity-80 ${popupActive ? "flex flex-col" : "hidden"}`}>
+            </li>
+            <li onClick={() => setPopupActive(!popupActive)} className={`absolute top-0 left-0 w-screen h-screen items-center justify-center overflow-hidden bg-whiteSelected dark:bg-darkBG backdrop-blur-sm z-50 bg-opacity-80 dark:bg-opacity-80 ${popupActive ? "flex flex-col" : "hidden"}`}>
                 <Container onClick={(e) => e.stopPropagation()} className="w-full max-w-[32rem] overflow-hidden">
                     <div className="w-full h-52 bg-mainColor flex items-center justify-center">
                         <Icon
@@ -75,7 +75,7 @@ export const NavUpdate = () => {
                         </div>
                     </div>
                 </Container>
-            </div>
+            </li>
         </>
     )
 }

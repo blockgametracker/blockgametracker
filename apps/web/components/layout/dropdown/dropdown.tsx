@@ -7,12 +7,13 @@ import { Container } from "../container/container"
 export interface Props extends PropsWithChildren {
     icon: keyof typeof ICONS_DATA
     title?: string
+    className?: string
+    id: string
 }
 
-export const Dropdown = ({ children, title, icon }: Props) => {
+export const Dropdown = ({ children, title, icon, className, id }: Props) => {
     const [active, setActive] = useState(false)
-
-    const dropdownRef = useRef<HTMLDivElement>(null)
+    const dropdownRef = useRef<HTMLLIElement>(null)
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -31,11 +32,13 @@ export const Dropdown = ({ children, title, icon }: Props) => {
     }, [])
 
     return (
-        <div
+        <li
+            id={id}
             ref={dropdownRef}
-            className="fade relative flex flex-row w-full rounded-md border-2 bg-whiteBG border:whiteBorder dark:hover:bg-darkSelected dark:bg-darkBG dark:border-darkBorder"
+            className={`fade relative flex flex-row w-fit rounded-md border-2 bg-whiteBG border:whiteBorder dark:hover:bg-darkSelected dark:bg-darkBG dark:border-darkBorder ${className}`}
         >
             <button
+                id={`dropdowm-${title?.toLowerCase()}-button`}
                 onClick={() => setActive(!active)}
                 className={`inline-flex gap-4 items-center ${title ? "px-4 py-2":"p-2"}`}
             >
@@ -54,10 +57,11 @@ export const Dropdown = ({ children, title, icon }: Props) => {
                 }
             </button>
             <Container
+                id={`dropdowm-${title?.toLowerCase()}-container`}
                 className={`z-20 absolute top-0 right-0 mt-12 w-fit shadow-dropdown ${active ? "flex flex-col" : "hidden"}`}
             >
                 {children}
             </Container>
-        </div>
+        </li>
     )
 }

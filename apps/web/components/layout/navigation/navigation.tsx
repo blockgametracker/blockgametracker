@@ -17,8 +17,8 @@ export const Navigation = ({ urlParams, page }: Props) => {
     const [active, setActive] = useState(false)
 
     return (
-        <div className="shrink-0 w-full tablet:w-[15vw] h-fit tablet:h-full p-4 tablet:flex flex-col gap-8 border-r-2 border-whiteBorder dark:border-darkBorder bg-whiteFill dark:bg-darkFill z-10">
-            <ul className="`w-full h-full flex flex-col gap-8 bg-opacity-60">
+        <nav id="navigation" className="shrink-0 w-full tablet:w-[15vw] h-fit tablet:h-full p-4 tablet:flex flex-col gap-8 border-r-2 border-whiteBorder dark:border-darkBorder bg-whiteFill dark:bg-darkFill z-10">
+            <ul id="navigation-sections" className="`w-full h-full flex flex-col gap-8 bg-opacity-60">
                 <NavSection>
                     <NavButton
                         iconName="home"
@@ -76,6 +76,6 @@ export const Navigation = ({ urlParams, page }: Props) => {
                 </NavSection>
                 <NavUpdate />
             </ul>
-        </div>
+        </nav>
     )
 }

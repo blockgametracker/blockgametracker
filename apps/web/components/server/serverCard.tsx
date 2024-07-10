@@ -29,24 +29,19 @@ export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
     }]
 
     return (
-        <Container
-            id="servers"
-            className={`relative fade flex w-full divide-y-2 divide-whiteBorder dark:divide-darkBorder p-0 flex-col shadow-md dark:shadow-none`}
-        >
+        <>
             <ServerInfo
                 edition={urlParams.edition}
                 serverData={serverData}
                 className="p-4"
             >
-                <div className={`inline-flex gap-2 ml-auto`}>
-                    <Dropdown icon="ellipsis_vertical">
-                        <DropdownLink href={`/servers/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams)}`}>Server dashboard</DropdownLink>
-                        <DropdownLink href={`/compare/`}>Compare server</DropdownLink>
-                    </Dropdown>
-                </div>
+                <Dropdown id={`dropdown-${serverData.server_slug?.toLowerCase()}`} icon="ellipsis_vertical" className="ml-auto">
+                    <DropdownLink href={`/servers/${urlParams.edition}/${serverData.server_slug}${buildURL(urlParams)}`}>Server dashboard</DropdownLink>
+                    <DropdownLink href={`/compare/`}>Compare server</DropdownLink>
+                </Dropdown>
             </ServerInfo>
 
-            <div className="w-full h-48 p-4">
+            <div id={`server-${serverData.server_slug}-graph`} className="w-full h-48 p-4">
                 <Graph
                     data={graphData}
                     fill={true}
@@ -59,6 +54,6 @@ export const ServerCard = async ({ urlParams, serverData, loaded }: Props) => {
                 />
             </div>
             <ServerStatistics serverData={serverData} />
-        </Container>
+        </>
     )
 }

@@ -51,8 +51,8 @@ export function buildURL(
     // Filter out parameters that have default values or are undefined
     const filteredParams = Object.fromEntries(
         Object.entries(updatedParams).filter(
-            ([paramKey, paramValue]) => 
-                paramValue !== DEFAULT_VALUES[paramKey as keyof URLParams] && 
+            ([paramKey, paramValue]) =>
+                paramValue !== DEFAULT_VALUES[paramKey as keyof URLParams] &&
                 paramValue !== undefined
         ),
     )
