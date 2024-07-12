@@ -2,6 +2,7 @@ import { Icon } from "@/components/icon"
 import { Container } from "../container/container"
 import { useState } from "react"
 
+//TODO probably put update information in a json later
 export const NavUpdate = () => {
     const [active, setActive] = useState(true)
     const [popupActive, setPopupActive] = useState(false)
@@ -30,13 +31,13 @@ export const NavUpdate = () => {
                 </div>
                 <ol className="text-whiteST dark:text-secondText">
                     <li>
-                        <p>- Added light-mode</p>
+                        <p>- Overhauled UI</p>
                     </li>
                     <li>
-                        <p>- Improved UI</p>
+                        <p>- Improved server comparing</p>
                     </li>
                     <li>
-                        <p>- Reworked server comparing</p>
+                        <p>- Reworked as-statistics</p>
                     </li>
                 </ol>
                 <button
@@ -71,24 +72,21 @@ export const NavUpdate = () => {
                             <h3>Changes</h3>
                             <ol>
                                 <li>
-                                    <p>- Added light mode</p>
+                                    <p>- Overhauled UI design</p>
+                                </li>
+                                <li>
+                                    <p>- Improved the Compare Servers page</p>
+                                </li>
+                                <li>
+                                    <p>- Reworked the AS-Statistics page</p>
+                                </li>
+                                <li>
+                                    <p>- Implemented this popup</p>
                                 </li>
                                 <li>
                                     <p>
                                         - Introduced pie charts on select pages
                                     </p>
-                                </li>
-                                <li>
-                                    <p>- Improved overall UI design</p>
-                                </li>
-                                <li>
-                                    <p>- Redesigned the Compare Servers page</p>
-                                </li>
-                                <li>
-                                    <p>- Overhauled the AS-Statistics page</p>
-                                </li>
-                                <li>
-                                    <p>- Implemented a latest update popup</p>
                                 </li>
                             </ol>
                         </div>

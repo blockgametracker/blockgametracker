@@ -12,7 +12,7 @@ interface Props {
 
 export const ServerCardSmall = async ({ urlParams, serverData }: Props) => {
     return (
-        <Container
+        <div
             id="servers"
             className={`fade flex flex-col tablet:flex-row items-center w-full divide-y-2 tablet:divide-y-0 tablet:divide-x-2 divide-whiteBorder dark:divide-darkBorder p-0`}
         >
@@ -51,6 +51,6 @@ export const ServerCardSmall = async ({ urlParams, serverData }: Props) => {
                     iconName="fullscreen"
                 />
             </div>
-        </Container>
+        </div>
     )
 }
