@@ -56,9 +56,19 @@ export function getTicks(
 }
 
 // Function to compute server data
-export function computeServerData(data: (ServerData | ASData)[]): ComputedServerData {
-    return data.reduce((acc, curr) => {
-        acc.data.push(...curr.data.map(serverData => ({ x: serverData.x, y: serverData.y })));
-        return acc;
-    }, { data: [] } as ComputedServerData);
+export function computeServerData(
+    data: (ServerData | ASData)[],
+): ComputedServerData {
+    return data.reduce(
+        (acc, curr) => {
+            acc.data.push(
+                ...curr.data.map((serverData) => ({
+                    x: serverData.x,
+                    y: serverData.y,
+                })),
+            )
+            return acc
+        },
+        { data: [] } as ComputedServerData,
+    )
 }

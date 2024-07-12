@@ -26,19 +26,21 @@ export const ASStatsGraph = ({ data, urlParams }: Props) => {
     }
 
     return (
-        <Container className="flex flex-col w-full tablet:h-[88vw] overflow-hidden">
+        <Container className="flex flex-col w-full tablet:h-[88vw] tablet:overflow-hidden">
             <ContainerTitle icon="graph">
-                <p>Playercount (global, per AS, per edition)</p>
+                <p>Playercount (per AS, per edition)</p>
             </ContainerTitle>
-            <Graph
-                data={graphData}
-                ticksX={ticks.ticksX}
-                ticksY={ticks.ticksY}
-                start={urlParams.start}
-                className="p-4"
-                fill={true}
-                loaded
-            />
+            <div className="h-96 tablet:h-full">
+                <Graph
+                    data={graphData}
+                    ticksX={ticks.ticksX}
+                    ticksY={ticks.ticksY}
+                    start={urlParams.start}
+                    className="p-4"
+                    fill={true}
+                    loaded
+                />
+            </div>
         </Container>
     )
 }

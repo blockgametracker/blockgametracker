@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { MouseEventHandler, PropsWithChildren } from "react"
 
 export interface Props extends PropsWithChildren {

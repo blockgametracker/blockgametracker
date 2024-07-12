@@ -24,32 +24,22 @@ export const CompareGraph = ({ data, urlParams }: Props) => {
     let ticks: TickResult = {
         ticksX: data[0] ? getTicks(data[0], 6).ticksX : [""],
         ticksY: data[0] ? getTicks(computeServerData(data), 0).ticksY : [0],
-    };
+    }
 
     return (
         <Container className="flex flex-col w-full tablet:h-[88vw]">
             <ContainerTitle icon="graph">
                 <p>Selected servers overview</p>
             </ContainerTitle>
-            <div className="w-full h-full p-4">
-                {data.length !== 0 ? (
-                    <Graph
-                        data={graphData}
-                        ticksX={ticks.ticksX}
-                        ticksY={ticks.ticksY}
-                        start={urlParams.start}
-                        fill={true}
-                        loaded
-                    />
-                ) : (
-                    <div className="w-full h-full flex flex-col gap-4 items-center justify-center">
-                        <Icon
-                            iconName="icon"
-                            className="w-6 h-6 fill-mainColor"
-                        />
-                        <p>No data found, select servers to start comparing</p>
-                    </div>
-                )}
+            <div className="w-full h-96 tablet:h-full p-4">
+                <Graph
+                    data={graphData}
+                    ticksX={ticks.ticksX}
+                    ticksY={ticks.ticksY}
+                    start={urlParams.start}
+                    fill={true}
+                    loaded
+                />
             </div>
         </Container>
     )

@@ -18,8 +18,7 @@ export interface URLParams {
 export function getURLParams(searchParams?: {
     [key: string]: string | undefined
 }): URLParams {
-    const { edition, start, step, view, search } =
-        searchParams || {}
+    const { edition, start, step, view, search } = searchParams || {}
 
     const validatedEdition = getEditionOrDefault(edition)
 
@@ -28,7 +27,7 @@ export function getURLParams(searchParams?: {
         start: getRangeOrDefault<QueryTimeFrame>(start, DEFAULT_VALUES.start),
         step: getRangeOrDefault<QueryTimeFrame>(step, DEFAULT_VALUES.step),
         view: view ?? DEFAULT_VALUES.view,
-        search: search
+        search: search,
     }
 }
 
@@ -37,7 +36,7 @@ const DEFAULT_VALUES: URLParams = {
     edition: MinecraftEdition.JAVA,
     start: "-1d",
     step: "4m",
-    view: "default"
+    view: "default",
 }
 
 /** Builds the URL given the parameters provided. */
@@ -53,7 +52,7 @@ export function buildURL(
         Object.entries(updatedParams).filter(
             ([paramKey, paramValue]) =>
                 paramValue !== DEFAULT_VALUES[paramKey as keyof URLParams] &&
-                paramValue !== undefined
+                paramValue !== undefined,
         ),
     )
 

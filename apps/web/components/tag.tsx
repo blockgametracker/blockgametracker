@@ -15,7 +15,9 @@ export const Tag = ({ text, children, className, color }: Props) => (
                 className="w-2 h-2 rounded-full"
                 style={{ backgroundColor: `${color}` }}
             />
-            <p className="font-semibold dark:font-normal text-whiteMT dark:text-mainText">{text}</p>
+            <p className="font-semibold dark:font-normal text-whiteMT dark:text-mainText">
+                {text}
+            </p>
         </div>
         <p>{children}</p>
     </div>

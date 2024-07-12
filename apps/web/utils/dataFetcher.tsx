@@ -108,7 +108,7 @@ export const getOnline = async (
         hostname: server.hostname,
         data: convertTime(onlineInRange!.data),
         icon: server.icon,
-        color: getColor(0)
+        color: getColor(0),
     }
 }
 

@@ -1,9 +1,5 @@
 import { calculateAverage, getPeak } from "@/utils/dataUtils"
-import {
-    COLOR_CURRENT,
-    COLOR_MAX,
-    COLOR_MEAN,
-} from "@/utils/graphUtils"
+import { COLOR_CURRENT, COLOR_MAX, COLOR_MEAN } from "@/utils/graphUtils"
 import { ServerData } from "@/utils/parsedData"
 import { Tag } from "@/components/tag"
 

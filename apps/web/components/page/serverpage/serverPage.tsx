@@ -17,11 +17,13 @@ export const ServerPage = async ({ serverData, urlParams }: Props) => {
     const peak = getPeakDate(serverData.data)
     const minY = Math.min(...serverData.data.map((item) => item.y))
 
-    const graphData = [{
-        id: serverData.server_slug,
-        color: serverData.color,
-        data: serverData.data,
-    }]
+    const graphData = [
+        {
+            id: serverData.server_slug,
+            color: serverData.color,
+            data: serverData.data,
+        },
+    ]
 
     return (
         <Container className="flex flex-col w-full h-96 tablet:w-full tablet:h-3/5">

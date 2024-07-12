@@ -14,10 +14,8 @@ export const BarChart = ({ data }: Props) =>
         <div className="w-full h-full">
             <ResponsiveBar
                 data={data}
-                keys={[
-                    'y'
-                ]}
-                colors={{ datum: 'color' }}
+                keys={["y"]}
+                colors={{ datum: "color" }}
                 theme={barChartTheme}
                 indexBy="x"
                 margin={{ top: 0, right: 0, bottom: 0, left: 30 }}

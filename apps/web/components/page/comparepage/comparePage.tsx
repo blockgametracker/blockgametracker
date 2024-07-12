@@ -22,24 +22,22 @@ export const ComparePage = ({
     playersJava,
     playersBedrock,
 }: Props) => {
-    const [selectedServers, setSelectedServers] = useState<string[]>([]);
+    const [selectedServers, setSelectedServers] = useState<string[]>([])
 
-    let data: ServerData[] = servers
-        .map((server, index) => ({
-            server_edition: server.server_edition,
-            server_name: server.server_name,
-            server_slug: server.server_slug,
-            hostname: server.hostname,
-            data: server.data,
-            icon: server.icon,
-            color: getColor(index)
-        }))
+    let data: ServerData[] = servers.map((server, index) => ({
+        server_edition: server.server_edition,
+        server_name: server.server_name,
+        server_slug: server.server_slug,
+        hostname: server.hostname,
+        data: server.data,
+        icon: server.icon,
+        color: getColor(index),
+    }))
 
-    data = data
-        .filter(
-            (server): server is ServerData =>
-                server !== null && selectedServers.includes(server.server_slug),
-        )
+    data = data.filter(
+        (server): server is ServerData =>
+            server !== null && selectedServers.includes(server.server_slug),
+    )
 
     const compareItems: CompareItem[] =
         servers.map((server) => ({
@@ -54,11 +52,8 @@ export const ComparePage = ({
 
     return (
         <>
-            <div className="w-full h-full flex flex-col gap-8 tablet:overflow-hidden">
-                <CompareGraph
-                    data={data}
-                    urlParams={urlParams}
-                />
+            <div className="w-full tablet:h-full flex flex-col gap-4 tablet:gap-8 tablet:overflow-hidden">
+                <CompareGraph data={data} urlParams={urlParams} />
                 <CompareCharts
                     urlParams={urlParams}
                     data={data}

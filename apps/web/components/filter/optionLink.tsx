@@ -7,7 +7,7 @@ export interface Props {
     text: string
 }
 
-export const FilterOption = ({ text, updates, URLParams }: Props) => {
+export const OptionLink = ({ text, updates, URLParams }: Props) => {
     const firstUpdate = Object.entries(updates)[0]
     const isActive =
         firstUpdate &&

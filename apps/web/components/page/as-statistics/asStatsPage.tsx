@@ -24,11 +24,10 @@ interface Props {
 export const ASStatsPage = ({ data, urlParams }: Props) => {
     const [selectedItems, setSelectedItems] = useState<string[]>([])
 
-    const graphData = data
-        .filter(
-            (server): server is ASData =>
-                server !== null && selectedItems.includes(server.number),
-        )
+    const graphData = data.filter(
+        (server): server is ASData =>
+            server !== null && selectedItems.includes(server.number),
+    )
 
     const compareItems: CompareItem[] =
         data.map((item) => ({
@@ -42,14 +41,19 @@ export const ASStatsPage = ({ data, urlParams }: Props) => {
 
     return (
         <>
-            <div className="tablet:w-[85vw] h-full flex flex-col gap-8">
+            <div className="tablet:w-[85vw] tablet:h-full flex flex-col gap-4 tablet:gap-8">
                 <ASStatsGraph data={graphData} urlParams={urlParams} />
-                <div className="flex flex-col tablet:flex-row gap-8 w-full tablet:h-[12vw] shrink-0">
+                <div className="flex flex-col tablet:flex-row gap-4 tablet:gap-8 w-full tablet:h-[12vw] shrink-0">
                     <Container className="flex flex-col w-full tablet:w-1/2">
                         <ContainerTitle icon="information">
                             <p>blockgametracker servers per AS</p>
                         </ContainerTitle>
-                        <p className="p-4">Certain hosts may fluctuate in playercounts if there is a large server switching between multiple providers. One example is GommeHD which switches between OVH, Hetzner & SYNLINQ</p>
+                        <p className="p-4">
+                            Certain hosts may fluctuate in playercounts if there
+                            is a large server switching between multiple
+                            providers. One example is GommeHD which switches
+                            between OVH, Hetzner & SYNLINQ
+                        </p>
                     </Container>
                     <ASStatsPieChart data={graphData} />
                 </div>

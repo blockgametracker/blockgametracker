@@ -7,6 +7,7 @@ import { NavSection } from "./navSection"
 import { NavUpdate } from "./navUpdate"
 import { Icon } from "@/components/icon"
 import { useTheme } from "next-themes"
+import { Container } from "../container/container"
 
 interface Props {
     page: string
@@ -17,8 +18,25 @@ export const Navigation = ({ urlParams, page }: Props) => {
     const [active, setActive] = useState(false)
 
     return (
-        <nav id="navigation" className="shrink-0 w-full tablet:w-[15vw] h-fit tablet:h-full p-4 tablet:flex flex-col gap-8 border-r-2 border-whiteBorder dark:border-darkBorder bg-whiteFill dark:bg-darkFill z-10">
-            <ul id="navigation-sections" className="`w-full h-full flex flex-col gap-8 bg-opacity-60">
+        <nav
+            id="navigation"
+            className="shrink-0 w-full tablet:w-[15vw] h-fit tablet:h-full p-2 tablet:p-4 flex flex-col gap-2 tablet:gap-8 border-b-2 tablet:border-b-0 tablet:border-r-2 border-whiteBorder dark:border-darkBorder bg-whiteFill dark:bg-darkFill z-10"
+        >
+            <button
+                onClick={() => setActive(!active)}
+                className="w-fit tablet:hidden"
+            >
+                <div className="items-center inline-flex gap-2 p-4 w-fit">
+                    <Icon
+                        iconName={active ? "close" : "bars"}
+                        className="fill-secondText size-6"
+                    />
+                </div>
+            </button>
+            <ul
+                id="navigation-sections"
+                className={`w-full h-full tablet:flex flex-col gap-8 bg-opacity-60 ${active ? "flex" : "hidden"}`}
+            >
                 <NavSection>
                     <NavButton
                         iconName="home"
@@ -53,7 +71,10 @@ export const Navigation = ({ urlParams, page }: Props) => {
                         target="_blank"
                     >
                         Grafana
-                        <Icon iconName="link" className="fade group-hover:fill-mainText ml-auto fill-secondText size-4" />
+                        <Icon
+                            iconName="link"
+                            className="fade group-hover:fill-mainText ml-auto fill-secondText size-4"
+                        />
                     </NavButton>
                     <NavButton
                         iconName="pen"
@@ -62,7 +83,10 @@ export const Navigation = ({ urlParams, page }: Props) => {
                         target="_blank"
                     >
                         Suggest Server
-                        <Icon iconName="link" className="fade group-hover:fill-mainText ml-auto fill-secondText size-4" />
+                        <Icon
+                            iconName="link"
+                            className="fade group-hover:fill-mainText ml-auto fill-secondText size-4"
+                        />
                     </NavButton>
                     <NavButton
                         iconName="github"
@@ -71,7 +95,10 @@ export const Navigation = ({ urlParams, page }: Props) => {
                         target="_blank"
                     >
                         Github
-                        <Icon iconName="link" className="fade group-hover:fill-mainText ml-auto fill-secondText size-4" />
+                        <Icon
+                            iconName="link"
+                            className="fade group-hover:fill-mainText ml-auto fill-secondText size-4"
+                        />
                     </NavButton>
                 </NavSection>
                 <NavUpdate />

@@ -65,11 +65,13 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="en" className={`text-secondText ${manrope.className}`} suppressHydrationWarning>
+        <html
+            lang="en"
+            className={`text-secondText ${manrope.className}`}
+            suppressHydrationWarning
+        >
             <body className="flex flex-col overflow-y-auto tablet:overflow-hidden w-screen h-screen overflow-x-hidden">
-                <Providers>
-                    {children}
-                </Providers>
+                <Providers>{children}</Providers>
             </body>
             <GoogleAnalytics gaId="G-5NNJV9KCDP" />
         </html>

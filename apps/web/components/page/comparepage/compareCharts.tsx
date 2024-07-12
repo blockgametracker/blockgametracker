@@ -8,13 +8,18 @@ import { URLParams } from "@/utils/urlBuilder"
 import { MinecraftEdition } from "@repo/gateway"
 
 interface Props extends PropsWithChildren {
-    urlParams: URLParams,
+    urlParams: URLParams
     data: ServerData[]
     playersJava: number
     playersBedrock: number
 }
 
-export const CompareCharts = ({ urlParams, data, playersJava, playersBedrock }: Props) => {
+export const CompareCharts = ({
+    urlParams,
+    data,
+    playersJava,
+    playersBedrock,
+}: Props) => {
     const pieChartData: PieChartData[] = data.map((server) => ({
         id: server.server_slug,
         color: server.color,
@@ -28,7 +33,7 @@ export const CompareCharts = ({ urlParams, data, playersJava, playersBedrock }: 
     const isJava = urlParams.edition === MinecraftEdition.JAVA
 
     return (
-        <div className="flex flex-col tablet:flex-row gap-8 tablet:overflow-hidden tablet:h-[12vw] shrink-0">
+        <div className="flex flex-col tablet:flex-row gap-4 tablet:gap-8 tablet:overflow-hidden tablet:h-[12vw] shrink-0">
             <PieChartEdition
                 data={globalData}
                 label="Global players"
@@ -36,8 +41,8 @@ export const CompareCharts = ({ urlParams, data, playersJava, playersBedrock }: 
             />
             <PieChartEdition
                 data={editionData}
-                label={isJava ? "Java players":"Bedrock players"}
-                editionsPlayerCount={isJava? playersJava:playersBedrock}
+                label={isJava ? "Java players" : "Bedrock players"}
+                editionsPlayerCount={isJava ? playersJava : playersBedrock}
             />
 
             <Container className="flex flex-col w-full h-full overflow-hidden shadow-md dark:shadow-none">

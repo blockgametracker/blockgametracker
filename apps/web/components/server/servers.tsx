@@ -18,9 +18,11 @@ export const Servers = async ({ urlParams, search }: Props) => {
 
     // Filter the serverList based on the search term
     const filteredServerList = search
-        ? serverList.filter(serverData =>
-            serverData.server_name.toLowerCase().includes(search.toLowerCase())
-        )
+        ? serverList.filter((serverData) =>
+              serverData.server_name
+                  .toLowerCase()
+                  .includes(search.toLowerCase()),
+          )
         : serverList
 
     return (
@@ -29,7 +31,11 @@ export const Servers = async ({ urlParams, search }: Props) => {
             className={`w-full grid gap-4 grid-cols-1 ${compact ? "normal:grid-cols-2" : "tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
         >
             {filteredServerList.map((serverData, index) => (
-                <li className="relative fade flex w-full divide-y-2 bg-whiteFill dark:bg-darkFill rounded-md border-2 border-transparent dark:border-darkBorder divide-whiteBorder dark:divide-darkBorder p-0 flex-col shadow-md dark:shadow-none" id={`server-${serverData.server_slug}`} key={index}>
+                <li
+                    className="relative fade flex w-full divide-y-2 bg-whiteFill dark:bg-darkFill rounded-md border-2 border-transparent dark:border-darkBorder divide-whiteBorder dark:divide-darkBorder p-0 flex-col shadow-md dark:shadow-none"
+                    id={`server-${serverData.server_slug}`}
+                    key={index}
+                >
                     {compact ? (
                         <ServerCardSmall
                             urlParams={urlParams}

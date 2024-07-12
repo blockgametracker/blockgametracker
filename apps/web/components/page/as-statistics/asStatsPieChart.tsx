@@ -9,12 +9,12 @@ interface Props {
 
 export const ASStatsPieChart = ({ data }: Props) => {
     const pieChartData: PieChartData[] =
-    data.map((item) => ({
-        id: item.name,
-        color: item.color,
-        label: item.name,
-        value: item.data[item.data.length - 1].y,
-    })) ?? []
+        data.map((item) => ({
+            id: item.name,
+            color: item.color,
+            label: item.name,
+            value: item.data[item.data.length - 1].y,
+        })) ?? []
 
     return (
         <Container className="flex flex-col w-full tablet:w-1/2">

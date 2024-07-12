@@ -32,7 +32,7 @@ export const Dropdown = ({ children, title, icon, className, id }: Props) => {
     }, [])
 
     return (
-        <li
+        <span
             id={id}
             ref={dropdownRef}
             className={`fade relative flex flex-row w-fit rounded-md border-2 bg-whiteBG border:whiteBorder dark:hover:bg-darkSelected dark:bg-darkBG dark:border-darkBorder ${className}`}
@@ -40,13 +40,10 @@ export const Dropdown = ({ children, title, icon, className, id }: Props) => {
             <button
                 id={`dropdowm-${title?.toLowerCase()}-button`}
                 onClick={() => setActive(!active)}
-                className={`inline-flex gap-4 items-center ${title ? "px-4 py-2":"p-2"}`}
+                className={`inline-flex gap-4 items-center ${title ? "px-4 py-2" : "p-2"}`}
             >
-                <Icon
-                    iconName={icon}
-                    className="w-4 h-4 fill-secondText"
-                />
-                {title &&
+                <Icon iconName={icon} className="w-4 h-4 fill-secondText" />
+                {title && (
                     <>
                         <p className="whitespace-nowrap">{title}</p>
                         <Icon
@@ -54,7 +51,7 @@ export const Dropdown = ({ children, title, icon, className, id }: Props) => {
                             className="w-4 h-4 fill-secondText"
                         />
                     </>
-                }
+                )}
             </button>
             <Container
                 id={`dropdowm-${title?.toLowerCase()}-container`}
@@ -62,6 +59,6 @@ export const Dropdown = ({ children, title, icon, className, id }: Props) => {
             >
                 {children}
             </Container>
-        </li>
+        </span>
     )
 }

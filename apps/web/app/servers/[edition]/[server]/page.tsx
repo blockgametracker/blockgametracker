@@ -2,7 +2,11 @@ import type { PageParams } from "@/utils/next"
 import { ServerPage } from "@/components/page/serverpage/serverPage"
 import type { Metadata } from "next"
 import { Layout } from "@/components/layout"
-import { MinecraftEdition, getEnsembledTotal, getServerBySlug } from "@repo/gateway"
+import {
+    MinecraftEdition,
+    getEnsembledTotal,
+    getServerBySlug,
+} from "@repo/gateway"
 import { notFound } from "next/navigation"
 import { getURLParams } from "@/utils/urlBuilder"
 import { getOnline } from "@/utils/dataFetcher"
@@ -89,15 +93,15 @@ const Page = async ({ params, searchParams }: PageParams<Params>) => {
     return (
         <Layout
             page={serverInfo.name}
-            className="flex flex-col gap-8 tablet:overflow-hidden"
+            className="flex flex-col gap-4 tablet:gap-8 tablet:overflow-hidden"
             urlParams={urlParams}
         >
             <ServerHeader serverData={serverData} urlParams={urlParams} />
-            
-            <div className="flex flex-col tablet:flex-row gap-8 w-full h-full">
-                <div className="flex flex-col gap-8 w-full">
+
+            <div className="flex flex-col tablet:flex-row gap-4 tablet:gap-8 w-full h-full">
+                <div className="flex flex-col gap-4 tablet:gap-8 w-full">
                     <ServerPage serverData={serverData} urlParams={urlParams} />
-                    <div className="w-full h-2/5 flex flex-row gap-4">
+                    <div className="w-full h-fit tablet:h-2/5 flex flex-col tablet:flex-row gap-4">
                         <PieChartEdition
                             data={[pieChartData]}
                             label="Global players"
@@ -108,14 +112,6 @@ const Page = async ({ params, searchParams }: PageParams<Params>) => {
                             label="Java players"
                             editionsPlayerCount={playersJava}
                         />
-                        {/* <Container className="flex flex-col w-3/5 h-full overflow-hidden shrink-0">
-                            <ContainerTitle>
-                                <p>(7d)</p>
-                            </ContainerTitle>
-                            <div className="w-full h-full p-4">
-                                <BarChart data={barChartData} />
-                            </div>
-                        </Container> */}
                     </div>
                 </div>
                 <ServerInformation

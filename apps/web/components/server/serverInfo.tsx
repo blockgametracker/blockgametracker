@@ -9,7 +9,7 @@ interface Props extends PropsWithChildren {
     serverData: ServerData
 }
 
-export const ServerInfo = ({serverData, className, children}: Props) => {
+export const ServerInfo = ({ serverData, className, children }: Props) => {
     return (
         <div
             id={`server-${serverData.server_slug}-information`}
