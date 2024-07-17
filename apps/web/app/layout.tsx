@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { Manrope } from "next/font/google"
 import { GoogleAnalytics } from "@next/third-parties/google"
+import { Providers } from "./providers"
 
 const manrope = Manrope({ subsets: ["latin"] })
 
@@ -64,9 +65,13 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="en" className={`text-secondText ${manrope.className}`}>
-            <body className="w-screen h-screen overflow-x-hidden">
-                {children}
+        <html
+            lang="en"
+            className={`text-secondText ${manrope.className}`}
+            suppressHydrationWarning
+        >
+            <body className="flex flex-col overflow-y-auto tablet:overflow-hidden w-screen h-screen overflow-x-hidden">
+                <Providers>{children}</Providers>
             </body>
             <GoogleAnalytics gaId="G-5NNJV9KCDP" />
         </html>

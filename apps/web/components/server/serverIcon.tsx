@@ -5,16 +5,17 @@ import Image from "next/image"
 
 interface Props {
     className?: string
-    server: ServerData
+    icon: string
+    title?: string
 }
 
-export const ServerIcon = ({ className, server }: Props) => (
+export const ServerIcon = ({ className, icon, title }: Props) => (
     <Image
-        src={server.icon}
-        alt={`${server.server_name} icon`}
+        src={icon}
+        alt={`${title} icon`}
         className={`object-cover aspect-square image ${className}`}
         sizes="(max-width: 384px) 64px, 64px"
-        title={server.server_name}
+        title={title}
         width={64}
         height={64}
     />

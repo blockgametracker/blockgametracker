@@ -4,30 +4,26 @@
 
 @layer components {
     h1 {
-        @apply text-mainText font-bold text-lg;
+        @apply text-whiteMT dark:text-mainText font-semibold text-lg;
     }
     h2 {
-        @apply text-mainText font-bold text-lg;
+        @apply text-whiteMT dark:text-mainText font-semibold text-lg;
     }
     h3 {
-        @apply text-mainText;
+        @apply text-whiteMT dark:text-mainText;
     }
     h4 {
-        @apply text-mainText;
+        @apply text-whiteMT dark:text-mainText;
     }
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    background-image: radial-gradient(#131316 2.5px, transparent 2.5px);
-    background-size: 20px 20px;
-    @apply bg-dark;
+    @apply bg-whiteBG dark:bg-darkBG;
 }
 
 /* General styles */
 .fade {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
 /* Hide scrollbars */
@@ -49,8 +45,6 @@ body {
 }
 
 .header {
-    padding: 0;
-    margin: 0;
     background-image: radial-gradient(#1c1c20 2.5px, transparent 2.5px);
     background-size: 30px 30px;
 }

@@ -52,17 +52,19 @@ export class EnsembleController {
     }
 
     /** Returns a breakdown of the number of players on each registered server for a given edition within a timeframe. */
-    @Get(":edition/breakdown/:start/:step")
+    @Get(":edition/breakdown/:start/:step/:end")
     async getBreakdownRange(
         @Param("edition") edition: MinecraftEdition,
         @Param("start") start: string,
         @Param("step") step: string,
+        @Param("end") end: string,
     ): Promise<ApiServerQueryRangeResponse> {
         const query = `avg by(server_slug, server_edition) (sum by(server_slug, pod) (minecraft_status_players_online_count{server_edition="${edition}"}))`
         const res = await this.prometheusService.queryRange<ServerIdentifier>(
             query,
             start,
             step,
+            end,
         )
 
         return {

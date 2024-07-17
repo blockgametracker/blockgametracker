@@ -30,15 +30,21 @@ export class OnlineController {
     }
 
     /** Returns the number of players on a given server-edition pair over a provided timeframe. */
-    @Get(":server/:edition/:start/:step")
+    @Get(":server/:edition/:start/:step/:end")
     async getOnlineServerRange(
         @Param("server") server: string,
         @Param("edition") edition: MinecraftEdition,
         @Param("start") start: string,
         @Param("step") step: string,
+        @Param("end") end: string,
     ): Promise<ApiQueryRangeResponse> {
         const query = `min(sum by(pod) (minecraft_status_players_online_count{server_slug="${server}", server_edition="${edition}"}))`
-        const res = await this.prometheusService.queryRange(query, start, step)
+        const res = await this.prometheusService.queryRange(
+            query,
+            start,
+            step,
+            end,
+        )
 
         return {
             data: res.data.result[0].values.map(([x, y]) => {

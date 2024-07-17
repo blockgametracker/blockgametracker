@@ -1,10 +1,14 @@
 import { ServerCard } from "./serverCard"
 import { getTotalEnsembled } from "@/utils/dataFetcher"
 import { URLParams } from "@/utils/urlBuilder"
-import { ServerObserver } from "./serverObserver"
 import { ServerCardSmall } from "./serverCardSmall"
 
-export const Servers = async (urlParams: URLParams) => {
+interface Props {
+    search?: string
+    urlParams: URLParams
+}
+
+export const Servers = async ({ urlParams, search }: Props) => {
     const serverList = await getTotalEnsembled(
         urlParams.edition,
         urlParams.start,
@@ -12,34 +16,40 @@ export const Servers = async (urlParams: URLParams) => {
     )
     const compact = urlParams.view === "compact"
 
+    // Filter the serverList based on the search term
+    const filteredServerList = search
+        ? serverList.filter((serverData) =>
+              serverData.server_name
+                  .toLowerCase()
+                  .includes(search.toLowerCase()),
+          )
+        : serverList
+
     return (
-        <div className="flex h-full flex-col gap-8">
-            <div
-                className={`w-full grid gap-4 grid-cols-1 ${compact ? "normal:grid-cols-2" : "tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
-            >
-                {serverList.map((serverData, index) => (
-                    <ServerObserver
-                        id={`server-observer-${index}`}
-                        max={serverList.length}
-                        active={false}
-                        key={index}
-                        urlParams={urlParams}
-                    >
-                        {compact ? (
-                            <ServerCardSmall
-                                urlParams={urlParams}
-                                serverData={serverData}
-                            />
-                        ) : (
-                            <ServerCard
-                                urlParams={urlParams}
-                                serverData={serverData}
-                                loaded
-                            />
-                        )}
-                    </ServerObserver>
-                ))}
-            </div>
-        </div>
+        <ul
+            id="servers"
+            className={`w-full grid gap-4 grid-cols-1 ${compact ? "normal:grid-cols-2" : "tablet:grid-cols-2 small:grid-cols-3 normal:grid-cols-4"}`}
+        >
+            {filteredServerList.map((serverData, index) => (
+                <li
+                    className="relative fade flex w-full divide-y-2 bg-whiteFill dark:bg-darkFill rounded-md border-2 border-transparent dark:border-darkBorder divide-whiteBorder dark:divide-darkBorder p-0 flex-col shadow-md dark:shadow-none"
+                    id={`server-${serverData.server_slug}`}
+                    key={index}
+                >
+                    {compact ? (
+                        <ServerCardSmall
+                            urlParams={urlParams}
+                            serverData={serverData}
+                        />
+                    ) : (
+                        <ServerCard
+                            urlParams={urlParams}
+                            serverData={serverData}
+                            loaded
+                        />
+                    )}
+                </li>
+            ))}
+        </ul>
     )
 }

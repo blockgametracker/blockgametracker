@@ -16,15 +16,36 @@ export interface ApiQuery extends ApiResult {
 /** A query response for a single time. */
 export type ApiQueryResponse = BaseApiResponse<ApiQuery>
 
-/** A query response for a single time and server. */
-interface ApiServerQuery {
+/** A query related to a server. */
+interface ServerQuery {
     server_slug: string
+}
+
+/** A query response for a single time and server. */
+interface ApiServerQuery extends ServerQuery {
     data: ApiQuery
 }
 
 /** A query response over a timeframe for a specific server. */
-interface ApiServerQueryRange {
-    server_slug: string
+interface ApiServerQueryRange extends ServerQuery {
+    data: ApiQuery[]
+}
+
+/** A query related to an AS. */
+interface ASQuery {
+    name: string
+    number: string
+}
+
+/** The query response for a single time and AS. */
+interface ApiASQuery extends ASQuery {
+    name: string
+    number: string
+    data: ApiQuery
+}
+
+/** The query response over a timeframe for a specific server. */
+interface ApiASQueryRange extends ASQuery {
     data: ApiQuery[]
 }
 
@@ -34,8 +55,14 @@ export type ApiServerQueryResponse = BaseApiResponse<ApiServerQuery[]>
 /** The response to a server-based query over a timeframe. */
 export type ApiServerQueryRangeResponse = BaseApiResponse<ApiServerQueryRange[]>
 
-/** The response to a query over a timeframe. */
+/** The response to a server-based query over a timeframe. */
 export type ApiQueryRangeResponse = BaseApiResponse<ApiQuery[]>
+
+/** The response to an AS-based query at a single time. */
+export type ApiASQueryResponse = BaseApiResponse<ApiASQuery[]>
+
+/** The response to an AS-based query over a timeframe. */
+export type ApiASQueryRangeResponse = BaseApiResponse<ApiASQueryRange[]>
 
 /** The identifying information of a server we track. */
 export interface ServerIdentifier {
@@ -65,11 +92,8 @@ type TimeUnit = "s" | "m" | "h" | "d" | "m" | "y"
 /** A plus, minus, or nothing at all. */
 type PN = "+" | "-" | ""
 
-/** The `start` attribute of a Prometheus query. */
-export type QueryStart = `${PN}${number}${TimeUnit}`
-
-/** The `step` attribute of a Prometheus query. */
-export type QueryStep = `${PN}${number}${TimeUnit}`
+/** The timeframe of a Prometheus query. */
+export type QueryTimeFrame = `${PN}${number}${TimeUnit}`
 
 /** The server object. */
 export interface Server {
@@ -78,4 +102,10 @@ export interface Server {
     platform: MinecraftEdition
     hostname: string
     icon: string
+}
+
+/** Statistics stored on an Autonomous System (AS). */
+export interface AS {
+    as_name: string
+    as_number: string
 }

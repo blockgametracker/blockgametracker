@@ -11,10 +11,13 @@
     },
     "dependencies": {
         "@next/third-parties": "^14.2.3",
+        "@nivo/bar": "^0.87.0",
         "@nivo/core": "^0.87.0",
         "@nivo/line": "^0.87.0",
+        "@nivo/pie": "^0.87.0",
         "@repo/gateway": "*",
         "next": "14.2.3",
+        "next-themes": "^0.3.0",
         "react": "^18",
         "react-dom": "^18",
         "sharp": "^0.33.4"

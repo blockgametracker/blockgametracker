@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { Layout } from "@/components/layout"
-import { Suspense } from "react"
 import { getURLParams } from "@/utils/urlBuilder"
 import { PageParams } from "@/utils/next"
+import { getASTotalEnsembled } from "@/utils/dataFetcher"
+import { ASStatsPage } from "@/components/page/as-statistics/asStatsPage"
 
 export async function generateMetadata(): Promise<Metadata> {
     return {
@@ -21,25 +22,24 @@ export async function generateMetadata(): Promise<Metadata> {
     }
 }
 
-const Server = async ({ searchParams }: PageParams) => {
+const Page = async ({ searchParams }: PageParams) => {
     const urlParams = getURLParams(searchParams)
 
+    let data = await getASTotalEnsembled(
+        urlParams.edition,
+        urlParams.start,
+        urlParams.step,
+    )
+
     return (
-        <Suspense>
-            <Layout
-                page="as-statistics"
-                className="w-full h-full"
-                urlParams={urlParams}
-            >
-                <iframe
-                    className="w-full h-full"
-                    src="https://blockgametracker.gg/d/nlKArnQ4k/global-playercount-by-as?orgId=1&refresh=1m&kiosk"
-                    width="450"
-                    height="200"
-                />
-            </Layout>
-        </Suspense>
+        <Layout
+            page="as-statistics"
+            className="w-full tablet:h-full flex flex-col tablet:flex-row gap-4 tablet:gap-8 tablet:overflow-hidden"
+            urlParams={urlParams}
+        >
+            {data && <ASStatsPage data={data} urlParams={urlParams} />}
+        </Layout>
     )
 }
 
-export default Server
+export default Page

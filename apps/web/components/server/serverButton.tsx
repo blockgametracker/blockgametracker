@@ -20,11 +20,11 @@ export const ServerButton = ({
         rel={rel}
         aria-label={ariaLabel}
         href={href}
-        className={`fade group border-2 p-3 rounded-md bg-darkFill border-darkOverlay hover:border-secondText h-fit ${className}`}
+        className={`fade group border-2 p-3 rounded-md bg-whiteFill dark:bg-darkFill hover:bg-whiteSelected dark:hover:bg-darkSelected border-whiteBorder dark:border-darkBorder hover:border-secondText h-fit ${className}`}
     >
         <Icon
             iconName={iconName}
-            className="fade w-4 h-4 fill-secondText group-hover:fill-mainText"
+            className="fade w-4 h-4 fill-whiteST dark:fill-secondText group-hover:fill-mainText"
         />
     </Link>
 )

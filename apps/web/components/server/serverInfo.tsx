@@ -9,24 +9,25 @@ interface Props extends PropsWithChildren {
     serverData: ServerData
 }
 
-export const ServerInfo = (props: Props) => {
+export const ServerInfo = ({ serverData, className, children }: Props) => {
     return (
         <div
-            className={`w-full inline-flex gap-4 items-center ${props.className}`}
+            id={`server-${serverData.server_slug}-information`}
+            className={`w-full inline-flex gap-4 items-center ${className}`}
         >
             <div className="inline-flex gap-4 items-center">
-                <ServerIcon className="w-12 h-12" server={props.serverData} />
+                <ServerIcon className="size-10" icon={serverData.icon} />
 
                 <div className="flex flex-col">
-                    <h3 className="text-lg whitespace-nowrap text-mainText font-medium leading-4">
-                        {props.serverData.server_name}
-                    </h3>
-                    <p className="whitespace-nowrap text-secondText">
-                        {props.serverData.hostname}
+                    <h2 className="text-lg whitespace-nowrap text-whiteMT dark:text-mainText font-semibold dark:font-medium leading-4">
+                        {serverData.server_name}
+                    </h2>
+                    <p className="whitespace-nowrap text-whiteST dark:text-secondText">
+                        {serverData.hostname}
                     </p>
                 </div>
             </div>
-            {props.children}
+            {children}
         </div>
     )
 }

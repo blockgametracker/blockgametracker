@@ -1,4 +1,4 @@
-import { Container } from "@/components/layout/container"
+import { Container } from "@/components/layout/container/container"
 import { ServerButton } from "./serverButton"
 import { ServerInfo } from "./serverInfo"
 import { URLParams, buildURL } from "@/utils/urlBuilder"
@@ -12,9 +12,9 @@ interface Props {
 
 export const ServerCardSmall = async ({ urlParams, serverData }: Props) => {
     return (
-        <Container
+        <div
             id="servers"
-            className={`fade flex flex-col tablet:flex-row items-center w-full divide-y-2 tablet:divide-y-0 tablet:divide-x-2 divide-darkOverlay p-0`}
+            className={`fade flex flex-col tablet:flex-row items-center w-full divide-y-2 tablet:divide-y-0 tablet:divide-x-2 divide-whiteBorder dark:divide-darkBorder p-0`}
         >
             <ServerInfo
                 edition={urlParams.edition}
@@ -24,7 +24,7 @@ export const ServerCardSmall = async ({ urlParams, serverData }: Props) => {
                 <div className="inline-flex tablet:hidden gap-2 p-4 ml-auto">
                     <ServerButton
                         ariaLabel="Compare server"
-                        href={`/compare/${buildURL(urlParams, { servers: [serverData.server_slug.toLowerCase()] })}`}
+                        href={`/compare/${buildURL(urlParams)}`}
                         iconName="compare"
                         className="hidden phone:flex"
                     />
@@ -41,7 +41,7 @@ export const ServerCardSmall = async ({ urlParams, serverData }: Props) => {
             <div className="hidden tablet:inline-flex gap-2 p-4">
                 <ServerButton
                     ariaLabel="Compare server"
-                    href={`/compare/${buildURL(urlParams, { servers: [serverData.server_slug.toLowerCase()] })}`}
+                    href={`/compare/${buildURL(urlParams)}`}
                     iconName="compare"
                     className="hidden phone:flex"
                 />
@@ -51,6 +51,6 @@ export const ServerCardSmall = async ({ urlParams, serverData }: Props) => {
                     iconName="fullscreen"
                 />
             </div>
-        </Container>
+        </div>
     )
 }
