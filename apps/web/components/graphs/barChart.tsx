@@ -1,7 +1,7 @@
 "use client"
 
+import { barChartTheme } from "@/utils/colorUtils"
 import { BarDatum, ResponsiveBar } from "@nivo/bar"
-import { barChartTheme } from "@/utils/graphUtils"
 
 interface Props {
     data: BarDatum[]
