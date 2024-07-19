@@ -6,7 +6,7 @@ const Sitemap = async (): Promise<MetadataRoute.Sitemap> => {
 
     const serverSitemap = serverList
         ? serverList.map((server) => ({
-              url: `https://blockgametracker.gg/server/${server.platform}/${server.slug.toLowerCase()}`,
+              url: `https://blockgametracker.gg/servers/${server.platform}/${server.slug.toLowerCase()}`,
               lastModified: new Date(),
               changeFrequency: "hourly" as const,
               priority: 0.7,
